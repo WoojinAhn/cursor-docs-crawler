@@ -133,6 +133,7 @@ class ContentParser:
         # Remove elements by selector
         for selector in self.config.EXCLUDED_SELECTORS:
             for element in soup.select(selector):
+                self.logger.debug(f"Removing element with selector: {selector}")
                 element.decompose()
         
         # Remove additional navigation and UI elements specific to docs.cursor.com
@@ -187,7 +188,21 @@ class ContentParser:
                 if element.find('img', src=lambda s: s and 'codebase-indexing' in s):
                     self.logger.info(f"🛡️ Protecting element containing codebase-indexing image")
                     continue
+                # Check if this is the mdx-content element
+                if element.get('class') and 'mdx-content' in element.get('class'):
+                    self.logger.warning(f"⚠️ Attempting to remove mdx-content element with selector: {selector}")
+                    continue
+                # Check if this element contains mdx-content
+                if element.select_one('.mdx-content'):
+                    self.logger.warning(f"⚠️ Attempting to remove element containing mdx-content with selector: {selector}")
+                    continue
+                self.logger.debug(f"Removing element with additional selector: {selector}")
                 element.decompose()
+                
+                # Check if mdx-content was removed
+                if not soup.select_one('.mdx-content'):
+                    self.logger.error(f"❌ .mdx-content was removed by selector: {selector}")
+                    return soup
         
         # Remove specific unwanted elements
         unwanted_elements = [
@@ -228,6 +243,10 @@ class ContentParser:
         
         for attrs in unwanted_attrs:
             for element in soup.find_all(attrs=attrs):
+                # Protect html and body elements
+                if element.name in ['html', 'body']:
+                    self.logger.debug(f"🛡️ Protecting {element.name} element from unwanted_attrs removal")
+                    continue
                 element.decompose()
         
         # Remove empty elements
@@ -262,6 +281,8 @@ class ContentParser:
                 new_soup = BeautifulSoup('', 'html.parser')
                 new_soup.append(main_element.extract())
                 return new_soup
+            else:
+                self.logger.debug(f"Selector '{selector}' not found")
         
         # Fallback: try to find content by common patterns
         content_candidates = [

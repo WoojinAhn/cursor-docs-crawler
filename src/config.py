@@ -41,8 +41,8 @@ class Config:
         
         if self.CONTENT_SELECTORS is None:
             self.CONTENT_SELECTORS = [
-                "main", ".content", "article", ".documentation",
-                ".main-content", "#content"
+                ".mdx-content", "main", ".content", "article", ".documentation",
+                ".main-content", "#content", "[data-page-href]"
             ]
     
     def _validate_config(self):
