@@ -17,7 +17,7 @@ Cursor 문서 사이트(https://docs.cursor.com/)의 모든 콘텐츠를 크롤�
 
 ### 1. 저장소 클론
 ```bash
-git clone <repository-url>
+git clone https://github.com/WoojinAhn/cursor-docs-crawler.git
 cd cursor-docs-crawler
 ```
 
@@ -106,11 +106,9 @@ cursor-docs-crawler/
 │   ├── logger.py          # 로깅 시스템
 │   └── error_handler.py   # 에러 처리
 └── tests/                 # 테스트 코드
-    ├── __init__.py
-    ├── test_models.py
     ├── test_url_manager.py
     ├── test_content_parser.py
-    └── test_integration.py
+    └── test_pdf_generator.py
 ```
 
 ## 사이트 매핑(사이트 구조 탐색) 로직 상세
@@ -177,13 +175,6 @@ class Config:
 ```python
 class TestConfig(Config):
     MAX_PAGES = 5
-    TEST_URLS = [
-        "https://docs.cursor.com/",
-        "https://docs.cursor.com/getting-started",
-        "https://docs.cursor.com/features",
-        "https://docs.cursor.com/settings",
-        "https://docs.cursor.com/troubleshooting"
-    ]
 ```
 
 ## 테스트 실행
@@ -193,7 +184,7 @@ class TestConfig(Config):
 python -m pytest tests/
 
 # 특정 테스트 파일 실행
-python -m pytest tests/test_models.py
+python -m pytest tests/test_url_manager.py
 
 # 상세 출력과 함께 테스트 실행
 python -m pytest tests/ -v
@@ -303,11 +294,17 @@ pytest tests/ --cov=src
 
 ## 지원
 
-- 이슈 리포트: GitHub Issues
+- 이슈 리포트: [GitHub Issues](https://github.com/WoojinAhn/cursor-docs-crawler/issues)
 - 문서: 이 README 파일
 - 예제: `tests/` 디렉토리의 테스트 코드
 
 ## 버전 히스토리
+
+- **v1.1.0**: 콘텐츠 파싱 개선
+  - `.mdx-content` 선택자 추가로 콘텐츠 추출 성능 향상
+  - mdx-content 보호 로직 추가
+  - 디버그 로깅 개선
+  - 불필요한 debug 파일들 정리
 
 - **v1.0.0**: 초기 릴리스
   - 기본 크롤링 기능
@@ -319,3 +316,8 @@ pytest tests/ --cov=src
 ---
 
 **참고**: 이 도구는 교육 및 개인 사용 목적으로 제작되었습니다. docs.cursor.com의 이용 약관을 준수하여 사용하시기 바랍니다.
+
+**주의사항**: 
+- 이 도구는 docs.cursor.com의 HTML 구조에 의존합니다. 사이트 구조가 변경되면 콘텐츠 추출이 실패할 수 있습니다.
+- 대량의 요청을 보내지 않도록 적절한 지연 시간을 설정하세요.
+- 서버에 과도한 부하를 주지 않도록 책임감 있게 사용하세요.
