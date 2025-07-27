@@ -1,0 +1,19 @@
+# Core dependencies
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+weasyprint>=60.0
+Pillow>=10.0.0
+urllib3>=2.0.0
+selenium
+webdriver-manager
+
+# Development dependencies
+pytest>=7.4.0
+pytest-mock>=3.11.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Optional dependencies
+tqdm>=4.66.0
+colorlog>=6.7.0
+click>=8.1.0
