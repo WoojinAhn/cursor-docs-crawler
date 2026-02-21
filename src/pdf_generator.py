@@ -2,6 +2,7 @@
 
 import logging
 import os
+from html import escape as html_escape
 from typing import List
 from datetime import datetime
 import weasyprint
@@ -166,8 +167,8 @@ class PDFGenerator:
             
             toc_item = f"""
             <div class="toc-item {indent_class}">
-                <a href="#{anchor_id}">{page.title}</a>
-                <span class="toc-url">{page.url}</span>
+                <a href="#{anchor_id}">{html_escape(page.title)}</a>
+                <span class="toc-url">{html_escape(page.url)}</span>
             </div>
             """
             toc_items.append(toc_item)
@@ -194,8 +195,8 @@ class PDFGenerator:
             page_html = f"""
             <div class="page-section" id="{anchor_id}">
                 <div class="page-header">
-                    <h1 class="page-title">{page.title}</h1>
-                    <p class="page-url">{page.url}</p>
+                    <h1 class="page-title">{html_escape(page.title)}</h1>
+                    <p class="page-url">{html_escape(page.url)}</p>
                 </div>
                 
                 <div class="page-content">
@@ -232,9 +233,6 @@ class PDFGenerator:
         # Basic HTML cleaning for PDF
         # Remove any remaining script tags
         html_content = html_content.replace('<script', '<!--script').replace('</script>', '</script-->')
-        
-        # Ensure all images have proper attributes
-        html_content = html_content.replace('<img ', '<img loading="lazy" ')
         
         return html_content
     
@@ -532,13 +530,13 @@ class PDFGenerator:
             # Create simple page summary
             summary = f"""
             <div style="margin-bottom: 2cm; padding: 1cm; border: 1px solid #ccc;">
-                <h2>{i}. {page.title}</h2>
-                <p><strong>URL:</strong> {page.url}</p>
+                <h2>{i}. {html_escape(page.title)}</h2>
+                <p><strong>URL:</strong> {html_escape(page.url)}</p>
                 <p><strong>Word Count:</strong> {page.word_count}</p>
                 <p><strong>Images:</strong> {page.image_count}</p>
                 <div style="margin-top: 1cm;">
-                    <h3>Full Content:</h3>
-                    <div style="white-space: pre-wrap;">{page.content_html}</div>
+                    <h3>Content:</h3>
+                    <div style="white-space: pre-wrap;">{html_escape(page.text_content)}</div>
                 </div>
             </div>
             """
@@ -565,7 +563,7 @@ class PDFGenerator:
     <div class="error-notice">
         <h2>⚠️ Generation Error</h2>
         <p>The full PDF generation encountered an error. This is a simplified fallback version.</p>
-        <p><strong>Error:</strong> {error_message}</p>
+        <p><strong>Error:</strong> {html_escape(error_message)}</p>
         <p><strong>Generated:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
     </div>
     

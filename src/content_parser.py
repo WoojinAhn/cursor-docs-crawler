@@ -85,7 +85,7 @@ class ContentParser:
                     text_content=basic_text,
                     images=[]
                 )
-            except:
+            except Exception:
                 # Ultimate fallback
                 return PageContent(
                     url=page_data.url,
@@ -102,7 +102,9 @@ class ContentParser:
         """
         if element.name in ('html', 'body'):
             return True
-        if content_el and (element is content_el or element.find(content_el)):
+        if content_el and (element is content_el
+                          or content_el in element.parents
+                          or element in content_el.parents):
             return True
         if element.get('data-name') == 'frame':
             return True
@@ -197,9 +199,10 @@ class ContentParser:
             for element in soup.find_all(attrs=attrs):
                 if element.name in ('html', 'body'):
                     continue
-                # Protect elements inside the main content area (O(depth) check)
+                # Protect content area and its ancestors (O(depth) check)
                 if content_el and (element is content_el
-                                   or content_el in element.parents):
+                                   or content_el in element.parents
+                                   or element in content_el.parents):
                     continue
                 element.decompose()
     
@@ -291,7 +294,9 @@ class ContentParser:
                     self.logger.info(f"🎯 KEEPING codebase-indexing image: {src} (alt: {img.get('alt', 'No alt')})")
                 
                 # Convert relative URLs to absolute
-                if src.startswith('/'):
+                if src.startswith('//'):
+                    src = f"https:{src}"
+                elif src.startswith('/'):
                     src = f"https://{self.config.domain}{src}"
                 elif not src.startswith(('http://', 'https://')):
                     src = f"https://{self.config.domain}/{src.lstrip('/')}"
