@@ -7,6 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 from .models import PageData
@@ -47,6 +49,14 @@ class SeleniumCrawler:
         print(f"[Selenium] Crawling: {url}")
         try:
             self.driver.get(url)
+
+            # Wait for JS rendering (Next.js SPA needs time to hydrate)
+            try:
+                WebDriverWait(self.driver, 10).until(
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "a[href]"))
+                )
+            except Exception:
+                self.logger.debug(f"[Selenium] Timed out waiting for links on {url}")
 
             # Track redirect: check actual final URL
             raw_final_url = self.driver.current_url

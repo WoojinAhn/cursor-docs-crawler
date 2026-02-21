@@ -186,7 +186,9 @@ class ContentParser:
         """Remove elements matched by attribute patterns (ads, banners, roles)."""
         for attrs in self._UNWANTED_ATTRS:
             for element in soup.find_all(attrs=attrs):
-                if self._should_protect(element, content_el):
+                # Only protect structural roots – full _should_protect is too
+                # expensive here because regex attrs match hundreds of elements.
+                if element.name in ('html', 'body'):
                     continue
                 element.decompose()
     
