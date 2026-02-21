@@ -122,10 +122,17 @@ def main():
         # Report crawling statistics
         reporter.report_crawl_stats(url_manager, len(crawled_pages))
         
+        # Filter out 404 / error pages (Selenium can't detect HTTP status codes)
+        _error_title_patterns = ['page could not be found', 'page not found', '404 error']
+        crawled_pages = [
+            p for p in crawled_pages
+            if not any(pat in p.title.lower() for pat in _error_title_patterns)
+        ]
+
         # Process content
         print("Processing page content...")
         processed_pages = []
-        
+
         total = len(crawled_pages)
         for idx, page_data in enumerate(crawled_pages, 1):
             print(f"[Main] Parsing page {idx}/{total}: {page_data.url}")
