@@ -149,6 +149,7 @@ class ContentParser:
         self._remove_by_tags(soup, content_el)
         self._remove_by_attrs(soup, content_el)
         self._clean_styles_for_pdf(soup)
+        self._remove_empty_table_columns(soup)
         self._remove_empty_elements(soup)
         self._remove_navigation_text(soup, content_el)
         return soup
@@ -175,7 +176,8 @@ class ContentParser:
 
     def _remove_by_tags(self, soup: BeautifulSoup, content_el: Optional[Tag]) -> None:
         """Remove unwanted tags (scripts, styles, forms, buttons)."""
-        for tag_name in ('script', 'style', 'noscript', 'form', 'input', 'select', 'textarea'):
+        for tag_name in ('script', 'style', 'noscript', 'form', 'input',
+                         'select', 'textarea', 'svg'):
             for element in soup.find_all(tag_name):
                 element.decompose()
 
@@ -185,11 +187,22 @@ class ContentParser:
         ):
             comment.extract()
 
-        # Buttons are always UI elements – extract images, then remove
+        # UI aria-labels that should NOT become visible text
+        _ui_labels = {'open image in full screen', 'copy code', 'copy',
+                      'close', 'toggle', 'menu', 'expand', 'collapse'}
+
+        # Buttons: unwrap to keep text; convert data aria-labels to text
         for button in soup.find_all('button'):
-            for img in button.find_all('img'):
-                button.insert_before(img.extract())
-            button.decompose()
+            if not button.get_text(strip=True) and button.get('aria-label'):
+                label = button['aria-label'].strip()
+                if label.lower() in _ui_labels:
+                    button.decompose()
+                    continue
+                span = soup.new_tag('span')
+                span.string = label
+                button.replace_with(span)
+            else:
+                button.unwrap()
 
     _CSS_VAR_RE = re.compile(r'[^;]*var\(--[^)]+\)[^;]*;?')
     _CSS_PROP_RE = re.compile(r'--[\w-]+:[^;]+;?')
@@ -211,6 +224,33 @@ class ContentParser:
                     el['style'] = style
                 else:
                     del el['style']
+
+    def _remove_empty_table_columns(self, soup: BeautifulSoup) -> None:
+        """Remove table columns where all body cells are empty."""
+        for table in soup.find_all('table'):
+            rows = table.find_all('tr')
+            if not rows:
+                continue
+            # Separate header rows from body rows
+            body_rows = [r for r in rows
+                         if r.find('td') and r.find_parent('thead') is None]
+            if not body_rows:
+                continue
+            num_cols = max(len(row.find_all(['th', 'td'])) for row in rows)
+            for col_idx in range(num_cols - 1, -1, -1):
+                # Check only body rows – header text alone doesn't justify a column
+                all_body_empty = True
+                for row in body_rows:
+                    cells = row.find_all(['th', 'td'])
+                    if col_idx < len(cells):
+                        if cells[col_idx].get_text(strip=True):
+                            all_body_empty = False
+                            break
+                if all_body_empty:
+                    for row in rows:
+                        cells = row.find_all(['th', 'td'])
+                        if col_idx < len(cells):
+                            cells[col_idx].decompose()
 
     def _remove_by_attrs(self, soup: BeautifulSoup, content_el: Optional[Tag]) -> None:
         """Remove elements matched by attribute patterns (ads, banners, roles)."""
