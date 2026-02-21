@@ -47,7 +47,6 @@ class SeleniumCrawler:
         print(f"[Selenium] Crawling: {url}")
         try:
             self.driver.get(url)
-            time.sleep(self.config.DELAY_BETWEEN_REQUESTS)  # JS rendering wait
 
             # Track redirect: check actual final URL
             raw_final_url = self.driver.current_url
