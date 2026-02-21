@@ -473,16 +473,23 @@ class PDFGenerator:
         /* Tables */
         table {
             width: 100%;
+            table-layout: fixed;
             border-collapse: collapse;
             margin: 0.5cm 0;
         }
-        
+
         th, td {
             border: 1pt solid #bdc3c7;
             padding: 0.3cm;
             text-align: left;
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
-        
+
+        td code, th code {
+            word-break: break-all;
+        }
+
         th {
             background-color: #ecf0f1;
             font-weight: bold;
