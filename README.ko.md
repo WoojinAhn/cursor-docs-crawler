@@ -51,9 +51,18 @@ WeasyPrint 공식 문서를 참조하세요: https://doc.courtbouillon.org/weasy
 python main.py
 ```
 
-### 테스트 모드 (5페이지 제한)
+### 테스트 모드 (10개 대표 페이지)
 ```bash
 python main.py --test
+```
+
+### 오프라인 테스트 모드 (저장된 HTML fixture 사용)
+```bash
+# 먼저 라이브 사이트에서 fixture 저장 (Selenium 필요)
+python scripts/save_fixtures.py
+
+# 이후 오프라인 실행 — 네트워크/Selenium 불필요
+python main.py --test --fixture
 ```
 
 ### 고급 옵션
@@ -81,7 +90,8 @@ python main.py --test --output test.pdf --verbose --log-file test.log
 
 | 옵션 | 설명 | 기본값 |
 |------|------|--------|
-| `--test` | 테스트 모드 (5페이지 제한) | False |
+| `--test` | 테스트 모드 (10개 대표 페이지) | False |
+| `--fixture` | 저장된 HTML fixture 사용 (오프라인, Selenium 불필요) | False |
 | `--output`, `-o` | 출력 PDF 파일 경로 | cursor_docs.pdf |
 | `--max-pages`, `-m` | 최대 크롤링 페이지 수 | 무제한 |
 | `--delay`, `-d` | 요청 간 지연 시간 (초) | 0.3 |
@@ -96,6 +106,8 @@ cursor-docs-crawler/
 ├── requirements.txt        # Python 의존성
 ├── README.md              # 영어 문서
 ├── README.ko.md           # 한국어 문서
+├── scripts/               # 유틸리티 스크립트
+│   └── save_fixtures.py   # 라이브 크롤링에서 HTML fixture 저장
 ├── src/                   # 소스 코드
 │   ├── __init__.py
 │   ├── config.py          # 설정 클래스
@@ -103,15 +115,22 @@ cursor-docs-crawler/
 │   ├── models.py          # 데이터 모델
 │   ├── url_manager.py     # URL 관리
 │   ├── selenium_crawler.py # Selenium 기반 크롤러
+│   ├── fixture_crawler.py # Fixture 기반 크롤러 (오프라인)
 │   ├── content_parser.py  # 콘텐츠 파싱
 │   ├── page_sorter.py     # 페이지 정렬
 │   ├── pdf_generator.py   # PDF 생성
 │   ├── logger.py          # 로깅 시스템
 │   └── error_handler.py   # 에러 처리
-└── tests/                 # 테스트 코드
-    ├── test_url_manager.py
-    ├── test_content_parser.py
-    └── test_pdf_generator.py
+├── tests/                 # 테스트 코드
+│   ├── test_url_manager.py
+│   ├── test_content_parser.py
+│   ├── test_pdf_generator.py
+│   ├── test_e2e_offline.py # 오프라인 E2E 테스트 (fixture 기반)
+│   └── fixtures/          # 오프라인 테스트용 저장된 HTML 스냅샷
+│       ├── manifest.json
+│       └── html/
+└── .github/workflows/
+    └── e2e-test.yml       # CI: PR 오프라인 테스트 + 주간 fixture 갱신
 ```
 
 ## 사이트 매핑(사이트 구조 탐색) 로직 상세
@@ -177,24 +196,45 @@ class Config:
 ### 테스트 설정
 ```python
 class TestConfig(Config):
-    MAX_PAGES = 5
+    MAX_PAGES = 10
+    # 10개 대표 페이지: text, tables, images, code, mixed
 ```
 
 ## 테스트 실행
 
 ```bash
-# 모든 테스트 실행
+# 모든 테스트 실행 (fixture가 있으면 오프라인 E2E 포함)
 python -m pytest tests/
 
 # 특정 테스트 파일 실행
 python -m pytest tests/test_url_manager.py
 
-# 상세 출력과 함께 테스트 실행
-python -m pytest tests/ -v
+# 오프라인 E2E 테스트만 실행
+python -m pytest tests/test_e2e_offline.py -v
 
 # 커버리지와 함께 테스트 실행
 python -m pytest tests/ --cov=src
 ```
+
+### 오프라인 E2E 테스트
+
+Selenium이나 네트워크 없이 파싱→PDF 전체 파이프라인을 검증하는 fixture 기반 E2E 테스트 시스템입니다.
+
+```bash
+# 1. 라이브 사이트에서 HTML fixture 저장 (최초 1회 또는 갱신 시)
+python scripts/save_fixtures.py
+
+# 2. 오프라인 E2E 테스트 실행 (~6초, 네트워크 불필요)
+python -m pytest tests/test_e2e_offline.py -v
+```
+
+**CI 통합 (GitHub Actions):**
+
+| 트리거 | 실행 내용 | 네트워크 필요 |
+|--------|-----------|:-:|
+| Pull Request | 오프라인 테스트 (커밋된 fixture 사용) | 아니오 |
+| `workflow_dispatch` | 오프라인 테스트 (수동 트리거) | 아니오 |
+| 주간 cron (일요일 03:00 UTC) | 라이브 사이트에서 fixture 갱신 + 커밋 | 예 |
 
 ## 에러 처리
 
@@ -311,6 +351,14 @@ pytest tests/ --cov=src
 - **~5분** 총 소요 시간
 
 ## 버전 히스토리
+
+- **v1.4.0**: 오프라인 E2E 테스트 & CI
+  - HTML fixture 시스템 추가 (`scripts/save_fixtures.py`)
+  - `FixtureCrawler` 추가 — `SeleniumCrawler`의 오프라인 대체
+  - `--fixture` 플래그 추가 (Selenium/네트워크 불필요)
+  - `tests/test_e2e_offline.py` 전체 파이프라인 테스트 추가
+  - GitHub Actions 추가: PR 오프라인 테스트 + 주간 fixture 갱신
+  - `TestConfig`에 10개 콘텐츠 유형별 대표 테스트 페이지 설정
 
 - **v1.3.0**: 콘텐츠 품질 & PDF 개선
   - Footer 누출 수정 (테마 토글, 언어 선택기) — defense-in-depth 방식 제거

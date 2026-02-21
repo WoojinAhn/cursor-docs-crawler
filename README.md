@@ -51,9 +51,18 @@ Refer to the official WeasyPrint documentation: https://doc.courtbouillon.org/we
 python main.py
 ```
 
-### Test Mode (5-page limit)
+### Test Mode (10 representative pages)
 ```bash
 python main.py --test
+```
+
+### Offline Test Mode (using saved HTML fixtures)
+```bash
+# First, save fixtures from live site (requires Selenium)
+python scripts/save_fixtures.py
+
+# Then run offline — no network or Selenium needed
+python main.py --test --fixture
 ```
 
 ### Advanced Options
@@ -81,7 +90,8 @@ python main.py --test --output test.pdf --verbose --log-file test.log
 
 | Option | Description | Default |
 |--------|-------------|---------|
-| `--test` | Test mode (5-page limit) | False |
+| `--test` | Test mode (10 representative pages) | False |
+| `--fixture` | Use saved HTML fixtures (offline, no Selenium) | False |
 | `--output`, `-o` | Output PDF file path | cursor_docs.pdf |
 | `--max-pages`, `-m` | Maximum pages to crawl | Unlimited |
 | `--delay`, `-d` | Delay between requests (seconds) | 0.3 |
@@ -96,6 +106,8 @@ cursor-docs-crawler/
 ├── requirements.txt        # Python dependencies
 ├── README.md              # This file (English)
 ├── README.ko.md           # Korean documentation
+├── scripts/               # Utility scripts
+│   └── save_fixtures.py   # Save HTML fixtures from live crawl
 ├── src/                   # Source code
 │   ├── __init__.py
 │   ├── config.py          # Configuration class
@@ -103,15 +115,22 @@ cursor-docs-crawler/
 │   ├── models.py          # Data models
 │   ├── url_manager.py     # URL management
 │   ├── selenium_crawler.py # Selenium-based crawler
+│   ├── fixture_crawler.py # Fixture-based crawler (offline)
 │   ├── content_parser.py  # Content parsing
 │   ├── page_sorter.py     # Page sorting
 │   ├── pdf_generator.py   # PDF generation
 │   ├── logger.py          # Logging system
 │   └── error_handler.py   # Error handling
-└── tests/                 # Test code
-    ├── test_url_manager.py
-    ├── test_content_parser.py
-    └── test_pdf_generator.py
+├── tests/                 # Test code
+│   ├── test_url_manager.py
+│   ├── test_content_parser.py
+│   ├── test_pdf_generator.py
+│   ├── test_e2e_offline.py # Offline E2E test (fixture-based)
+│   └── fixtures/          # Saved HTML snapshots for offline testing
+│       ├── manifest.json
+│       └── html/
+└── .github/workflows/
+    └── e2e-test.yml       # CI: PR offline tests + weekly fixture refresh
 ```
 
 ## Site Mapping (Site Structure Discovery) Logic
@@ -177,24 +196,45 @@ class Config:
 ### Test Configuration
 ```python
 class TestConfig(Config):
-    MAX_PAGES = 5
+    MAX_PAGES = 10
+    # 10 representative pages: text, tables, images, code, mixed
 ```
 
 ## Running Tests
 
 ```bash
-# Run all tests
+# Run all tests (includes offline E2E if fixtures exist)
 python -m pytest tests/
 
 # Run specific test file
 python -m pytest tests/test_url_manager.py
 
-# Run tests with verbose output
-python -m pytest tests/ -v
+# Run only offline E2E tests
+python -m pytest tests/test_e2e_offline.py -v
 
 # Run tests with coverage
 python -m pytest tests/ --cov=src
 ```
+
+### Offline E2E Testing
+
+The project includes a fixture-based E2E test system that runs the full parse→PDF pipeline without Selenium or network access.
+
+```bash
+# 1. Save HTML fixtures from live site (one-time, or to refresh)
+python scripts/save_fixtures.py
+
+# 2. Run offline E2E tests (~6 seconds, no network needed)
+python -m pytest tests/test_e2e_offline.py -v
+```
+
+**CI Integration (GitHub Actions):**
+
+| Trigger | What runs | Network needed |
+|---------|-----------|:-:|
+| Pull request | Offline tests (from committed fixtures) | No |
+| `workflow_dispatch` | Offline tests (manual trigger) | No |
+| Weekly cron (Sun 03:00 UTC) | Refresh fixtures from live site + commit | Yes |
 
 ## Error Handling
 
@@ -311,6 +351,14 @@ Full crawl produces approximately:
 - **~5 minutes** total duration
 
 ## Version History
+
+- **v1.4.0**: Offline E2E Testing & CI
+  - Added HTML fixture system for offline testing (`scripts/save_fixtures.py`)
+  - Added `FixtureCrawler` as drop-in replacement for `SeleniumCrawler`
+  - Added `--fixture` flag for offline mode (no Selenium/network needed)
+  - Added `tests/test_e2e_offline.py` with full pipeline tests
+  - Added GitHub Actions: PR offline tests + weekly fixture refresh
+  - Updated `TestConfig` with 10 content-type-representative test pages
 
 - **v1.3.0**: Content Quality & PDF Improvements
   - Fixed footer leakage (theme toggle, language selector) via defense-in-depth removal
