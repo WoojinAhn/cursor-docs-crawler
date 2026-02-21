@@ -148,6 +148,7 @@ class ContentParser:
         self._remove_by_selectors(soup, content_el)
         self._remove_by_tags(soup, content_el)
         self._remove_by_attrs(soup, content_el)
+        self._clean_styles_for_pdf(soup)
         self._remove_empty_elements(soup)
         self._remove_navigation_text(soup, content_el)
         return soup
@@ -184,14 +185,32 @@ class ContentParser:
         ):
             comment.extract()
 
-        # Buttons – extract contained images before removing
+        # Buttons are always UI elements – extract images, then remove
         for button in soup.find_all('button'):
-            if self._should_protect(button, content_el):
-                continue
-            imgs = button.find_all('img')
-            for img in imgs:
+            for img in button.find_all('img'):
                 button.insert_before(img.extract())
             button.decompose()
+
+    _CSS_VAR_RE = re.compile(r'[^;]*var\(--[^)]+\)[^;]*;?')
+    _CSS_PROP_RE = re.compile(r'--[\w-]+:[^;]+;?')
+
+    def _clean_styles_for_pdf(self, soup: BeautifulSoup) -> None:
+        """Strip Tailwind CSS classes and CSS custom properties for PDF."""
+        for el in soup.find_all(True):
+            # Remove all class attributes – PDF uses its own CSS
+            if el.get('class'):
+                del el['class']
+
+            # Clean inline styles: remove CSS custom properties and var() refs
+            style = el.get('style', '')
+            if style and ('--' in style or 'var(' in style):
+                style = self._CSS_VAR_RE.sub('', style)
+                style = self._CSS_PROP_RE.sub('', style)
+                style = style.strip().strip(';').strip()
+                if style:
+                    el['style'] = style
+                else:
+                    del el['style']
 
     def _remove_by_attrs(self, soup: BeautifulSoup, content_el: Optional[Tag]) -> None:
         """Remove elements matched by attribute patterns (ads, banners, roles)."""
