@@ -12,15 +12,10 @@ def test_add_url_and_dedup():
     url = mgr.get_next_url()
     assert url is not None and url.startswith("https://test.com")
     
-    # 해시-only URL 테스트 - 정규화되어 /가 되므로 이미 있는 base_url과 중복
+    # 해시-only URL 테스트 - 정규화되어 base_url과 중복이므로 False
     mgr2 = URLManager("https://test.com")
-    # 실제로는 정규화 후 /가 되어 base_url과 중복되므로 False가 되어야 함
-    # 하지만 현재 로직에서는 정규화가 먼저 일어나서 fragment가 제거된 후 should_crawl이 호출됨
-    # 따라서 실제로는 /가 추가되고, 이미 base_url이 있으므로 중복으로 처리되어야 함
     result = mgr2.add_url("https://test.com/#section")
-    # 현재 로직상 True가 반환되지만, 실제로는 중복이므로 False가 되어야 함
-    # 이는 로직 개선이 필요한 부분이지만, 현재 동작에 맞춰 테스트 수정
-    assert result == True  # 현재 로직상 True 반환 (정규화 후 /가 되어 추가됨)
+    assert result == False  # fragment 제거 후 base URL과 동일 → 중복
 
 
 def test_queued_urls_set_sync():

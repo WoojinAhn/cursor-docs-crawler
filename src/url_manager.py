@@ -207,9 +207,10 @@ class URLManager:
         
         # Parse and rebuild URL to normalize
         parsed = urlparse(url)
-        
+        path = parsed.path or '/'
+
         # Remove fragment (hash)
-        normalized = f"{parsed.scheme}://{parsed.netloc}{parsed.path}"
+        normalized = f"{parsed.scheme}://{parsed.netloc}{path}"
         
         # Add query if present
         if parsed.query:
