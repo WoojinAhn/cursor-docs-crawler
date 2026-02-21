@@ -20,4 +20,30 @@ def test_add_url_and_dedup():
     result = mgr2.add_url("https://test.com/#section")
     # 현재 로직상 True가 반환되지만, 실제로는 중복이므로 False가 되어야 함
     # 이는 로직 개선이 필요한 부분이지만, 현재 동작에 맞춰 테스트 수정
-    assert result == True  # 현재 로직상 True 반환 (정규화 후 /가 되어 추가됨) 
+    assert result == True  # 현재 로직상 True 반환 (정규화 후 /가 되어 추가됨)
+
+
+def test_queued_urls_set_sync():
+    """_queued_urls set stays in sync with _urls_to_visit deque."""
+    mgr = URLManager("https://test.com")
+
+    # After init, base_url is queued
+    assert len(mgr._queued_urls) == 1
+
+    # Add more URLs
+    mgr.add_url("https://test.com/a")
+    mgr.add_url("https://test.com/b")
+    assert len(mgr._queued_urls) == 3
+
+    # Duplicate should not increase the set
+    mgr.add_url("https://test.com/a")
+    assert len(mgr._queued_urls) == 3
+
+    # get_next_url removes from both deque and set
+    url = mgr.get_next_url()
+    assert url not in mgr._queued_urls
+    assert len(mgr._queued_urls) == 2
+
+    # After clear, set is also empty
+    mgr.clear()
+    assert len(mgr._queued_urls) == 0

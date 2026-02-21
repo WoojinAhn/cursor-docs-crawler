@@ -26,6 +26,7 @@ class URLManager:
 
         # URL storage
         self._urls_to_visit: deque = deque()
+        self._queued_urls: Set[str] = set()   # O(1) mirror of _urls_to_visit
         self._visited_urls: Set[str] = set()
         self._failed_urls: Set[str] = set()
         self._skipped_urls: Set[str] = set()
@@ -69,7 +70,7 @@ class URLManager:
             return False
         
         # Check for duplicates
-        if normalized_url in self._visited_urls or normalized_url in [u for u in self._urls_to_visit]:
+        if normalized_url in self._visited_urls or normalized_url in self._queued_urls:
             self._stats['duplicates'] += 1
             self.logger.debug(f"Duplicate URL skipped: {normalized_url}")
             return False
@@ -83,6 +84,7 @@ class URLManager:
         
         # Add to queue
         self._urls_to_visit.append(normalized_url)
+        self._queued_urls.add(normalized_url)
         self._stats['total_found'] += 1
         self.logger.debug(f"URL added to queue: {normalized_url}")
         return True
@@ -95,8 +97,9 @@ class URLManager:
         """
         if not self._urls_to_visit:
             return None
-        
+
         url = self._urls_to_visit.popleft()
+        self._queued_urls.discard(url)
         return url
     
     def mark_visited(self, url: str) -> None:
@@ -261,6 +264,7 @@ class URLManager:
     def clear(self) -> None:
         """Clear all URLs and statistics."""
         self._urls_to_visit.clear()
+        self._queued_urls.clear()
         self._visited_urls.clear()
         self._failed_urls.clear()
         self._skipped_urls.clear()
