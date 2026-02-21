@@ -17,6 +17,9 @@ class Config:
 
     # Allowed path prefixes for crawling (URLs must start with one of these)
     ALLOWED_PATH_PREFIXES: List[str] = None
+
+    # Seed URL source: llms.txt lists all official doc pages
+    LLMS_TXT_URL: str = "https://cursor.com/llms.txt"
     
     # Crawling settings
     MAX_PAGES: Optional[int] = None  # None for unlimited, number for test mode

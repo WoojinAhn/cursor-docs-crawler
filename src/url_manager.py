@@ -172,7 +172,7 @@ class URLManager:
                     return False
 
             # Skip common file extensions that aren't HTML
-            skip_extensions = ['.pdf', '.jpg', '.jpeg', '.png', '.gif', '.css', '.js', '.xml', '.zip', '.svg']
+            skip_extensions = ['.pdf', '.jpg', '.jpeg', '.png', '.gif', '.css', '.js', '.xml', '.zip', '.svg', '.json']
             if any(path.endswith(ext) for ext in skip_extensions):
                 return False
 

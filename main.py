@@ -2,8 +2,12 @@
 """Main application entry point for Cursor documentation crawler."""
 
 import argparse
+import logging
+import re
 import sys
 from pathlib import Path
+from urllib.request import urlopen, Request
+from urllib.error import URLError
 
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
@@ -13,6 +17,36 @@ from src.url_manager import URLManager
 from src.content_parser import ContentParser
 from src.pdf_generator import PDFGenerator
 from src.logger import CrawlerLogger, CrawlReporter
+
+
+def seed_from_llms_txt(url_manager, llms_txt_url: str) -> int:
+    """Fetch llms.txt and seed all /docs/* URLs into the URL manager.
+
+    llms.txt lists every official doc page as markdown links with .md suffix.
+    We strip the .md to get the actual page URL.
+
+    Returns:
+        Number of URLs successfully seeded.
+    """
+    logger = logging.getLogger(__name__)
+    try:
+        req = Request(llms_txt_url, headers={"User-Agent": "Cursor Docs Crawler 1.0"})
+        with urlopen(req, timeout=15) as resp:
+            text = resp.read().decode("utf-8")
+    except (URLError, OSError) as e:
+        logger.warning(f"Failed to fetch llms.txt ({llms_txt_url}): {e}")
+        return 0
+
+    # Extract URLs: pattern like https://cursor.com/docs/....md
+    urls = re.findall(r'https://cursor\.com/docs[^\s)]+\.md', text)
+    seeded = 0
+    for url in urls:
+        clean_url = url.removesuffix(".md")
+        if url_manager.add_url(clean_url):
+            seeded += 1
+    logger.info(f"Seeded {seeded} URLs from llms.txt (found {len(urls)} entries)")
+    print(f"[Seed] Added {seeded} new URLs from llms.txt")
+    return seeded
 
 
 def main():
@@ -75,7 +109,6 @@ def main():
     )
     
     # Suppress verbose logging from external libraries
-    import logging
     logging.getLogger('selenium').setLevel(logging.WARNING)
     logging.getLogger('urllib3').setLevel(logging.WARNING)
     logging.getLogger('weasyprint').setLevel(logging.WARNING)
@@ -121,6 +154,9 @@ def main():
                 url_manager.clear()
                 for url in config.TEST_URLS:
                     url_manager.add_url(url)
+            else:
+                # Seed URLs from llms.txt to cover pages unreachable via BFS
+                seed_from_llms_txt(url_manager, config.LLMS_TXT_URL)
 
             from src.selenium_crawler import SeleniumCrawler
             crawler = SeleniumCrawler(config, url_manager)
@@ -146,6 +182,20 @@ def main():
             p for p in crawled_pages
             if not any(pat in p.title.lower() for pat in _error_title_patterns)
         ]
+
+        # Filter out redirect-only pages: if a page redirected to a different
+        # URL that is also crawled as its own entry, drop the redirect source.
+        crawled_urls = {p.url for p in crawled_pages}
+        before_redirect_filter = len(crawled_pages)
+        crawled_pages = [
+            p for p in crawled_pages
+            if not p.final_url
+            or p.final_url == p.url
+            or p.final_url not in crawled_urls
+        ]
+        redirect_filtered = before_redirect_filter - len(crawled_pages)
+        if redirect_filtered:
+            print(f"[Filter] Removed {redirect_filtered} redirect-only pages")
 
         # Process content
         print("Processing page content...")

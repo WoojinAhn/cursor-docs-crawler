@@ -157,8 +157,9 @@ cursor-docs-crawler/
 
 ### 1. Crawling and Site Mapping Phase
 1. **Starting Point**: Loads `https://cursor.com/docs` in Selenium browser
-2. **Link Extraction and Normalization**: Extracts all `<a>` links with BeautifulSoup, applies absolute path/hash removal/domain filtering/file filtering/duplicate removal
-3. **Sequential Crawling**: Visits URLs in queue sequentially, repeating the above process to automatically explore the entire site structure
+2. **URL Seeding from llms.txt**: Fetches `cursor.com/llms.txt` to seed all official doc page URLs — ensures pages unreachable via BFS link traversal are still crawled
+3. **Link Extraction and Normalization**: Extracts all `<a>` links with BeautifulSoup, applies absolute path/hash removal/domain filtering/file filtering/duplicate removal
+4. **Sequential Crawling**: Visits URLs in queue sequentially, repeating the above process to automatically explore the entire site structure
 
 ### 2. Content Processing Phase
 1. **HTML Parsing**: Analyzes HTML structure with BeautifulSoup
@@ -344,13 +345,19 @@ This project is distributed under the MIT License.
 ## Output Example
 
 Full crawl produces approximately:
-- **~110 pages** crawled
-- **~72,000 words** extracted
+- **~114 pages** crawled
+- **~75,000 words** extracted
 - **~100 images** embedded
-- **~15 MB** PDF file
+- **~16 MB** PDF file
 - **~5 minutes** total duration
 
 ## Version History
+
+- **v1.5.0**: Crawl Coverage & Relevance Audit (#11)
+  - Added `llms.txt` seeding: fetches `cursor.com/llms.txt` at crawl start to discover pages unreachable via BFS (Plugins, Languages, Cloud Agent API, etc.)
+  - Added redirect-only page filter: removes pages that redirect to another already-crawled page, preventing duplicate content in PDF
+  - Added `.json` to URL skip extensions to filter non-document endpoints (e.g. `ips.json`)
+  - Coverage improved from ~110 to ~114 doc pages (+3,400 words)
 
 - **v1.4.0**: Offline E2E Testing & CI
   - Added HTML fixture system for offline testing (`scripts/save_fixtures.py`)
