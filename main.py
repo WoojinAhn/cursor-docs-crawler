@@ -57,9 +57,14 @@ def main():
         "--log-file",
         help="Log file path (optional)"
     )
-    
 
-    
+    parser.add_argument(
+        "--fixture",
+        action="store_true",
+        help="Use saved HTML fixtures instead of live crawling (requires tests/fixtures/)"
+    )
+
+
     args = parser.parse_args()
     
     # Setup logging
@@ -104,17 +109,22 @@ def main():
         reporter.report_start(config.BASE_URL, config.MAX_PAGES)
         
         # Initialize components
-        url_manager = URLManager(config.BASE_URL, config.MAX_PAGES,
-                                 config.ALLOWED_PATH_PREFIXES)
+        if args.fixture:
+            from src.fixture_crawler import FixtureCrawler
+            crawler = FixtureCrawler()
+        else:
+            url_manager = URLManager(config.BASE_URL, config.MAX_PAGES,
+                                     config.ALLOWED_PATH_PREFIXES)
 
-        # In test mode, replace BFS discovery with specific test URLs
-        if args.test and hasattr(config, 'TEST_URLS'):
-            url_manager.clear()
-            for url in config.TEST_URLS:
-                url_manager.add_url(url)
+            # In test mode, replace BFS discovery with specific test URLs
+            if args.test and hasattr(config, 'TEST_URLS'):
+                url_manager.clear()
+                for url in config.TEST_URLS:
+                    url_manager.add_url(url)
 
-        from src.selenium_crawler import SeleniumCrawler
-        crawler = SeleniumCrawler(config, url_manager)
+            from src.selenium_crawler import SeleniumCrawler
+            crawler = SeleniumCrawler(config, url_manager)
+
         content_parser = ContentParser(config)
         pdf_generator = PDFGenerator(config)
         
@@ -127,7 +137,8 @@ def main():
             return 1
         
         # Report crawling statistics
-        reporter.report_crawl_stats(url_manager, len(crawled_pages))
+        if not args.fixture:
+            reporter.report_crawl_stats(url_manager, len(crawled_pages))
         
         # Filter out 404 / error pages (Selenium can't detect HTTP status codes)
         _error_title_patterns = ['page could not be found', 'page not found', '404 error']

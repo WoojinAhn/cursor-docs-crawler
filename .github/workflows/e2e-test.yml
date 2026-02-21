@@ -1,0 +1,72 @@
+name: E2E Test
+
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly Sunday 03:00 UTC — refresh fixtures from live site
+    - cron: '0 3 * * 0'
+
+jobs:
+  # Offline E2E: runs on every PR and manual trigger
+  offline-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies (WeasyPrint)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run all tests
+        run: python -m pytest tests/ -v
+
+  # Fixture refresh: runs only on weekly schedule
+  refresh-fixtures:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install system dependencies (Chrome + WeasyPrint)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0
+          # Chrome for Selenium
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Refresh HTML fixtures
+        run: python scripts/save_fixtures.py
+
+      - name: Run tests with refreshed fixtures
+        run: python -m pytest tests/ -v
+
+      - name: Commit updated fixtures
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tests/fixtures/
+          if git diff --cached --quiet; then
+            echo "No fixture changes detected"
+          else
+            git commit -m "chore: refresh HTML fixtures (weekly)"
+            git push
+          fi
