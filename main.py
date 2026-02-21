@@ -281,7 +281,7 @@ def main():
         # Clean up
         try:
             crawler.close()
-        except:
+        except Exception:
             pass
         
         # Report completion

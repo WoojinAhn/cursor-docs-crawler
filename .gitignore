@@ -62,6 +62,7 @@ logs/
 *.pdf
 debug_*.html
 *.tmp
+crawled_urls.txt
 
 # Kiro AI (if using Kiro)
 .kiro/

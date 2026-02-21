@@ -16,8 +16,12 @@ pip install -r requirements.txt
 # Run crawler (full)
 python main.py
 
-# Run in test mode (5-page limit)
+# Run in test mode (10 representative pages)
 python main.py --test
+
+# Run with offline fixtures (no Selenium/network)
+python scripts/save_fixtures.py  # One-time: save HTML snapshots
+python main.py --test --fixture  # Fast: offline E2E (~6 seconds)
 
 # Common options
 python main.py --output out.pdf --max-pages 20 --delay 2.0 --verbose --log-file crawler.log
@@ -41,15 +45,20 @@ black src/ tests/
 The pipeline runs in three sequential phases orchestrated by `main.py`:
 
 ```
-1. Crawl (SeleniumCrawler + URLManager)
+1. Seed + Crawl (seed_from_llms_txt + SeleniumCrawler + URLManager)
+   → Fetches cursor.com/llms.txt to seed all official doc URLs (covers BFS-unreachable pages)
    → BFS crawl via headless Chrome, extracts links, builds URL queue
    → Produces List[PageData]
 
-2. Parse (ContentParser)
+2. Filter (main.py)
+   → Removes 404/error pages (title-based), redirect-only duplicates, non-doc endpoints
+   → Produces filtered List[PageData]
+
+3. Parse (ContentParser)
    → Strips nav/sidebar/footer, extracts .mdx-content, processes images & YouTube embeds
    → Produces List[PageContent]
 
-3. Generate PDF (PDFGenerator + PageSorter)
+4. Generate PDF (PDFGenerator + PageSorter)
    → Sorts pages by URL hierarchy, builds full HTML doc with TOC, renders via WeasyPrint
    → Outputs .pdf file
 ```
