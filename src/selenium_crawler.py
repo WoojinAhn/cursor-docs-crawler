@@ -1,5 +1,8 @@
+import re
 import time
 import logging
+from urllib.parse import urljoin, urlparse
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -7,6 +10,10 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 from .models import PageData
+
+# Locale prefixes that Cursor auto-inserts (e.g. /ko/, /en/, /ja/)
+_LOCALE_RE = re.compile(r'^/[a-z]{2}(?=/)')
+
 
 class SeleniumCrawler:
     def __init__(self, config, url_manager):
@@ -22,23 +29,38 @@ class SeleniumCrawler:
             options=chrome_options
         )
 
+    @staticmethod
+    def strip_locale(url: str) -> str:
+        """Remove locale prefix from URL path (e.g. /ko/docs/... -> /docs/...).
+
+        cursor.com auto-redirects to a locale-prefixed URL based on browser
+        language. We strip it so all URLs are stored in a canonical form.
+        """
+        parsed = urlparse(url)
+        new_path = _LOCALE_RE.sub('', parsed.path)
+        if new_path == parsed.path:
+            return url
+        return parsed._replace(path=new_path).geturl()
+
     def crawl_page(self, url: str):
         self.logger.info(f"[Selenium] Crawling: {url}")
         print(f"[Selenium] Crawling: {url}")
         try:
             self.driver.get(url)
-            time.sleep(self.config.DELAY_BETWEEN_REQUESTS)  # JS 렌더링 대기
-            
-            # 리다이렉트 추적: 실제 최종 URL 확인
-            final_url = self.driver.current_url
+            time.sleep(self.config.DELAY_BETWEEN_REQUESTS)  # JS rendering wait
+
+            # Track redirect: check actual final URL
+            raw_final_url = self.driver.current_url
+            final_url = self.strip_locale(raw_final_url)
             if final_url != url:
                 self.logger.info(f"[Selenium] Redirect detected: {url} -> {final_url}")
-            
+
             html = self.driver.page_source
             soup = BeautifulSoup(html, 'html.parser')
             title = soup.title.string if soup.title and soup.title.string else ""
-            # 링크 추출 (정규화된 URL로)
-            links = self.extract_links(soup, url)
+
+            # Extract links using the final (redirected) URL as base
+            links = self.extract_links(soup, final_url)
             return PageData(
                 url=url,
                 title=title,
@@ -53,32 +75,33 @@ class SeleniumCrawler:
 
     def extract_links(self, soup: BeautifulSoup, base_url: str):
         """Extract and normalize links from HTML content.
-        
+
         Args:
             soup: BeautifulSoup object
-            base_url: Base URL for resolving relative links
-            
+            base_url: Base URL for resolving relative links (should be the
+                      final URL after any redirects)
+
         Returns:
             List of absolute URLs
         """
-        from urllib.parse import urljoin
-        
         links = []
-        
-        # Find all anchor tags with href
+
         for link in soup.find_all('a', href=True):
             href = link['href'].strip()
-            
-            if not href:
+
+            if not href or href.startswith(('#', 'mailto:', 'javascript:')):
                 continue
-            
+
             # Convert to absolute URL
             absolute_url = urljoin(base_url, href)
-            
+
+            # Strip locale prefix for canonical form
+            absolute_url = self.strip_locale(absolute_url)
+
             # Check if we should crawl this URL
             if self.url_manager.should_crawl(absolute_url):
                 links.append(absolute_url)
-        
+
         self.logger.debug(f"[Selenium] Extracted {len(links)} valid links from {base_url}")
         return links
 
@@ -106,4 +129,4 @@ class SeleniumCrawler:
         return crawled_pages
 
     def close(self):
-        self.driver.quit() 
+        self.driver.quit()

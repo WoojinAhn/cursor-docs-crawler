@@ -10,23 +10,26 @@ from .config import Config
 
 class URLManager:
     """Manages URLs for crawling with deduplication and filtering."""
-    
-    def __init__(self, base_url: str, max_pages: Optional[int] = None):
+
+    def __init__(self, base_url: str, max_pages: Optional[int] = None,
+                 allowed_path_prefixes: Optional[List[str]] = None):
         """Initialize URL manager.
-        
+
         Args:
             base_url: Base URL for crawling
             max_pages: Maximum number of pages to crawl (None for unlimited)
+            allowed_path_prefixes: URL path must start with one of these prefixes
         """
         self.base_url = base_url.rstrip('/')
         self.max_pages = max_pages
-        
+        self.allowed_path_prefixes = allowed_path_prefixes or []
+
         # URL storage
         self._urls_to_visit: deque = deque()
         self._visited_urls: Set[str] = set()
         self._failed_urls: Set[str] = set()
         self._skipped_urls: Set[str] = set()
-        
+
         # Statistics
         self._stats = {
             'total_found': 0,
@@ -35,13 +38,14 @@ class URLManager:
             'skipped': 0,
             'duplicates': 0
         }
-        
-        # Domain for filtering
-        self.domain = urlparse(self.base_url).netloc
-        
+
+        # Domain for filtering — use the final (possibly redirected) domain
+        parsed = urlparse(self.base_url)
+        self.domain = parsed.netloc
+
         # Logger
         self.logger = logging.getLogger(__name__)
-        
+
         # Add initial URL
         self.add_url(self.base_url)
     
@@ -131,44 +135,51 @@ class URLManager:
     
     def should_crawl(self, url: str) -> bool:
         """Check if URL should be crawled.
-        
+
         Args:
             url: URL to check
-            
+
         Returns:
             True if URL should be crawled
         """
         if not url:
             return False
-        
+
         try:
             parsed_url = urlparse(url)
-            
+
             # Must have scheme and netloc
             if not parsed_url.scheme or not parsed_url.netloc:
                 return False
-            
+
             # Must be same domain
             if parsed_url.netloc != self.domain:
                 return False
-            
+
             # Skip hash-only links
             if parsed_url.fragment and not parsed_url.path:
                 return False
-            
-            # Skip common file extensions that aren't HTML
+
             path = parsed_url.path.lower()
-            skip_extensions = ['.pdf', '.jpg', '.jpeg', '.png', '.gif', '.css', '.js', '.xml', '.zip']
+
+            # Must match allowed path prefixes (if configured)
+            if self.allowed_path_prefixes:
+                if not any(path.startswith(prefix) or path.rstrip('/') == prefix.rstrip('/')
+                           for prefix in self.allowed_path_prefixes):
+                    return False
+
+            # Skip common file extensions that aren't HTML
+            skip_extensions = ['.pdf', '.jpg', '.jpeg', '.png', '.gif', '.css', '.js', '.xml', '.zip', '.svg']
             if any(path.endswith(ext) for ext in skip_extensions):
                 return False
-            
+
             # Skip common non-content paths
             skip_paths = ['/api/', '/admin/', '/login/', '/logout/', '/search/']
             if any(skip_path in path for skip_path in skip_paths):
                 return False
-            
+
             return True
-            
+
         except Exception as e:
             self.logger.error(f"Error checking URL {url}: {e}")
             return False

@@ -11,9 +11,12 @@ class Config:
     """Main configuration class for the crawler."""
     
     # Basic settings
-    BASE_URL: str = "https://docs.cursor.com/"
+    BASE_URL: str = "https://cursor.com/docs"
     OUTPUT_FILE: str = "cursor_docs.pdf"
     USER_AGENT: str = "Cursor Docs Crawler 1.0"
+
+    # Allowed path prefixes for crawling (URLs must start with one of these)
+    ALLOWED_PATH_PREFIXES: List[str] = None
     
     # Crawling settings
     MAX_PAGES: Optional[int] = None  # None for unlimited, number for test mode
@@ -34,16 +37,21 @@ class Config:
         """Set default values for selector lists."""
         if self.EXCLUDED_SELECTORS is None:
             self.EXCLUDED_SELECTORS = [
-                "nav", "header", "footer", ".sidebar", 
+                "nav", "header", "footer", ".sidebar",
                 ".navigation", ".breadcrumb", ".toc",
                 ".advertisement", ".promo", ".banner"
             ]
-        
+
         if self.CONTENT_SELECTORS is None:
             self.CONTENT_SELECTORS = [
-                ".mdx-content", "main", ".content", "article", ".documentation",
-                ".main-content", "#content", "[data-page-href]"
+                ".prose.prose-lg",  # cursor.com/docs (current)
+                ".mdx-content",     # legacy (docs.cursor.com)
+                "main", ".content", "article", ".documentation",
+                ".main-content", "#content"
             ]
+
+        if self.ALLOWED_PATH_PREFIXES is None:
+            self.ALLOWED_PATH_PREFIXES = ["/docs/"]
     
     def _validate_config(self):
         """Validate configuration values."""
@@ -106,11 +114,11 @@ class TestConfig(Config):
         """Set default test URLs."""
         if self.TEST_URLS is None:
             self.TEST_URLS = [
-                "https://docs.cursor.com/",
-                "https://docs.cursor.com/getting-started",
-                "https://docs.cursor.com/features",
-                "https://docs.cursor.com/settings",
-                "https://docs.cursor.com/troubleshooting"
+                "https://cursor.com/docs",
+                "https://cursor.com/docs/get-started/quickstart",
+                "https://cursor.com/docs/get-started/concepts",
+                "https://cursor.com/docs/models",
+                "https://cursor.com/docs/agent/overview"
             ]
     
     def _validate_test_config(self):

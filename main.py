@@ -104,7 +104,8 @@ def main():
         reporter.report_start(config.BASE_URL, config.MAX_PAGES)
         
         # Initialize components
-        url_manager = URLManager(config.BASE_URL, config.MAX_PAGES)
+        url_manager = URLManager(config.BASE_URL, config.MAX_PAGES,
+                                 config.ALLOWED_PATH_PREFIXES)
         from src.selenium_crawler import SeleniumCrawler
         crawler = SeleniumCrawler(config, url_manager)
         content_parser = ContentParser(config)
