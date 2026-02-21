@@ -22,12 +22,9 @@ class PageData:
         """Validate the page data after initialization."""
         if not self.url:
             raise ValueError("URL cannot be empty")
-        
+
         if not self.html_content and self.status_code == 200:
             raise ValueError("HTML content cannot be empty for successful requests")
-        
-        # Normalize URL
-        self.url = self.url.rstrip('/')
     
     @property
     def domain(self) -> str:
