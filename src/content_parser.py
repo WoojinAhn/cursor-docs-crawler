@@ -201,6 +201,9 @@ class ContentParser:
             if not button.get_text(strip=True) and button.get('aria-label'):
                 label = button['aria-label'].strip()
                 if label.lower() in _ui_labels:
+                    # Rescue <img> elements before destroying the button
+                    for img in button.find_all('img'):
+                        button.insert_before(img.extract())
                     button.decompose()
                     continue
                 span = soup.new_tag('span')
