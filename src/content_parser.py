@@ -44,6 +44,9 @@ class ContentParser:
             # Now safe to strip Tailwind classes and CSS custom properties
             self._clean_styles_for_pdf(main_content)
 
+            # Remove footer chrome that may survive fallback extraction
+            self._remove_footer_chrome(main_content)
+
             # Process images
             processed_content = self.process_images(main_content)
             
@@ -219,6 +222,32 @@ class ContentParser:
 
     _CSS_VAR_RE = re.compile(r'[^;]*var\(--[^)]+\)[^;]*;?')
     _CSS_PROP_RE = re.compile(r'--[\w-]+:[^;]+;?')
+
+    # Language names used to detect the language-selector footer widget
+    _LANG_NAMES = {
+        'english', '简体中文', '日本語', '繁體中文', 'español', 'français',
+        'português', '한국어', 'русский', 'türkçe', 'bahasa indonesia', 'deutsch',
+    }
+
+    _CONTENT_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre',
+                     'table', 'img', 'blockquote', 'code']
+
+    def _remove_footer_chrome(self, soup: BeautifulSoup) -> None:
+        """Remove theme-toggle and language-selector widgets that leak via fallback."""
+        for el in soup.find_all(['div', 'ul', 'section', 'aside']):
+            # Never remove elements that contain documentation structure
+            if el.find(self._CONTENT_TAGS):
+                continue
+            text = el.get_text(separator=' ', strip=True).lower()
+            # Theme toggle: "System theme Light theme Dark theme"
+            if 'system theme' in text and 'dark theme' in text:
+                el.decompose()
+                continue
+            # Language selector: element containing 5+ known language names
+            if sum(1 for lang in self._LANG_NAMES if lang in text) >= 5:
+                if len(text) < 500:
+                    el.decompose()
+                    continue
 
     def _clean_styles_for_pdf(self, soup: BeautifulSoup) -> None:
         """Strip Tailwind CSS classes and CSS custom properties for PDF."""
