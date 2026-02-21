@@ -82,7 +82,7 @@ def main():
     # Create configuration
     if args.test:
         config = TestConfig()
-        print("Running in TEST MODE - limited to 5 pages")
+        print(f"Running in TEST MODE - {len(config.TEST_URLS)} specific pages")
     else:
         config = Config()
     
@@ -106,6 +106,13 @@ def main():
         # Initialize components
         url_manager = URLManager(config.BASE_URL, config.MAX_PAGES,
                                  config.ALLOWED_PATH_PREFIXES)
+
+        # In test mode, replace BFS discovery with specific test URLs
+        if args.test and hasattr(config, 'TEST_URLS'):
+            url_manager.clear()
+            for url in config.TEST_URLS:
+                url_manager.add_url(url)
+
         from src.selenium_crawler import SeleniumCrawler
         crawler = SeleniumCrawler(config, url_manager)
         content_parser = ContentParser(config)

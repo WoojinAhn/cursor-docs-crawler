@@ -102,23 +102,32 @@ class Config:
 class TestConfig(Config):
     """Test configuration with limited pages."""
     
-    MAX_PAGES: int = 5
+    MAX_PAGES: int = 10
     TEST_URLS: List[str] = None
-    
+
     def __post_init__(self):
         super().__post_init__()
         self._set_default_test_urls()
         self._validate_test_config()
-    
+
     def _set_default_test_urls(self):
-        """Set default test URLs."""
+        """Set default test URLs.
+
+        Pages are chosen to cover distinct content types:
+        text, tables, images, code blocks, and mixed layouts.
+        """
         if self.TEST_URLS is None:
             self.TEST_URLS = [
-                "https://cursor.com/docs",
-                "https://cursor.com/docs/get-started/quickstart",
-                "https://cursor.com/docs/get-started/concepts",
-                "https://cursor.com/docs/models",
-                "https://cursor.com/docs/agent/overview"
+                "https://cursor.com/docs/get-started/concepts",      # text
+                "https://cursor.com/docs/models",                     # table (comparison)
+                "https://cursor.com/docs/account/pricing",            # table (pricing)
+                "https://cursor.com/docs/agent/overview",             # images (screenshots)
+                "https://cursor.com/docs/tab/overview",               # images (dark/light)
+                "https://cursor.com/docs/cli/overview",               # code blocks
+                "https://cursor.com/docs/api",                        # code + JSON
+                "https://cursor.com/docs/agent/security",             # mixed (table+code+text)
+                "https://cursor.com/docs/context/rules",              # mixed (text+code)
+                "https://cursor.com/docs/configuration/extensions",   # config table
             ]
     
     def _validate_test_config(self):
