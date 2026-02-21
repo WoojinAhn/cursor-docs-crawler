@@ -2,11 +2,11 @@
 
 [한국어](README.ko.md) | [English](README.md)
 
-A Python-based web crawler that extracts all content from the Cursor documentation site (https://docs.cursor.com/) and converts it into a single PDF file. This tool generates high-quality PDFs suitable for use as sources in NotebookLM, removing unnecessary UI elements and extracting only the content for optimal readability.
+A Python-based web crawler that extracts all content from the Cursor documentation site (https://cursor.com/docs) and converts it into a single PDF file. This tool generates high-quality PDFs suitable for use as sources in NotebookLM, removing unnecessary UI elements and extracting only the content for optimal readability.
 
 ## Key Features
 
-- 🕷️ **Automated Web Crawling**: Automatically discovers and crawls all pages from docs.cursor.com
+- 🕷️ **Automated Web Crawling**: Automatically discovers and crawls all pages from cursor.com/docs
 - 🧹 **Content Refinement**: Removes unnecessary UI elements like sidebars, headers, and footers
 - 🖼️ **Image Processing**: Downloads, resizes, and embeds images in PDF
 - 🎥 **YouTube Link Conversion**: Converts videos to text links for PDF size optimization
@@ -121,9 +121,9 @@ cursor-docs-crawler/
 - Parses HTML with BeautifulSoup to extract all `<a href=...>` links
 - Processes extracted links as follows:
   1. **Normalization**: Converts relative paths/hashes/queries to absolute paths, removes fragments
-  2. **Domain Filtering**: Ignores links outside docs.cursor.com domain
+  2. **Domain & Path Filtering**: Only follows links under cursor.com/docs path
   3. **File/Resource Filtering**: Ignores non-document resources like .jpg, .png, .pdf
-  4. **Hash-only/Abnormal URL Filtering**: Normalizes URLs like `https://docs.cursor.com/#section` and handles duplicates
+  4. **Locale Stripping**: Removes auto-inserted locale prefixes (/ko/, /en/) for canonical URLs
   5. **Duplicate Removal**: Doesn't add URLs already visited or in queue
   6. **Page Limit**: Doesn't add URLs if maximum crawl limit is exceeded
 - This process automatically maps the entire site's logical structure (page connections)
@@ -137,7 +137,7 @@ cursor-docs-crawler/
 ## How It Works (Latest)
 
 ### 1. Crawling and Site Mapping Phase
-1. **Starting Point**: Loads `https://docs.cursor.com/` in Selenium browser
+1. **Starting Point**: Loads `https://cursor.com/docs` in Selenium browser
 2. **Link Extraction and Normalization**: Extracts all `<a>` links with BeautifulSoup, applies absolute path/hash removal/domain filtering/file filtering/duplicate removal
 3. **Sequential Crawling**: Visits URLs in queue sequentially, repeating the above process to automatically explore the entire site structure
 
@@ -156,9 +156,9 @@ cursor-docs-crawler/
 
 ## Example Logs
 ```
-[Selenium] Crawling: https://docs.cursor.com/get-started/installation
-[Main] Parsing page 3/120: https://docs.cursor.com/get-started/installation
-[Parser] Parsing content for: https://docs.cursor.com/get-started/installation
+[Selenium] Crawling: https://cursor.com/docs/get-started/quickstart
+[Main] Parsing page 3/120: https://cursor.com/docs/get-started/quickstart
+[Parser] Parsing content for: https://cursor.com/docs/get-started/quickstart
 ```
 
 ## Configuration Options
@@ -166,7 +166,7 @@ cursor-docs-crawler/
 ### Basic Configuration (src/config.py)
 ```python
 class Config:
-    BASE_URL = "https://docs.cursor.com/"
+    BASE_URL = "https://cursor.com/docs"
     OUTPUT_FILE = "cursor_docs.pdf"
     MAX_PAGES = None  # Unlimited
     DELAY_BETWEEN_REQUESTS = 1.0
@@ -303,6 +303,13 @@ This project is distributed under the MIT License.
 
 ## Version History
 
+- **v1.2.0**: Site Migration Adaptation
+  - Migrated from `docs.cursor.com` to `cursor.com/docs` (308 redirect)
+  - Added path-prefix based URL filtering (`ALLOWED_PATH_PREFIXES`)
+  - Added locale prefix stripping (`/ko/`, `/en/`, etc.)
+  - Updated content selectors: `.prose.prose-lg` (current) with `.mdx-content` fallback
+  - Removed Nextra-specific CSS selectors (site no longer uses Nextra)
+
 - **v1.1.0**: Content Parsing Improvements
   - Added `.mdx-content` selector for enhanced content extraction performance
   - Added mdx-content protection logic
@@ -318,9 +325,9 @@ This project is distributed under the MIT License.
 
 ---
 
-**Note**: This tool is created for educational and personal use purposes. Please comply with docs.cursor.com's terms of service when using it.
+**Note**: This tool is created for educational and personal use purposes. Please comply with cursor.com's terms of service when using it.
 
-**Important Notes**: 
-- This tool depends on docs.cursor.com's HTML structure. Content extraction may fail if the site structure changes.
+**Important Notes**:
+- This tool depends on cursor.com/docs HTML structure. Content extraction may fail if the site structure changes.
 - Set appropriate delay times to avoid sending excessive requests.
 - Use responsibly to avoid placing excessive load on the server. 

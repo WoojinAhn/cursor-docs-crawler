@@ -2,11 +2,11 @@
 
 [한국어](README.ko.md) | [English](README.md)
 
-Cursor 문서 사이트(https://docs.cursor.com/)의 모든 콘텐츠를 크롤링하여 단일 PDF 파일로 변환하는 Python 기반 시스템입니다. NotebookLM의 출처로 사용할 수 있는 고품질 PDF를 생성하며, 불필요한 UI 요소를 제거하고 콘텐츠만 추출하여 가독성을 최적화합니다.
+Cursor 문서 사이트(https://cursor.com/docs)의 모든 콘텐츠를 크롤링하여 단일 PDF 파일로 변환하는 Python 기반 시스템입니다. NotebookLM의 출처로 사용할 수 있는 고품질 PDF를 생성하며, 불필요한 UI 요소를 제거하고 콘텐츠만 추출하여 가독성을 최적화합니다.
 
 ## 주요 기능
 
-- 🕷️ **자동 웹 크롤링**: docs.cursor.com의 모든 페이지를 자동으로 발견하고 크롤링
+- 🕷️ **자동 웹 크롤링**: cursor.com/docs의 모든 페이지를 자동으로 발견하고 크롤링
 - 🧹 **콘텐츠 정제**: 사이드바, 헤더, 푸터 등 불필요한 UI 요소 제거
 - 🖼️ **이미지 처리**: 이미지 다운로드, 크기 조정 및 PDF 포함
 - 🎥 **YouTube 링크 변환**: 비디오를 텍스트 링크로 변환하여 PDF 크기 최적화
@@ -121,9 +121,9 @@ cursor-docs-crawler/
 - BeautifulSoup으로 HTML을 파싱하여 `<a href=...>` 형태의 모든 링크를 추출합니다.
 - 추출된 링크는 다음과 같이 처리됩니다:
   1. **정규화**: 상대경로/해시/쿼리 등은 절대경로로 변환, fragment(해시)는 제거
-  2. **도메인 필터링**: docs.cursor.com 도메인 외의 링크는 무시
+  2. **도메인 & 경로 필터링**: cursor.com/docs 경로 외의 링크는 무시
   3. **파일/리소스 필터링**: .jpg, .png, .pdf 등 문서가 아닌 리소스는 무시
-  4. **해시-only/비정상 URL 필터링**: `https://docs.cursor.com/#section` 등은 정규화 후 중복 처리
+  4. **로케일 제거**: 자동 삽입되는 로케일 접두사(/ko/, /en/)를 제거하여 정규 URL 유지
   5. **중복 제거**: 이미 방문했거나 큐에 있는 URL은 추가하지 않음
   6. **페이지 수 제한**: 최대 크롤링 페이지 수를 초과하면 큐에 추가하지 않음
 - 이 과정을 통해 사이트 전체의 논리적 구조(페이지 간 연결)를 자동으로 매핑합니다.
@@ -137,7 +137,7 @@ cursor-docs-crawler/
 ## 작동 원리 (최신)
 
 ### 1. 크롤링 및 사이트 매핑 단계
-1. **시작점 설정**: `https://docs.cursor.com/`을 시작점으로 Selenium 브라우저에서 로딩
+1. **시작점 설정**: `https://cursor.com/docs`을 시작점으로 Selenium 브라우저에서 로딩
 2. **링크 추출 및 정규화**: BeautifulSoup으로 모든 `<a>` 링크를 추출, 절대경로/해시제거/도메인필터/파일필터/중복제거
 3. **순차 크롤링**: 큐에 쌓인 URL을 순차적으로 방문하며, 위 과정을 반복하여 사이트 전체 구조를 자동으로 탐색
 
@@ -156,9 +156,9 @@ cursor-docs-crawler/
 
 ## 예시 로그
 ```
-[Selenium] Crawling: https://docs.cursor.com/get-started/installation
-[Main] Parsing page 3/120: https://docs.cursor.com/get-started/installation
-[Parser] Parsing content for: https://docs.cursor.com/get-started/installation
+[Selenium] Crawling: https://cursor.com/docs/get-started/quickstart
+[Main] Parsing page 3/120: https://cursor.com/docs/get-started/quickstart
+[Parser] Parsing content for: https://cursor.com/docs/get-started/quickstart
 ```
 
 ## 설정 옵션
@@ -166,7 +166,7 @@ cursor-docs-crawler/
 ### 기본 설정 (src/config.py)
 ```python
 class Config:
-    BASE_URL = "https://docs.cursor.com/"
+    BASE_URL = "https://cursor.com/docs"
     OUTPUT_FILE = "cursor_docs.pdf"
     MAX_PAGES = None  # 무제한
     DELAY_BETWEEN_REQUESTS = 1.0
@@ -303,6 +303,13 @@ pytest tests/ --cov=src
 
 ## 버전 히스토리
 
+- **v1.2.0**: 사이트 마이그레이션 대응
+  - `docs.cursor.com`에서 `cursor.com/docs`로 마이그레이션 (308 리다이렉트)
+  - 경로 기반 URL 필터링 추가 (`ALLOWED_PATH_PREFIXES`)
+  - 로케일 접두사 자동 제거 (`/ko/`, `/en/` 등)
+  - 콘텐츠 선택자 업데이트: `.prose.prose-lg` (현재) + `.mdx-content` 폴백
+  - Nextra 전용 CSS 선택자 제거 (사이트가 더 이상 Nextra를 사용하지 않음)
+
 - **v1.1.0**: 콘텐츠 파싱 개선
   - `.mdx-content` 선택자 추가로 콘텐츠 추출 성능 향상
   - mdx-content 보호 로직 추가
@@ -318,9 +325,9 @@ pytest tests/ --cov=src
 
 ---
 
-**참고**: 이 도구는 교육 및 개인 사용 목적으로 제작되었습니다. docs.cursor.com의 이용 약관을 준수하여 사용하시기 바랍니다.
+**참고**: 이 도구는 교육 및 개인 사용 목적으로 제작되었습니다. cursor.com의 이용 약관을 준수하여 사용하시기 바랍니다.
 
-**주의사항**: 
-- 이 도구는 docs.cursor.com의 HTML 구조에 의존합니다. 사이트 구조가 변경되면 콘텐츠 추출이 실패할 수 있습니다.
+**주의사항**:
+- 이 도구는 cursor.com/docs의 HTML 구조에 의존합니다. 사이트 구조가 변경되면 콘텐츠 추출이 실패할 수 있습니다.
 - 대량의 요청을 보내지 않도록 적절한 지연 시간을 설정하세요.
 - 서버에 과도한 부하를 주지 않도록 책임감 있게 사용하세요.

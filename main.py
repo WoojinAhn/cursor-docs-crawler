@@ -19,7 +19,7 @@ def main():
     """Main application entry point."""
     # Parse command line arguments
     parser = argparse.ArgumentParser(
-        description="Cursor Documentation Crawler - Convert docs.cursor.com to PDF"
+        description="Cursor Documentation Crawler - Convert cursor.com/docs to PDF"
     )
     
     parser.add_argument(
