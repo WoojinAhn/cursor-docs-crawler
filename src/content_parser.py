@@ -95,138 +95,100 @@ class ContentParser:
                     images=[]
                 )
     
-    def _is_protected_element(self, element: Tag) -> bool:
+    def _should_protect(self, element: Tag, content_el: Optional[Tag] = None) -> bool:
         """Check if element should be protected from removal.
-        
-        Args:
-            element: BeautifulSoup element to check
-            
-        Returns:
-            True if element should be protected
+
+        Centralised guard so every removal strategy uses the same rules.
         """
-        # Protect frame elements
+        if element.name in ('html', 'body'):
+            return True
+        if content_el and (element is content_el or element.find(content_el)):
+            return True
         if element.get('data-name') == 'frame':
-            self.logger.debug(f"🛡️ Protecting frame element with data-name='frame'")
             return True
-        
-        # Protect elements containing codebase-indexing images
         if element.find('img', src=lambda s: s and 'codebase-indexing' in s):
-            self.logger.debug(f"🛡️ Protecting element containing codebase-indexing image")
             return True
-        
-        # Protect parent elements of frame elements
-        if element.find('[data-name="frame"]'):
-            self.logger.debug(f"🛡️ Protecting parent of frame element")
+        if element.find_parent(attrs={'data-name': 'frame'}):
             return True
-        
         return False
 
+    # ------------------------------------------------------------------
+    # remove_unwanted_elements – delegates to focused helpers
+    # ------------------------------------------------------------------
+
+    _ADDITIONAL_SELECTORS = [
+        '.sidebar', '.navigation', '.nav-menu',
+        '.header-nav', '.footer-nav', '.breadcrumb',
+        '.pagination', '.search-box', '.search-form',
+        '[role="navigation"]', '[role="banner"]', '[role="complementary"]',
+        '[aria-label*="navigation"]', '[aria-label*="menu"]',
+        '.docs-sidebar', '.docs-nav', '.table-of-contents',
+        '.sr-only', '.visually-hidden',
+    ]
+
+    _UNWANTED_ATTRS = [
+        {'class': re.compile(r'.*ad.*|.*banner.*|.*promo.*', re.I)},
+        {'id': re.compile(r'.*ad.*|.*banner.*|.*promo.*', re.I)},
+        {'role': 'banner'},
+        {'role': 'navigation'},
+        {'role': 'complementary'},
+    ]
+
     def remove_unwanted_elements(self, soup: BeautifulSoup) -> BeautifulSoup:
-        """Remove unwanted UI elements from HTML.
-        
-        Args:
-            soup: BeautifulSoup object
-            
-        Returns:
-            Cleaned BeautifulSoup object
-        """
-        # Remove elements by selector
+        """Remove unwanted UI elements from HTML."""
+        content_el = self._find_content_element(soup)
+        self._remove_by_selectors(soup, content_el)
+        self._remove_by_tags(soup, content_el)
+        self._remove_by_attrs(soup, content_el)
+        self._remove_empty_elements(soup)
+        self._remove_navigation_text(soup)
+        return soup
+
+    def _find_content_element(self, soup: BeautifulSoup) -> Optional[Tag]:
+        """Find the main content element to protect during cleanup."""
+        for sel in self.config.CONTENT_SELECTORS:
+            el = soup.select_one(sel)
+            if el:
+                return el
+        return None
+
+    def _remove_by_selectors(self, soup: BeautifulSoup, content_el: Optional[Tag]) -> None:
+        """Remove elements matched by CSS selectors."""
         for selector in self.config.EXCLUDED_SELECTORS:
             for element in soup.select(selector):
-                self.logger.debug(f"Removing element with selector: {selector}")
                 element.decompose()
-        
-        # Remove additional navigation and UI elements
-        additional_selectors = [
-            '.sidebar',
-            '.navigation',
-            '.nav-menu',
-            '.header-nav',
-            '.footer-nav',
-            '.breadcrumb',
-            '.pagination',
-            '.search-box',
-            '.search-form',
-            '[role="navigation"]',
-            '[role="banner"]',
-            '[role="complementary"]',
-            '[aria-label*="navigation"]',
-            '[aria-label*="menu"]',
-            '.docs-sidebar',
-            '.docs-nav',
-            '.table-of-contents',
-            '.sr-only',
-            '.visually-hidden',
-        ]
 
-        # Detect which content selector is present so we can protect it
-        content_el = None
-        for sel in self.config.CONTENT_SELECTORS:
-            content_el = soup.select_one(sel)
-            if content_el:
-                break
-
-        for selector in additional_selectors:
+        for selector in self._ADDITIONAL_SELECTORS:
             for element in soup.select(selector):
-                # Protect the main content element and its ancestors
-                if content_el and (element is content_el or element.find(content_el)):
-                    self.logger.debug(f"Protecting content element from selector: {selector}")
+                if self._should_protect(element, content_el):
                     continue
-                self.logger.debug(f"Removing element with additional selector: {selector}")
                 element.decompose()
-        
-        # Remove specific unwanted elements
-        unwanted_elements = [
-            # Scripts and styles
-            'script', 'style', 'noscript',
-            # Forms and inputs
-            'form', 'input', 'select', 'textarea',
-            # Comments
-            '<!--',
-        ]
-        
-        for tag_name in unwanted_elements:
-            if tag_name == '<!--':
-                # Remove HTML comments
-                for comment in soup.find_all(string=lambda text: isinstance(text, str) and text.strip().startswith('<!--')):
-                    comment.extract()
-            else:
-                for element in soup.find_all(tag_name):
-                    element.decompose()
-        
-        # Remove buttons but protect those containing documentation images
+
+    def _remove_by_tags(self, soup: BeautifulSoup, content_el: Optional[Tag]) -> None:
+        """Remove unwanted tags (scripts, styles, forms, buttons)."""
+        for tag_name in ('script', 'style', 'noscript', 'form', 'input', 'select', 'textarea'):
+            for element in soup.find_all(tag_name):
+                element.decompose()
+
+        # HTML comments
+        for comment in soup.find_all(
+            string=lambda text: isinstance(text, str) and text.strip().startswith('<!--')
+        ):
+            comment.extract()
+
+        # Buttons – protect those with documentation images
         for button in soup.find_all('button'):
-            # Protect buttons that contain codebase-indexing images or are in frame elements
-            if (button.find('img', src=lambda s: s and 'codebase-indexing' in s) or
-                button.find_parent(attrs={'data-name': 'frame'})):
-                self.logger.info(f"🛡️ Protecting button containing documentation image")
+            if self._should_protect(button, content_el):
                 continue
             button.decompose()
-        
-        # Remove elements with specific attributes
-        unwanted_attrs = [
-            {'class': re.compile(r'.*ad.*|.*banner.*|.*promo.*', re.I)},
-            {'id': re.compile(r'.*ad.*|.*banner.*|.*promo.*', re.I)},
-            {'role': 'banner'},
-            {'role': 'navigation'},
-            {'role': 'complementary'},
-        ]
-        
-        for attrs in unwanted_attrs:
+
+    def _remove_by_attrs(self, soup: BeautifulSoup, content_el: Optional[Tag]) -> None:
+        """Remove elements matched by attribute patterns (ads, banners, roles)."""
+        for attrs in self._UNWANTED_ATTRS:
             for element in soup.find_all(attrs=attrs):
-                # Protect html and body elements
-                if element.name in ['html', 'body']:
-                    self.logger.debug(f"🛡️ Protecting {element.name} element from unwanted_attrs removal")
+                if self._should_protect(element, content_el):
                     continue
                 element.decompose()
-        
-        # Remove empty elements
-        self._remove_empty_elements(soup)
-        
-        # Remove navigation text patterns
-        self._remove_navigation_text(soup)
-        
-        return soup
     
     def extract_main_content(self, soup: BeautifulSoup) -> BeautifulSoup:
         """Extract main content area from HTML.
