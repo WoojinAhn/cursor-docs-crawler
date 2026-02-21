@@ -84,7 +84,7 @@ python main.py --test --output test.pdf --verbose --log-file test.log
 | `--test` | Test mode (5-page limit) | False |
 | `--output`, `-o` | Output PDF file path | cursor_docs.pdf |
 | `--max-pages`, `-m` | Maximum pages to crawl | Unlimited |
-| `--delay`, `-d` | Delay between requests (seconds) | 1.0 |
+| `--delay`, `-d` | Delay between requests (seconds) | 0.3 |
 | `--verbose`, `-v` | Enable verbose logging | False |
 | `--log-file` | Log file path | None |
 
@@ -169,7 +169,7 @@ class Config:
     BASE_URL = "https://cursor.com/docs"
     OUTPUT_FILE = "cursor_docs.pdf"
     MAX_PAGES = None  # Unlimited
-    DELAY_BETWEEN_REQUESTS = 1.0
+    DELAY_BETWEEN_REQUESTS = 0.3
     REQUEST_TIMEOUT = 30
     MAX_RETRIES = 3
 ```
@@ -301,7 +301,25 @@ This project is distributed under the MIT License.
 - **Documentation**: This README file
 - **Examples**: Test code in the `tests/` directory
 
+## Output Example
+
+Full crawl produces approximately:
+- **~110 pages** crawled
+- **~72,000 words** extracted
+- **~100 images** embedded
+- **~15 MB** PDF file
+- **~5 minutes** total duration
+
 ## Version History
+
+- **v1.3.0**: Content Quality & PDF Improvements
+  - Fixed footer leakage (theme toggle, language selector) via defense-in-depth removal
+  - Fixed CSS class stripping order — now runs after content extraction to preserve `.prose.prose-lg` selector
+  - Preserved `aria-label` text in table cells (capability indicators)
+  - Rescued images from UI zoom buttons before decomposing
+  - Added 404 error page filtering (title-based, since Selenium can't detect HTTP status)
+  - Fixed table overflow in PDF with `table-layout: fixed` and `word-break`
+  - Reduced default request delay from 1.0s to 0.3s
 
 - **v1.2.0**: Site Migration Adaptation
   - Migrated from `docs.cursor.com` to `cursor.com/docs` (308 redirect)

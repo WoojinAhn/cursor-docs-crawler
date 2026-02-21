@@ -84,7 +84,7 @@ python main.py --test --output test.pdf --verbose --log-file test.log
 | `--test` | 테스트 모드 (5페이지 제한) | False |
 | `--output`, `-o` | 출력 PDF 파일 경로 | cursor_docs.pdf |
 | `--max-pages`, `-m` | 최대 크롤링 페이지 수 | 무제한 |
-| `--delay`, `-d` | 요청 간 지연 시간 (초) | 1.0 |
+| `--delay`, `-d` | 요청 간 지연 시간 (초) | 0.3 |
 | `--verbose`, `-v` | 상세 로깅 활성화 | False |
 | `--log-file` | 로그 파일 경로 | None |
 
@@ -169,7 +169,7 @@ class Config:
     BASE_URL = "https://cursor.com/docs"
     OUTPUT_FILE = "cursor_docs.pdf"
     MAX_PAGES = None  # 무제한
-    DELAY_BETWEEN_REQUESTS = 1.0
+    DELAY_BETWEEN_REQUESTS = 0.3
     REQUEST_TIMEOUT = 30
     MAX_RETRIES = 3
 ```
@@ -301,7 +301,25 @@ pytest tests/ --cov=src
 - 문서: 이 README 파일
 - 예제: `tests/` 디렉토리의 테스트 코드
 
+## 출력 예시
+
+전체 크롤 시 대략적인 결과:
+- **~110 페이지** 크롤링
+- **~72,000 단어** 추출
+- **~100개 이미지** 포함
+- **~15 MB** PDF 파일
+- **~5분** 총 소요 시간
+
 ## 버전 히스토리
+
+- **v1.3.0**: 콘텐츠 품질 & PDF 개선
+  - Footer 누출 수정 (테마 토글, 언어 선택기) — defense-in-depth 방식 제거
+  - CSS 클래스 제거 순서 수정 — `.prose.prose-lg` 선택자 보존을 위해 콘텐츠 추출 후 실행
+  - 테이블 셀의 `aria-label` 텍스트 보존 (기능 표시자)
+  - UI 줌 버튼 내 이미지 구출 후 버튼 제거
+  - 404 에러 페이지 필터링 추가 (Selenium이 HTTP 상태 감지 불가하므로 제목 기반)
+  - PDF 테이블 오버플로우 수정 (`table-layout: fixed` + `word-break`)
+  - 기본 요청 딜레이 1.0초 → 0.3초로 감소
 
 - **v1.2.0**: 사이트 마이그레이션 대응
   - `docs.cursor.com`에서 `cursor.com/docs`로 마이그레이션 (308 리다이렉트)
