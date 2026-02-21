@@ -38,9 +38,12 @@ class ContentParser:
             # Remove unwanted elements
             cleaned_soup = self.remove_unwanted_elements(soup)
             
-            # Extract main content
+            # Extract main content (must happen before class stripping)
             main_content = self.extract_main_content(cleaned_soup)
-            
+
+            # Now safe to strip Tailwind classes and CSS custom properties
+            self._clean_styles_for_pdf(main_content)
+
             # Process images
             processed_content = self.process_images(main_content)
             
@@ -148,7 +151,8 @@ class ContentParser:
         self._remove_by_selectors(soup, content_el)
         self._remove_by_tags(soup, content_el)
         self._remove_by_attrs(soup, content_el)
-        self._clean_styles_for_pdf(soup)
+        # NOTE: _clean_styles_for_pdf is called AFTER extract_main_content
+        # in parse_page, because it strips class attrs needed by CSS selectors.
         self._remove_empty_table_columns(soup)
         self._remove_empty_elements(soup)
         self._remove_navigation_text(soup, content_el)
@@ -189,7 +193,8 @@ class ContentParser:
 
         # UI aria-labels that should NOT become visible text
         _ui_labels = {'open image in full screen', 'copy code', 'copy',
-                      'close', 'toggle', 'menu', 'expand', 'collapse'}
+                      'close', 'toggle', 'menu', 'expand', 'collapse',
+                      'additional model information'}
 
         # Buttons: unwrap to keep text; convert data aria-labels to text
         for button in soup.find_all('button'):
@@ -200,6 +205,11 @@ class ContentParser:
                     continue
                 span = soup.new_tag('span')
                 span.string = label
+                # Add line break before span if inside a table cell with siblings
+                if button.find_parent(['td', 'th']):
+                    prev_el = button.find_previous_sibling()
+                    if prev_el is not None:
+                        button.insert_before(soup.new_tag('br'))
                 button.replace_with(span)
             else:
                 button.unwrap()
