@@ -147,7 +147,7 @@ class ContentParser:
         self._remove_by_tags(soup, content_el)
         self._remove_by_attrs(soup, content_el)
         self._remove_empty_elements(soup)
-        self._remove_navigation_text(soup)
+        self._remove_navigation_text(soup, content_el)
         return soup
 
     def _find_content_element(self, soup: BeautifulSoup) -> Optional[Tag]:
@@ -182,10 +182,13 @@ class ContentParser:
         ):
             comment.extract()
 
-        # Buttons – protect those with documentation images
+        # Buttons – extract contained images before removing
         for button in soup.find_all('button'):
             if self._should_protect(button, content_el):
                 continue
+            imgs = button.find_all('img')
+            for img in imgs:
+                button.insert_before(img.extract())
             button.decompose()
 
     def _remove_by_attrs(self, soup: BeautifulSoup, content_el: Optional[Tag]) -> None:
@@ -600,11 +603,13 @@ class ContentParser:
         
         return None    
     
-    def _remove_navigation_text(self, soup: BeautifulSoup) -> None:
+    def _remove_navigation_text(self, soup: BeautifulSoup,
+                                content_el: Optional[Tag] = None) -> None:
         """Remove navigation text patterns that commonly appear in sidebars.
-        
+
         Args:
             soup: BeautifulSoup object to clean
+            content_el: Main content element to protect
         """
         # Common navigation text patterns to remove
         nav_text_patterns = [
@@ -629,21 +634,26 @@ class ContentParser:
             'Privacy', 'Terms',
             'Search', 'Menu', 'Navigation'
         ]
-        
+
         # Remove elements that contain only navigation text
         for element in soup.find_all(['div', 'span', 'p', 'li', 'a']):
             text = element.get_text(strip=True)
-            
+
             # Skip if element has substantial content (more than just nav text)
             if len(text) > 100:
                 continue
-            
+
+            # Protect elements inside the main content area
+            if content_el and (element is content_el
+                               or content_el in element.parents):
+                continue
+
             # Check if text matches navigation patterns
             if text in nav_text_patterns:
                 self.logger.debug(f"Removing navigation text: {text}")
                 element.decompose()
                 continue
-            
+
             # Check for navigation text that appears as standalone items
             words = text.split()
             if len(words) <= 3 and any(word in nav_text_patterns for word in words):
