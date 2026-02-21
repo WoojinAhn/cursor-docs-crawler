@@ -262,37 +262,22 @@ class ContentParser:
         return soup
     
     def process_images(self, soup: BeautifulSoup) -> BeautifulSoup:
-        """Process images in the content.
-        
-        Args:
-            soup: BeautifulSoup object
-            
-        Returns:
-            BeautifulSoup object with processed images
-        """
+        """Process images in the content."""
+        seen_srcs = set()
+
         for img in soup.find_all('img'):
             try:
-                # Get image source
                 src = img.get('src', '')
                 if not src:
                     img.decompose()
                     continue
-                
-                # Debug: Log all images being processed
-                self.logger.debug(f"🔍 Processing image: {src} (alt: {img.get('alt', 'No alt')})")
-                
-                # Skip small icons and UI elements
+
+                # Remove UI icons
                 if self._is_ui_icon(img, src):
-                    self.logger.debug(f"❌ Removing UI icon: {src} (alt: {img.get('alt', 'No alt')})")
+                    self.logger.debug(f"Removing UI icon: {src}")
                     img.decompose()
                     continue
-                else:
-                    self.logger.debug(f"✅ Keeping image: {src} (alt: {img.get('alt', 'No alt')})")
-                
-                # Debug: Log kept images
-                if 'codebase-indexing' in src:
-                    self.logger.info(f"🎯 KEEPING codebase-indexing image: {src} (alt: {img.get('alt', 'No alt')})")
-                
+
                 # Convert relative URLs to absolute
                 if src.startswith('//'):
                     src = f"https:{src}"
@@ -300,169 +285,118 @@ class ContentParser:
                     src = f"https://{self.config.domain}{src}"
                 elif not src.startswith(('http://', 'https://')):
                     src = f"https://{self.config.domain}/{src.lstrip('/')}"
-                
-                # Update src attribute
                 img['src'] = src
-                
+
+                # Deduplicate dark/light theme variants
+                dedup_key = (src.replace('-dark.', '-light.')
+                                .replace('-dark@', '-light@'))
+                if dedup_key in seen_srcs:
+                    img.decompose()
+                    continue
+                seen_srcs.add(dedup_key)
+
                 # Add alt text if missing
                 if not img.get('alt'):
                     img['alt'] = 'Documentation Image'
-                
-                # Add loading attribute for better performance
+
+                # Replace site-specific styles with PDF-appropriate styling
+                img['style'] = 'max-width: 100%; height: auto;'
                 img['loading'] = 'lazy'
-                
-                # Set reasonable max width and enhance documentation images
-                if 'codebase-indexing' in src or 'screenshot' in src or img.get('alt', '').lower().find('indicator') >= 0:
-                    # Special handling for documentation images
-                    img['style'] = 'width: 80%; height: auto; margin: 20px auto; display: block; border: 1px solid #ccc;'
-                    self.logger.info(f"🎯 Enhanced styling for documentation image: {src}")
-                elif not img.get('style'):
-                    img['style'] = 'max-width: 100%; height: auto;'
-                
-                self.logger.info(f"Keeping meaningful image: {src} (alt: {img.get('alt', 'No alt')})")
-                
+
+                self.logger.debug(f"Keeping image: {src}")
+
             except Exception as e:
                 self.logger.warning(f"Error processing image {img.get('src', '')}: {e}")
-                # Replace with placeholder text
                 placeholder = soup.new_tag('p')
                 placeholder.string = f"[Image: {img.get('alt', 'Unable to load')}]"
                 img.replace_with(placeholder)
-        
+
         return soup
     
     def _is_ui_icon(self, img: Tag, src: str) -> bool:
-        """Check if image is a UI icon that should be removed.
-        
-        Args:
-            img: Image element
-            src: Image source URL
-            
-        Returns:
-            True if image is a UI icon
-        """
-        # First check if this is clearly a documentation image
-        if self._is_documentation_image(img, src):
-            return False
-        
-        # Check image dimensions - only remove very small images
+        """Check if image is a UI icon that should be removed."""
+        # Dimension check FIRST – small images are icons regardless of path
         width = img.get('width')
         height = img.get('height')
-        
         if width and height:
             try:
                 w, h = int(width), int(height)
-                if w <= 24 and h <= 24:  # Very small icons only
+                if w <= 32 and h <= 32:
                     return True
             except (ValueError, TypeError):
                 pass
-        
-        # Check CSS classes for icon indicators
+
+        # Then check if this is a documentation image
+        if self._is_documentation_image(img, src):
+            return False
+
+        src_lower = src.lower()
+
+        # SVG files without large dimensions are likely icons
+        if src_lower.endswith('.svg'):
+            return True
+
+        # Explicit icon URL patterns
+        icon_url_patterns = [
+            'favicon', '/icons/', 'icon.',
+            'app-logo.svg', 'data:image/svg+xml',
+            '/providers/', '/logos/',
+        ]
+        if any(p in src_lower for p in icon_url_patterns):
+            return True
+
+        # CSS class check
         css_classes = img.get('class', [])
         if isinstance(css_classes, str):
             css_classes = css_classes.split()
-        
-        # Only remove if explicitly marked as icon
-        explicit_icon_patterns = ['icon', 'favicon']
-        for class_name in css_classes:
-            if any(pattern in class_name.lower() for pattern in explicit_icon_patterns):
-                return True
-        
-        # Check src URL for explicit icon patterns - be more specific about logos
-        src_lower = src.lower()
-        explicit_icon_url_patterns = [
-            'favicon', '/icons/', 'icon.', 
-            'app-logo.svg',  # Specific app logo pattern
-            'data:image/svg+xml'  # Inline SVG icons
-        ]
-        
-        for pattern in explicit_icon_url_patterns:
-            if pattern in src_lower:
-                return True
-        
-        # Check alt text for explicit icon indicators
+        if any('icon' in c.lower() or 'favicon' in c.lower() for c in css_classes):
+            return True
+
+        # Alt text check
         alt_text = img.get('alt', '').lower()
         if alt_text in ['icon', 'favicon']:
             return True
-        
+
         return False
     
     def _is_documentation_image(self, img: Tag, src: str) -> bool:
-        """Check if image is a documentation image that should be kept.
-        
-        Args:
-            img: Image element
-            src: Image source URL
-            
-        Returns:
-            True if image is documentation content
-        """
-        # Priority check: codebase-indexing images are always documentation
-        if 'codebase-indexing' in src.lower():
-            self.logger.info(f"🎯 Identified codebase-indexing as documentation image: {src}")
-            return True
-        
-        # Check if image is within a frame element (high priority)
-        if img.find_parent(attrs={'data-name': 'frame'}):
-            self.logger.info(f"🎯 Image in frame element - treating as documentation: {src}")
-            return True
-        
-        # Check for meaningful alt text
-        alt_text = img.get('alt', '').strip()
-        if alt_text and len(alt_text) > 10:  # Meaningful description
-            self.logger.info(f"🎯 Image with meaningful alt text - treating as documentation: {src} (alt: {alt_text})")
-            return True
-        
-        # Check for documentation image URLs (but exclude specific logos)
+        """Check if image is a documentation image that should be kept."""
         src_lower = src.lower()
-        
-        # Exclude specific logo patterns only
-        if 'app-logo.svg' in src_lower:
+
+        # Priority: codebase-indexing images are always documentation
+        if 'codebase-indexing' in src_lower:
+            return True
+
+        # Frame elements contain documentation images
+        if img.find_parent(attrs={'data-name': 'frame'}):
+            return True
+
+        # Exclude known icon/logo paths early
+        icon_paths = ['/providers/', '/logos/', '/icons/', 'app-logo']
+        if any(p in src_lower for p in icon_paths):
             return False
-        
-        doc_image_patterns = [
-            'mintlify.s3',  # Mintlify documentation images
-            '/images/',
-            '/screenshots/',
-            '/docs/',
-            '/assets/',
-            'documentation',
-            'tutorial',
-            'guide',
-            'example',
-            'get-started'  # Add get-started pattern for installation images
-        ]
-        
-        for pattern in doc_image_patterns:
-            if pattern in src_lower:
-                self.logger.info(f"🎯 Image matches documentation pattern '{pattern}': {src}")
-                return True
-        
-        # Check image size - documentation images are usually larger
+
+        # Large dimensions → documentation
         width = img.get('width')
         height = img.get('height')
-        
         if width and height:
             try:
                 w, h = int(width), int(height)
-                if w > 100 or h > 100:  # Larger images are likely content
+                if w > 100 or h > 100:
                     return True
             except (ValueError, TypeError):
                 pass
-        
-        # Check parent context for content areas
-        parent = img.parent
-        while parent and parent.name != 'body':
-            parent_classes = parent.get('class', [])
-            if isinstance(parent_classes, str):
-                parent_classes = parent_classes.split()
-            
-            content_patterns = ['content', 'article', 'main', 'documentation', 'frame']
-            for class_name in parent_classes:
-                if any(pattern in class_name.lower() for pattern in content_patterns):
-                    return True
-            
-            parent = parent.parent
-        
+
+        # Raster image in a doc-like path → documentation
+        doc_path_patterns = [
+            '/screenshots/', '/images/', '/docs/',
+            '/assets/', 'mintlify.s3', 'get-started',
+        ]
+        is_raster = any(src_lower.endswith(ext) for ext in
+                        ('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+        if is_raster and any(p in src_lower for p in doc_path_patterns):
+            return True
+
         return False
     
     def process_youtube_links(self, soup: BeautifulSoup) -> BeautifulSoup:
