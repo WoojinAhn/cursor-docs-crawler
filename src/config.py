@@ -20,7 +20,7 @@ class Config:
     
     # Crawling settings
     MAX_PAGES: Optional[int] = None  # None for unlimited, number for test mode
-    DELAY_BETWEEN_REQUESTS: float = 1.0
+    DELAY_BETWEEN_REQUESTS: float = 0.3
     REQUEST_TIMEOUT: int = 30
     MAX_RETRIES: int = 3
     
