@@ -126,9 +126,15 @@ class ContentParser:
         '.sr-only', '.visually-hidden',
     ]
 
+    # Word-boundary patterns to avoid false positives on Tailwind classes
+    # (e.g. "leading-relaxed" contains "ad" but is NOT ad-related).
+    _AD_PATTERN = re.compile(
+        r'\bad(?:s|vert(?:isement|ising)?)?\b|\bbanner\b|\bpromo(?:tion)?\b', re.I,
+    )
+
     _UNWANTED_ATTRS = [
-        {'class': re.compile(r'.*ad.*|.*banner.*|.*promo.*', re.I)},
-        {'id': re.compile(r'.*ad.*|.*banner.*|.*promo.*', re.I)},
+        {'class': _AD_PATTERN},
+        {'id': _AD_PATTERN},
         {'role': 'banner'},
         {'role': 'navigation'},
         {'role': 'complementary'},
@@ -186,9 +192,11 @@ class ContentParser:
         """Remove elements matched by attribute patterns (ads, banners, roles)."""
         for attrs in self._UNWANTED_ATTRS:
             for element in soup.find_all(attrs=attrs):
-                # Only protect structural roots – full _should_protect is too
-                # expensive here because regex attrs match hundreds of elements.
                 if element.name in ('html', 'body'):
+                    continue
+                # Protect elements inside the main content area (O(depth) check)
+                if content_el and (element is content_el
+                                   or content_el in element.parents):
                     continue
                 element.decompose()
     
