@@ -71,7 +71,7 @@ class PDFGenerator:
             # Try to create a simple fallback PDF
             try:
                 self.logger.info("Attempting to create fallback PDF with basic content")
-                fallback_html = self._create_fallback_html(sorted_pages, str(e))
+                fallback_html = self._create_fallback_html(pages, str(e))
                 
                 html_doc = HTML(string=fallback_html)
                 html_doc.write_pdf(output_path)
