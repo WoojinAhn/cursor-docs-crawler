@@ -422,9 +422,10 @@ Full crawl produces approximately:
 
 ---
 
-**Note**: This tool is created for educational and personal use purposes. Please comply with cursor.com's terms of service when using it.
+## Disclaimer
 
-**Important Notes**:
-- This tool depends on cursor.com/docs HTML structure. Content extraction may fail if the site structure changes.
-- Set appropriate delay times to avoid sending excessive requests.
-- Use responsibly to avoid placing excessive load on the server. 
+- **Content Copyright**: All documentation content belongs to Anysphere Inc. This tool is provided solely for personal archiving and educational purposes.
+- **Terms of Service**: Use of this tool must comply with [cursor.com's Terms of Service](https://cursor.com/terms). Check `cursor.com/robots.txt` before use.
+- **Responsible Use**: Set appropriate request delays and avoid placing excessive load on the server.
+- **No Warranty**: This tool is provided as-is. The author is not responsible for any issues arising from its use. Users are solely responsible for compliance with applicable laws and terms of service.
+- **Structural Dependency**: This tool depends on cursor.com/docs HTML structure and may break if the site changes.
