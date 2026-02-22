@@ -22,6 +22,9 @@ class Config:
     LLMS_TXT_URL: str = "https://cursor.com/llms.txt"
 
     # Language for crawling and PDF output (e.g., "ko", "en", "ja")
+    SUPPORTED_LANGUAGES: tuple = (
+        "en", "ko", "ja", "zh", "zh-TW", "es", "fr", "pt", "ru", "tr", "id", "de",
+    )
     LANGUAGE: str = "ko"
     
     # Crawling settings

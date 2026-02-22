@@ -140,7 +140,11 @@ def main():
         config.DELAY_BETWEEN_REQUESTS = args.delay
 
     if args.lang:
-        config.LANGUAGE = args.lang
+        if args.lang in config.SUPPORTED_LANGUAGES:
+            config.LANGUAGE = args.lang
+        else:
+            print(f"[Warning] Unsupported language '{args.lang}', falling back to 'en'")
+            config.LANGUAGE = "en"
 
     # Initialize reporter
     reporter = CrawlReporter()
