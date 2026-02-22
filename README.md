@@ -361,6 +361,9 @@ This project is distributed under the MIT License.
 
 ## Output Example
 
+📄 **[Download sample PDF (English, ~14 MB)](https://drive.google.com/file/d/1RYaQBs3LLHIzCfA7LCkqqQzpLyJbqyy6/view?usp=sharing)**
+*Generated on 2026-02-23 — 114 pages, 83,684 words, 103 images*
+
 Full crawl produces approximately:
 - **~114 pages** crawled
 - **~75,000 words** extracted

@@ -361,6 +361,9 @@ pytest tests/ --cov=src
 
 ## 출력 예시
 
+📄 **[샘플 PDF 다운로드 (영문, ~14 MB)](https://drive.google.com/file/d/1RYaQBs3LLHIzCfA7LCkqqQzpLyJbqyy6/view?usp=sharing)**
+*2026-02-23 생성 — 114페이지, 83,684단어, 103개 이미지*
+
 전체 크롤 시 대략적인 결과:
 - **~114 페이지** 크롤링
 - **~75,000 단어** 추출
