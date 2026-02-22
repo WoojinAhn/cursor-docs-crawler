@@ -70,6 +70,9 @@ python main.py --test --fixture
 # 출력 파일 지정
 python main.py --output my_cursor_docs.pdf
 
+# 영어 PDF 생성
+python main.py --lang en
+
 # 최대 페이지 수 제한
 python main.py --max-pages 20
 
@@ -83,7 +86,7 @@ python main.py --verbose
 python main.py --log-file crawler.log
 
 # 모든 옵션 조합
-python main.py --test --output test.pdf --verbose --log-file test.log
+python main.py --lang en --output cursor_docs_en.pdf --verbose --log-file test.log
 ```
 
 ### 명령행 옵션
@@ -93,10 +96,24 @@ python main.py --test --output test.pdf --verbose --log-file test.log
 | `--test` | 테스트 모드 (10개 대표 페이지) | False |
 | `--fixture` | 저장된 HTML fixture 사용 (오프라인, Selenium 불필요) | False |
 | `--output`, `-o` | 출력 PDF 파일 경로 | cursor_docs.pdf |
+| `--lang`, `-l` | 크롤링 및 PDF 출력 언어 | ko |
 | `--max-pages`, `-m` | 최대 크롤링 페이지 수 | 무제한 |
 | `--delay`, `-d` | 요청 간 지연 시간 (초) | 0.3 |
 | `--verbose`, `-v` | 상세 로깅 활성화 | False |
 | `--log-file` | 로그 파일 경로 | None |
+
+### 지원 언어
+
+`--lang` 옵션은 cursor.com이 제공하는 언어를 선택합니다. cursor.com/docs에서 제공하는 언어만 사용 가능하며, 번역 품질과 커버리지는 전적으로 Cursor 측에 의존합니다.
+
+| 코드 | 언어 | 코드 | 언어 |
+|------|------|------|------|
+| `en` | English | `fr` | Fran&ccedil;ais |
+| `ko` | 한국어 | `pt` | Portugu&ecirc;s |
+| `ja` | 日本語 | `ru` | Русский |
+| `zh` | 简体中文 | `tr` | T&uuml;rk&ccedil;e |
+| `zh-TW` | 繁體中文 | `id` | Bahasa Indonesia |
+| `es` | Espa&ntilde;ol | `de` | Deutsch |
 
 ## 프로젝트 구조
 
@@ -352,6 +369,13 @@ pytest tests/ --cov=src
 - **~5분** 총 소요 시간
 
 ## 버전 히스토리
+
+- **v1.6.0**: 다국어 PDF 생성 (#13)
+  - `--lang` 옵션 추가로 cursor.com/docs가 지원하는 모든 언어로 PDF 생성 가능
+  - Chrome `Accept-Language` 헤더 및 `intl.accept_languages` 설정
+  - PDF `<html lang>` 속성이 선택된 언어에 맞게 동적 설정
+  - 기본값: `ko` (기존 동작 유지)
+  - 지원 언어: en, ko, ja, zh, zh-TW, es, fr, pt, ru, tr, id, de
 
 - **v1.5.0**: 크롤 커버리지 & 관련성 감사 (#11)
   - `llms.txt` 시딩 추가: 크롤 시작 시 `cursor.com/llms.txt`를 파싱하여 BFS로 도달 불가능한 페이지(Plugins, Languages, Cloud Agent API 등) 발견

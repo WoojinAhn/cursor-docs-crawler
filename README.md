@@ -70,6 +70,9 @@ python main.py --test --fixture
 # Specify output file
 python main.py --output my_cursor_docs.pdf
 
+# Generate PDF in English
+python main.py --lang en
+
 # Limit maximum pages
 python main.py --max-pages 20
 
@@ -83,7 +86,7 @@ python main.py --verbose
 python main.py --log-file crawler.log
 
 # Combine all options
-python main.py --test --output test.pdf --verbose --log-file test.log
+python main.py --lang en --output cursor_docs_en.pdf --verbose --log-file test.log
 ```
 
 ### Command Line Options
@@ -93,10 +96,24 @@ python main.py --test --output test.pdf --verbose --log-file test.log
 | `--test` | Test mode (10 representative pages) | False |
 | `--fixture` | Use saved HTML fixtures (offline, no Selenium) | False |
 | `--output`, `-o` | Output PDF file path | cursor_docs.pdf |
+| `--lang`, `-l` | Language for crawling and PDF output | ko |
 | `--max-pages`, `-m` | Maximum pages to crawl | Unlimited |
 | `--delay`, `-d` | Delay between requests (seconds) | 0.3 |
 | `--verbose`, `-v` | Enable verbose logging | False |
 | `--log-file` | Log file path | None |
+
+### Supported Languages
+
+The `--lang` option controls which language cursor.com serves. Only languages provided by cursor.com/docs are available — translation quality and coverage depend entirely on Cursor's site.
+
+| Code | Language | Code | Language |
+|------|----------|------|----------|
+| `en` | English | `fr` | Fran&ccedil;ais |
+| `ko` | 한국어 | `pt` | Portugu&ecirc;s |
+| `ja` | 日本語 | `ru` | Русский |
+| `zh` | 简体中文 | `tr` | T&uuml;rk&ccedil;e |
+| `zh-TW` | 繁體中文 | `id` | Bahasa Indonesia |
+| `es` | Espa&ntilde;ol | `de` | Deutsch |
 
 ## Project Structure
 
@@ -352,6 +369,13 @@ Full crawl produces approximately:
 - **~5 minutes** total duration
 
 ## Version History
+
+- **v1.6.0**: Multi-language PDF Generation (#13)
+  - Added `--lang` option to generate PDFs in any language supported by cursor.com/docs
+  - Sets Chrome `Accept-Language` header and `intl.accept_languages` pref
+  - PDF `<html lang>` attribute now reflects the selected language
+  - Default: `ko` (preserves existing behavior)
+  - Supported: en, ko, ja, zh, zh-TW, es, fr, pt, ru, tr, id, de
 
 - **v1.5.0**: Crawl Coverage & Relevance Audit (#11)
   - Added `llms.txt` seeding: fetches `cursor.com/llms.txt` at crawl start to discover pages unreachable via BFS (Plugins, Languages, Cloud Agent API, etc.)
