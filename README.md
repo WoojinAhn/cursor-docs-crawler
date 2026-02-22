@@ -12,7 +12,7 @@ A Python-based web crawler that extracts all content from the Cursor documentati
 - 🎥 **YouTube Link Conversion**: Converts videos to text links for PDF size optimization
 - 📄 **Logical Page Sorting**: Hierarchical page sorting based on URL structure
 - 📊 **Detailed Logging**: Tracks crawling progress and statistics
-- 🧪 **Test Mode**: Quick testing with 5-page limit
+- 🧪 **Test Mode**: Quick testing with 10 representative pages
 - ⚡ **Error Recovery**: Handles various error scenarios including network failures and memory issues
 
 ## Installation
