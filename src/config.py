@@ -20,6 +20,9 @@ class Config:
 
     # Seed URL source: llms.txt lists all official doc pages
     LLMS_TXT_URL: str = "https://cursor.com/llms.txt"
+
+    # Language for crawling and PDF output (e.g., "ko", "en", "ja")
+    LANGUAGE: str = "ko"
     
     # Crawling settings
     MAX_PAGES: Optional[int] = None  # None for unlimited, number for test mode

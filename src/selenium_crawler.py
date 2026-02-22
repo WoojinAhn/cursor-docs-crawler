@@ -26,6 +26,10 @@ class SeleniumCrawler:
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument(f'--lang={config.LANGUAGE}')
+        chrome_options.add_experimental_option('prefs', {
+            'intl.accept_languages': config.LANGUAGE,
+        })
         self.driver = webdriver.Chrome(
             service=Service(ChromeDriverManager().install()),
             options=chrome_options

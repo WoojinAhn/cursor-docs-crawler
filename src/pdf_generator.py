@@ -114,7 +114,7 @@ class PDFGenerator:
         # Combine into full document
         html_doc = f"""
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="{self.config.LANGUAGE}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

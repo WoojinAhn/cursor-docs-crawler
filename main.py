@@ -98,6 +98,11 @@ def main():
         help="Use saved HTML fixtures instead of live crawling (requires tests/fixtures/)"
     )
 
+    parser.add_argument(
+        "--lang", "-l",
+        default="ko",
+        help="Language for crawling and PDF output (default: ko)"
+    )
 
     args = parser.parse_args()
     
@@ -133,7 +138,10 @@ def main():
     
     if args.delay:
         config.DELAY_BETWEEN_REQUESTS = args.delay
-    
+
+    if args.lang:
+        config.LANGUAGE = args.lang
+
     # Initialize reporter
     reporter = CrawlReporter()
     
