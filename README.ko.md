@@ -2,6 +2,8 @@
 
 [한국어](README.ko.md) | [English](README.md)
 
+![CI](https://github.com/WoojinAhn/cursor-docs-crawler/actions/workflows/e2e-test.yml/badge.svg) ![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
+
 Cursor 문서 사이트(https://cursor.com/docs)의 모든 콘텐츠를 크롤링하여 단일 PDF 파일로 변환하는 Python 기반 시스템입니다. NotebookLM의 출처로 사용할 수 있는 고품질 PDF를 생성하며, 불필요한 UI 요소를 제거하고 콘텐츠만 추출하여 가독성을 최적화합니다.
 
 ## 주요 기능

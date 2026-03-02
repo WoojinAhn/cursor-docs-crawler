@@ -2,6 +2,8 @@
 
 [한국어](README.ko.md) | [English](README.md)
 
+![CI](https://github.com/WoojinAhn/cursor-docs-crawler/actions/workflows/e2e-test.yml/badge.svg) ![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
+
 A Python-based web crawler that extracts all content from the Cursor documentation site (https://cursor.com/docs) and converts it into a single PDF file. This tool generates high-quality PDFs suitable for use as sources in NotebookLM, removing unnecessary UI elements and extracting only the content for optimal readability.
 
 ## Key Features
