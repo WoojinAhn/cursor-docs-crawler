@@ -360,10 +360,9 @@ pytest tests/ --cov=src
 - 문서: 이 README 파일
 - 예제: `tests/` 디렉토리의 테스트 코드
 
-## 출력 예시
+## PDF 다운로드
 
-📄 **[샘플 PDF 다운로드 (영문, ~14 MB)](https://drive.google.com/file/d/1RYaQBs3LLHIzCfA7LCkqqQzpLyJbqyy6/view?usp=sharing)**
-*2026-02-23 생성 — 114페이지, 83,684단어, 103개 이미지*
+한국어/영어 PDF는 [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) 페이지에서 다운로드할 수 있습니다 — 매주 자동 갱신.
 
 전체 크롤 시 대략적인 결과:
 - **~114 페이지** 크롤링

@@ -360,10 +360,9 @@ This project is distributed under the MIT License.
 - **Documentation**: This README file
 - **Examples**: Test code in the `tests/` directory
 
-## Output Example
+## Download PDF
 
-📄 **[Download sample PDF (English, ~14 MB)](https://drive.google.com/file/d/1RYaQBs3LLHIzCfA7LCkqqQzpLyJbqyy6/view?usp=sharing)**
-*Generated on 2026-02-23 — 114 pages, 83,684 words, 103 images*
+Pre-built PDFs (Korean & English) are available on the [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) page — updated weekly.
 
 Full crawl produces approximately:
 - **~114 pages** crawled
