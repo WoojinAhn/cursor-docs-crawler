@@ -378,3 +378,4 @@ Full crawl produces approximately:
 - **Responsible Use**: Set appropriate request delays and avoid placing excessive load on the server.
 - **No Warranty**: This tool is provided as-is. The author is not responsible for any issues arising from its use. Users are solely responsible for compliance with applicable laws and terms of service.
 - **Structural Dependency**: This tool depends on cursor.com/docs HTML structure and may break if the site changes.
+- **Takedown**: If Anysphere Inc. requests removal of any content or generated PDFs, we will comply promptly.
