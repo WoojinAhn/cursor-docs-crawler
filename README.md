@@ -136,8 +136,7 @@ cursor-docs-crawler/
 │   ├── content_parser.py  # Content parsing
 │   ├── page_sorter.py     # Page sorting
 │   ├── pdf_generator.py   # PDF generation
-│   ├── logger.py          # Logging system
-│   └── error_handler.py   # Error handling
+│   └── logger.py          # Logging system
 ├── tests/                 # Test code
 │   ├── test_url_manager.py
 │   ├── test_content_parser.py
@@ -370,60 +369,6 @@ Full crawl produces approximately:
 - **~100 images** embedded
 - **~16 MB** PDF file
 - **~5 minutes** total duration
-
-## Version History
-
-- **v1.6.0**: Multi-language PDF Generation (#13)
-  - Added `--lang` option to generate PDFs in any language supported by cursor.com/docs
-  - Sets Chrome `Accept-Language` header and `intl.accept_languages` pref
-  - PDF `<html lang>` attribute now reflects the selected language
-  - Default: `ko` (preserves existing behavior)
-  - Supported: en, ko, ja, zh, zh-TW, es, fr, pt, ru, tr, id, de
-
-- **v1.5.0**: Crawl Coverage & Relevance Audit (#11)
-  - Added `llms.txt` seeding: fetches `cursor.com/llms.txt` at crawl start to discover pages unreachable via BFS (Plugins, Languages, Cloud Agent API, etc.)
-  - Added redirect-only page filter: removes pages that redirect to another already-crawled page, preventing duplicate content in PDF
-  - Added `.json` to URL skip extensions to filter non-document endpoints (e.g. `ips.json`)
-  - Coverage improved from ~110 to ~114 doc pages (+3,400 words)
-
-- **v1.4.0**: Offline E2E Testing & CI
-  - Added HTML fixture system for offline testing (`scripts/save_fixtures.py`)
-  - Added `FixtureCrawler` as drop-in replacement for `SeleniumCrawler`
-  - Added `--fixture` flag for offline mode (no Selenium/network needed)
-  - Added `tests/test_e2e_offline.py` with full pipeline tests
-  - Added GitHub Actions: PR offline tests + weekly fixture refresh
-  - Updated `TestConfig` with 10 content-type-representative test pages
-
-- **v1.3.0**: Content Quality & PDF Improvements
-  - Fixed footer leakage (theme toggle, language selector) via defense-in-depth removal
-  - Fixed CSS class stripping order — now runs after content extraction to preserve `.prose.prose-lg` selector
-  - Preserved `aria-label` text in table cells (capability indicators)
-  - Rescued images from UI zoom buttons before decomposing
-  - Added 404 error page filtering (title-based, since Selenium can't detect HTTP status)
-  - Fixed table overflow in PDF with `table-layout: fixed` and `word-break`
-  - Reduced default request delay from 1.0s to 0.3s
-
-- **v1.2.0**: Site Migration Adaptation
-  - Migrated from `docs.cursor.com` to `cursor.com/docs` (308 redirect)
-  - Added path-prefix based URL filtering (`ALLOWED_PATH_PREFIXES`)
-  - Added locale prefix stripping (`/ko/`, `/en/`, etc.)
-  - Updated content selectors: `.prose.prose-lg` (current) with `.mdx-content` fallback
-  - Removed Nextra-specific CSS selectors (site no longer uses Nextra)
-
-- **v1.1.0**: Content Parsing Improvements
-  - Added `.mdx-content` selector for enhanced content extraction performance
-  - Added mdx-content protection logic
-  - Improved debug logging
-  - Cleaned up unnecessary debug files
-
-- **v1.0.0**: Initial Release
-  - Basic crawling functionality
-  - PDF generation
-  - Test mode
-  - Error handling
-  - Detailed logging
-
----
 
 ## Disclaimer
 

@@ -136,8 +136,7 @@ cursor-docs-crawler/
 │   ├── content_parser.py  # 콘텐츠 파싱
 │   ├── page_sorter.py     # 페이지 정렬
 │   ├── pdf_generator.py   # PDF 생성
-│   ├── logger.py          # 로깅 시스템
-│   └── error_handler.py   # 에러 처리
+│   └── logger.py          # 로깅 시스템
 ├── tests/                 # 테스트 코드
 │   ├── test_url_manager.py
 │   ├── test_content_parser.py
@@ -370,60 +369,6 @@ pytest tests/ --cov=src
 - **~100개 이미지** 포함
 - **~16 MB** PDF 파일
 - **~5분** 총 소요 시간
-
-## 버전 히스토리
-
-- **v1.6.0**: 다국어 PDF 생성 (#13)
-  - `--lang` 옵션 추가로 cursor.com/docs가 지원하는 모든 언어로 PDF 생성 가능
-  - Chrome `Accept-Language` 헤더 및 `intl.accept_languages` 설정
-  - PDF `<html lang>` 속성이 선택된 언어에 맞게 동적 설정
-  - 기본값: `ko` (기존 동작 유지)
-  - 지원 언어: en, ko, ja, zh, zh-TW, es, fr, pt, ru, tr, id, de
-
-- **v1.5.0**: 크롤 커버리지 & 관련성 감사 (#11)
-  - `llms.txt` 시딩 추가: 크롤 시작 시 `cursor.com/llms.txt`를 파싱하여 BFS로 도달 불가능한 페이지(Plugins, Languages, Cloud Agent API 등) 발견
-  - 리다이렉트 전용 페이지 필터 추가: 이미 크롤된 다른 페이지로 리다이렉트되는 페이지를 제거하여 PDF 중복 콘텐츠 방지
-  - URL 스킵 확장자에 `.json` 추가로 비문서 엔드포인트 필터링 (예: `ips.json`)
-  - 커버리지 ~110 → ~114 문서 페이지로 개선 (+3,400 단어)
-
-- **v1.4.0**: 오프라인 E2E 테스트 & CI
-  - HTML fixture 시스템 추가 (`scripts/save_fixtures.py`)
-  - `FixtureCrawler` 추가 — `SeleniumCrawler`의 오프라인 대체
-  - `--fixture` 플래그 추가 (Selenium/네트워크 불필요)
-  - `tests/test_e2e_offline.py` 전체 파이프라인 테스트 추가
-  - GitHub Actions 추가: PR 오프라인 테스트 + 주간 fixture 갱신
-  - `TestConfig`에 10개 콘텐츠 유형별 대표 테스트 페이지 설정
-
-- **v1.3.0**: 콘텐츠 품질 & PDF 개선
-  - Footer 누출 수정 (테마 토글, 언어 선택기) — defense-in-depth 방식 제거
-  - CSS 클래스 제거 순서 수정 — `.prose.prose-lg` 선택자 보존을 위해 콘텐츠 추출 후 실행
-  - 테이블 셀의 `aria-label` 텍스트 보존 (기능 표시자)
-  - UI 줌 버튼 내 이미지 구출 후 버튼 제거
-  - 404 에러 페이지 필터링 추가 (Selenium이 HTTP 상태 감지 불가하므로 제목 기반)
-  - PDF 테이블 오버플로우 수정 (`table-layout: fixed` + `word-break`)
-  - 기본 요청 딜레이 1.0초 → 0.3초로 감소
-
-- **v1.2.0**: 사이트 마이그레이션 대응
-  - `docs.cursor.com`에서 `cursor.com/docs`로 마이그레이션 (308 리다이렉트)
-  - 경로 기반 URL 필터링 추가 (`ALLOWED_PATH_PREFIXES`)
-  - 로케일 접두사 자동 제거 (`/ko/`, `/en/` 등)
-  - 콘텐츠 선택자 업데이트: `.prose.prose-lg` (현재) + `.mdx-content` 폴백
-  - Nextra 전용 CSS 선택자 제거 (사이트가 더 이상 Nextra를 사용하지 않음)
-
-- **v1.1.0**: 콘텐츠 파싱 개선
-  - `.mdx-content` 선택자 추가로 콘텐츠 추출 성능 향상
-  - mdx-content 보호 로직 추가
-  - 디버그 로깅 개선
-  - 불필요한 debug 파일들 정리
-
-- **v1.0.0**: 초기 릴리스
-  - 기본 크롤링 기능
-  - PDF 생성
-  - 테스트 모드
-  - 에러 처리
-  - 상세한 로깅
-
----
 
 ## 면책 조항
 
