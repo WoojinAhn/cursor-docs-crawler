@@ -65,7 +65,7 @@ def run_single_scope(args, scope: str, reporter: CrawlReporter,
     # Create configuration
     if args.test:
         config = TestConfig()
-        print(f"Running in TEST MODE - {len(config.TEST_URLS)} specific pages")
+        print(f"Running in TEST MODE - {len(config.active_test_urls)} specific pages")
     else:
         config = Config()
 
@@ -108,9 +108,9 @@ def run_single_scope(args, scope: str, reporter: CrawlReporter,
                                      config.ALLOWED_PATH_PREFIXES)
 
             # In test mode, replace BFS discovery with specific test URLs
-            if args.test and hasattr(config, 'TEST_URLS'):
+            if args.test and hasattr(config, 'active_test_urls'):
                 url_manager.clear()
-                for url in config.TEST_URLS:
+                for url in config.active_test_urls:
                     url_manager.add_url(url)
             else:
                 # Seed URLs from llms.txt to cover pages unreachable via BFS

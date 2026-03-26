@@ -160,10 +160,12 @@ class TestConfig(Config):
     
     MAX_PAGES: int = 10
     TEST_URLS: List[str] = None
+    HELP_TEST_URLS: List[str] = None
 
     def __post_init__(self):
         super().__post_init__()
         self._set_default_test_urls()
+        self._set_default_help_test_urls()
         self._validate_test_config()
 
     def _set_default_test_urls(self):
@@ -174,18 +176,41 @@ class TestConfig(Config):
         """
         if self.TEST_URLS is None:
             self.TEST_URLS = [
-                "https://cursor.com/docs/get-started/concepts",      # text
-                "https://cursor.com/docs/models",                     # table (comparison)
-                "https://cursor.com/docs/account/pricing",            # table (pricing)
-                "https://cursor.com/docs/agent/overview",             # images (screenshots)
-                "https://cursor.com/docs/tab/overview",               # images (dark/light)
-                "https://cursor.com/docs/cli/overview",               # code blocks
-                "https://cursor.com/docs/api",                        # code + JSON
-                "https://cursor.com/docs/agent/security",             # mixed (table+code+text)
-                "https://cursor.com/docs/context/rules",              # mixed (text+code)
-                "https://cursor.com/docs/configuration/extensions",   # config table
+                "https://cursor.com/docs",                          # root/index
+                "https://cursor.com/docs/models-and-pricing",       # table (was /models → redirect)
+                "https://cursor.com/docs/account/teams/pricing",    # table (was /account/pricing → moved)
+                "https://cursor.com/docs/agent/overview",            # images (screenshots)
+                "https://cursor.com/docs/tab/overview",              # images (dark/light)
+                "https://cursor.com/docs/cli/overview",              # code blocks
+                "https://cursor.com/docs/api",                       # code + JSON
+                "https://cursor.com/docs/agent/security",            # mixed (table+code+text)
+                "https://cursor.com/docs/rules",                     # mixed (was /context/rules → moved)
+                "https://cursor.com/docs/enterprise",                # new enterprise page
             ]
     
+    def _set_default_help_test_urls(self):
+        """Set default test URLs for help scope."""
+        if self.HELP_TEST_URLS is None:
+            self.HELP_TEST_URLS = [
+                "https://cursor.com/help/getting-started/install",
+                "https://cursor.com/help/ai-features/agent",
+                "https://cursor.com/help/ai-features/tab",
+                "https://cursor.com/help/customization/rules",
+                "https://cursor.com/help/customization/mcp",
+                "https://cursor.com/help/models-and-usage/available-models",
+                "https://cursor.com/help/account-and-billing/pricing",
+                "https://cursor.com/help/security-and-privacy/privacy",
+                "https://cursor.com/help/troubleshooting/agent-issues",
+                "https://cursor.com/help/integrations/git",
+            ]
+
+    @property
+    def active_test_urls(self) -> List[str]:
+        """Return test URLs appropriate for the current scope."""
+        if self.SCOPE == "help":
+            return self.HELP_TEST_URLS
+        return self.TEST_URLS
+
     def _validate_test_config(self):
         """Validate test-specific configuration."""
         if not self.TEST_URLS:

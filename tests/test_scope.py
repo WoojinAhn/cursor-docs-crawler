@@ -1,7 +1,7 @@
 import re
 
 import pytest
-from src.config import Config
+from src.config import Config, TestConfig
 from src.pdf_generator import PDFGenerator
 from src.models import PageContent
 
@@ -88,6 +88,30 @@ class TestSeedRegex:
         urls = [u.removesuffix(".md") for u in matches]
         assert "https://cursor.com/help/getting-started/install" in urls
         assert all("/docs/" not in u for u in urls)
+
+
+class TestHelpTestConfig:
+    def test_help_scope_test_urls(self):
+        config = TestConfig()
+        config.SCOPE = "help"
+        urls = config.active_test_urls
+        assert len(urls) == 10
+        assert all("cursor.com/help/" in u for u in urls)
+
+    def test_docs_scope_test_urls_unchanged(self):
+        config = TestConfig()
+        config.SCOPE = "docs"
+        urls = config.active_test_urls
+        assert len(urls) == 10
+        assert all("cursor.com/docs" in u for u in urls)
+
+    def test_stale_urls_fixed(self):
+        config = TestConfig()
+        # These old URLs should no longer be in the defaults
+        for url in config.TEST_URLS:
+            assert "get-started/concepts" not in url
+            assert url != "https://cursor.com/docs/models"
+            assert "context/rules" not in url
 
 
 class TestPDFScopeTitle:
