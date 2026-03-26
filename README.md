@@ -4,11 +4,21 @@
 
 ![CI](https://github.com/WoojinAhn/cursor-docs-crawler/actions/workflows/e2e-test.yml/badge.svg) ![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg) ![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
 
-A Python-based web crawler that extracts all content from the Cursor documentation site (https://cursor.com/docs) and converts it into a single PDF file. This tool generates high-quality PDFs suitable for use as sources in NotebookLM, removing unnecessary UI elements and extracting only the content for optimal readability.
+A Python-based web crawler that extracts content from the Cursor documentation site (https://cursor.com/docs and https://cursor.com/help) and converts it into PDF files. This tool generates high-quality PDFs suitable for use as sources in NotebookLM, removing unnecessary UI elements and extracting only the content for optimal readability.
+
+### Why Two Separate PDFs?
+
+In March 2026, Cursor restructured their documentation into two distinct sections:
+
+- **`/docs/`** — Technical reference: architecture, API specs, token pricing, configuration details
+- **`/help/`** — User help center: how-to guides, troubleshooting FAQs, account management
+
+These serve fundamentally different purposes (reference vs. support), and mixing them in a single PDF degrades NotebookLM source quality — the same topic appears twice with different tones, confusing retrieval. The `--scope` option lets you generate each as a separate, focused PDF.
 
 ## Key Features
 
-- 🕷️ **Automated Web Crawling**: Automatically discovers and crawls all pages from cursor.com/docs
+- 🕷️ **Automated Web Crawling**: Automatically discovers and crawls all pages from cursor.com/docs and cursor.com/help
+- 📑 **Scope Selection**: Generate docs (technical reference), help (user guide), or both as separate PDFs
 - 🧹 **Content Refinement**: Removes unnecessary UI elements like sidebars, headers, and footers
 - 🖼️ **Image Processing**: Downloads, resizes, and embeds images in PDF
 - 🎥 **YouTube Link Conversion**: Converts videos to text links for PDF size optimization
@@ -50,12 +60,20 @@ Refer to the official WeasyPrint documentation: https://doc.courtbouillon.org/we
 
 ### Basic Usage
 ```bash
+# Generate docs PDF (default)
 python main.py
+
+# Generate help center PDF
+python main.py --scope help
+
+# Generate both PDFs (cursor_docs.pdf + cursor_help.pdf)
+python main.py --scope all
 ```
 
 ### Test Mode (10 representative pages)
 ```bash
 python main.py --test
+python main.py --test --scope help
 ```
 
 ### Offline Test Mode (using saved HTML fixtures)
@@ -97,7 +115,8 @@ python main.py --lang en --output cursor_docs_en.pdf --verbose --log-file test.l
 |--------|-------------|---------|
 | `--test` | Test mode (10 representative pages) | False |
 | `--fixture` | Use saved HTML fixtures (offline, no Selenium) | False |
-| `--output`, `-o` | Output PDF file path | cursor_docs.pdf |
+| `--scope`, `-s` | Crawl scope: `docs`, `help`, or `all` | docs |
+| `--output`, `-o` | Output PDF file path | Per scope |
 | `--lang`, `-l` | Language for crawling and PDF output | ko |
 | `--max-pages`, `-m` | Maximum pages to crawl | Unlimited |
 | `--delay`, `-d` | Delay between requests (seconds) | 0.3 |
@@ -143,6 +162,7 @@ cursor-docs-crawler/
 │   ├── test_url_manager.py
 │   ├── test_content_parser.py
 │   ├── test_pdf_generator.py
+│   ├── test_scope.py      # Scope configuration and seed regex tests
 │   ├── test_e2e_offline.py # Offline E2E test (fixture-based)
 │   └── fixtures/          # Saved HTML snapshots for offline testing
 │       ├── manifest.json
@@ -362,14 +382,18 @@ This project is distributed under the MIT License.
 
 ## Download PDF
 
-Pre-built PDFs (Korean & English) are available on the [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) page — updated weekly.
+Pre-built PDFs are available on the [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) page — updated weekly.
 
-Full crawl produces approximately:
-- **~114 pages** crawled
-- **~75,000 words** extracted
-- **~100 images** embedded
-- **~16 MB** PDF file
-- **~5 minutes** total duration
+Each release includes 4 PDFs (docs + help, in Korean & English).
+
+### Latest Stats (2026-03-26)
+
+| Scope | Pages | Words | Images | Size | Description |
+|-------|-------|-------|--------|------|-------------|
+| `docs` | 83 | 70,097 | 45 | ~8 MB | Technical reference |
+| `help` | 62 | 12,965 | 0 | ~2 MB | User guide & troubleshooting |
+
+- **Total generation time**: ~6 minutes (both scopes, single language)
 
 ## Disclaimer
 
