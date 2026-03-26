@@ -13,13 +13,13 @@ class Config:
     _SCOPE_MAP = {
         "docs": {
             "prefixes": ["/docs/"],
-            "seed_regex": r'https://cursor\.com/docs[^\s)]+\.md',
+            "seed_regex": r'https://cursor\.com/docs[^\s)]*\.md',
             "output_file": "cursor_docs.pdf",
             "base_url": "https://cursor.com/docs",
         },
         "help": {
             "prefixes": ["/help/"],
-            "seed_regex": r'https://cursor\.com/help[^\s)]+\.md',
+            "seed_regex": r'https://cursor\.com/help[^\s)]*\.md',
             "output_file": "cursor_help.pdf",
             "base_url": "https://cursor.com/help",
         },

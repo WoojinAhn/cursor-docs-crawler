@@ -1,3 +1,5 @@
+import re
+
 import pytest
 from src.config import Config
 
@@ -52,3 +54,35 @@ class TestScopeConfig:
         config.SCOPE = "invalid"
         with pytest.raises(ValueError):
             _ = config.scope_prefixes
+
+
+SAMPLE_LLMS_TXT = """
+# Cursor Docs
+- [Docs](https://cursor.com/docs.md)
+- [Agent](https://cursor.com/docs/agent/overview.md)
+- [Rules](https://cursor.com/docs/rules.md)
+# Help
+- [Install](https://cursor.com/help/getting-started/install.md)
+- [Agent Issues](https://cursor.com/help/troubleshooting/agent-issues.md)
+# Other
+- [Changelog](https://cursor.com/changelog.md)
+"""
+
+
+class TestSeedRegex:
+    def test_docs_regex_matches_only_docs(self):
+        config = Config()
+        config.SCOPE = "docs"
+        matches = re.findall(config.scope_seed_regex, SAMPLE_LLMS_TXT)
+        urls = [u.removesuffix(".md") for u in matches]
+        assert "https://cursor.com/docs" in urls
+        assert "https://cursor.com/docs/agent/overview" in urls
+        assert all("/help/" not in u for u in urls)
+
+    def test_help_regex_matches_only_help(self):
+        config = Config()
+        config.SCOPE = "help"
+        matches = re.findall(config.scope_seed_regex, SAMPLE_LLMS_TXT)
+        urls = [u.removesuffix(".md") for u in matches]
+        assert "https://cursor.com/help/getting-started/install" in urls
+        assert all("/docs/" not in u for u in urls)

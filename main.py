@@ -19,7 +19,7 @@ from src.pdf_generator import PDFGenerator
 from src.logger import CrawlerLogger, CrawlReporter
 
 
-def seed_from_llms_txt(url_manager, llms_txt_url: str) -> int:
+def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str) -> int:
     """Fetch llms.txt and seed all /docs/* URLs into the URL manager.
 
     llms.txt lists every official doc page as markdown links with .md suffix.
@@ -38,7 +38,7 @@ def seed_from_llms_txt(url_manager, llms_txt_url: str) -> int:
         return 0
 
     # Extract URLs: pattern like https://cursor.com/docs/....md
-    urls = re.findall(r'https://cursor\.com/docs[^\s)]+\.md', text)
+    urls = re.findall(seed_regex, text)
     seeded = 0
     for url in urls:
         clean_url = url.removesuffix(".md")
@@ -168,7 +168,7 @@ def main():
                     url_manager.add_url(url)
             else:
                 # Seed URLs from llms.txt to cover pages unreachable via BFS
-                seed_from_llms_txt(url_manager, config.LLMS_TXT_URL)
+                seed_from_llms_txt(url_manager, config.LLMS_TXT_URL, config.scope_seed_regex)
 
             from src.selenium_crawler import SeleniumCrawler
             crawler = SeleniumCrawler(config, url_manager)
