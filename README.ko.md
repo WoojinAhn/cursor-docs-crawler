@@ -120,7 +120,7 @@ python main.py --lang en --output cursor_docs_en.pdf --verbose --log-file test.l
 | `--output`, `-o` | 출력 PDF 파일 경로 | 스코프별 자동 |
 | `--lang`, `-l` | 크롤링 및 PDF 출력 언어 | ko |
 | `--max-pages`, `-m` | 최대 크롤링 페이지 수 | 무제한 |
-| `--delay`, `-d` | 요청 간 지연 시간 (초) | 0.3 |
+| `--delay`, `-d` | 요청 간 지연 시간 (초) | 1.0 |
 | `--verbose`, `-v` | 상세 로깅 활성화 | False |
 | `--log-file` | 로그 파일 경로 | None |
 

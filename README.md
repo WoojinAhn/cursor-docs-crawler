@@ -120,7 +120,7 @@ python main.py --lang en --output cursor_docs_en.pdf --verbose --log-file test.l
 | `--output`, `-o` | Output PDF file path | Per scope |
 | `--lang`, `-l` | Language for crawling and PDF output | ko |
 | `--max-pages`, `-m` | Maximum pages to crawl | Unlimited |
-| `--delay`, `-d` | Delay between requests (seconds) | 0.3 |
+| `--delay`, `-d` | Delay between requests (seconds) | 1.0 |
 | `--verbose`, `-v` | Enable verbose logging | False |
 | `--log-file` | Log file path | None |
 
