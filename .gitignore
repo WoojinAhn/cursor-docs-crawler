@@ -67,6 +67,9 @@ crawled_urls.txt
 # Kiro AI (if using Kiro)
 .kiro/
 
+# Worktrees
+.worktrees/
+
 # Environment variables
 .env
 .env.local
