@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Project Does
 
-A Python web crawler that scrapes the entire Cursor documentation site (cursor.com/docs) using Selenium, cleans the HTML content with BeautifulSoup, and generates a single PDF via WeasyPrint. Designed to produce NotebookLM-ready PDFs.
+A Python web crawler that scrapes the Cursor documentation site (cursor.com/docs and cursor.com/help) using Selenium, cleans the HTML content with BeautifulSoup, and generates PDFs via WeasyPrint. Designed to produce NotebookLM-ready PDFs.
 
 ## Commands
 
@@ -25,6 +25,18 @@ python main.py --test --fixture  # Fast: offline E2E (~6 seconds)
 
 # Generate PDF in a specific language (default: ko)
 python main.py --lang en
+
+# Generate docs PDF only (default)
+python main.py --scope docs
+
+# Generate help center PDF
+python main.py --scope help
+
+# Generate both PDFs (cursor_docs.pdf + cursor_help.pdf)
+python main.py --scope all
+
+# Test mode with scope
+python main.py --test --scope help
 
 # Common options
 python main.py --output out.pdf --max-pages 20 --delay 2.0 --verbose --log-file crawler.log
@@ -81,6 +93,7 @@ The pipeline runs in three sequential phases orchestrated by `main.py`:
 - **Protected elements**: Frame elements (`data-name="frame"`) and codebase-indexing images are explicitly protected from removal during HTML cleaning.
 - **Fallback PDF**: If WeasyPrint fails on styled HTML, `PDFGenerator` attempts a simplified fallback HTML without custom CSS.
 - **Language support**: `--lang` sets Chrome's `Accept-Language` header and `intl.accept_languages` pref, causing cursor.com to serve translated content. Unsupported values silently fall back to `en`. Supported: en, ko, ja, zh, zh-TW, es, fr, pt, ru, tr, id, de.
+- **Scope separation**: `/docs/` (technical reference) and `/help/` (user guide/troubleshooting) are crawled independently via `--scope`. `all` runs two separate crawl cycles producing two PDFs — they are not merged because the content purposes differ and separate sources work better for NotebookLM ingestion.
 
 ### Data Flow Models (`src/models.py`)
 
