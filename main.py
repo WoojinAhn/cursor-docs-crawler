@@ -101,6 +101,9 @@ def run_single_scope(args, scope: str, reporter: CrawlReporter,
 
         # Initialize components
         if args.fixture:
+            if scope != "docs":
+                print(f"[Warning] --fixture only supports docs scope (fixtures are docs-only), skipping '{scope}'")
+                return 1
             from src.fixture_crawler import FixtureCrawler
             crawler = FixtureCrawler()
         else:
@@ -223,8 +226,8 @@ def main():
 
     parser.add_argument(
         "--output", "-o",
-        default="cursor_docs.pdf",
-        help="Output PDF file path (default: cursor_docs.pdf)"
+        default=None,
+        help="Output PDF file path (default: cursor_docs.pdf or cursor_help.pdf depending on scope)"
     )
 
     parser.add_argument(
@@ -292,7 +295,7 @@ def main():
     scopes = ["docs", "help"] if args.scope == "all" else [args.scope]
 
     # Detect if user explicitly provided --output
-    user_provided_output = args.output != "cursor_docs.pdf"
+    user_provided_output = args.output is not None
     # When running all scopes, ignore user-provided output (each scope uses its own default)
     if args.scope == "all" and user_provided_output:
         print("[Warning] --output is ignored when --scope=all; each scope uses its default filename")
