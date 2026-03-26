@@ -10,8 +10,11 @@ import pytest
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from main import seed_from_llms_txt
+from src.config import Config
 from src.url_manager import URLManager
 from src.models import PageData
+
+_DOCS_SEED_REGEX = Config._SCOPE_MAP["docs"]["seed_regex"]
 
 
 # --- seed_from_llms_txt ---
@@ -34,7 +37,7 @@ def test_seed_from_llms_txt_success():
     mock_resp.__exit__ = MagicMock(return_value=False)
 
     with patch("main.urlopen", return_value=mock_resp):
-        seeded = seed_from_llms_txt(mgr, "https://cursor.com/llms.txt")
+        seeded = seed_from_llms_txt(mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX)
 
     # docs (initial seed) + quickstart + models = 3 total, but 2 new
     assert seeded == 2
@@ -50,7 +53,7 @@ def test_seed_from_llms_txt_strips_md_suffix():
     mock_resp.__exit__ = MagicMock(return_value=False)
 
     with patch("main.urlopen", return_value=mock_resp):
-        seed_from_llms_txt(mgr, "https://cursor.com/llms.txt")
+        seed_from_llms_txt(mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX)
 
     # Should have added https://cursor.com/docs/plugins (without .md)
     assert "https://cursor.com/docs/plugins" in mgr._queued_urls
@@ -61,7 +64,7 @@ def test_seed_from_llms_txt_network_error():
     mgr = _make_url_manager()
 
     with patch("main.urlopen", side_effect=URLError("Connection refused")):
-        seeded = seed_from_llms_txt(mgr, "https://cursor.com/llms.txt")
+        seeded = seed_from_llms_txt(mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX)
 
     assert seeded == 0
 

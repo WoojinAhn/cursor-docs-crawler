@@ -49,93 +49,41 @@ def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str) -> int:
     return seeded
 
 
-def main():
-    """Main application entry point."""
-    # Parse command line arguments
-    parser = argparse.ArgumentParser(
-        description="Cursor Documentation Crawler - Convert cursor.com/docs to PDF"
-    )
-    
-    parser.add_argument(
-        "--test", 
-        action="store_true",
-        help="Run in test mode (limited to 5 pages)"
-    )
-    
-    parser.add_argument(
-        "--output", "-o",
-        default="cursor_docs.pdf",
-        help="Output PDF file path (default: cursor_docs.pdf)"
-    )
-    
-    parser.add_argument(
-        "--max-pages", "-m",
-        type=int,
-        help="Maximum number of pages to crawl"
-    )
-    
-    parser.add_argument(
-        "--delay", "-d",
-        type=float,
-        default=1.0,
-        help="Delay between requests in seconds (default: 1.0)"
-    )
-    
-    parser.add_argument(
-        "--verbose", "-v",
-        action="store_true",
-        help="Enable verbose logging"
-    )
-    
-    parser.add_argument(
-        "--log-file",
-        help="Log file path (optional)"
-    )
+def run_single_scope(args, scope: str, reporter: CrawlReporter,
+                     user_provided_output: bool) -> int:
+    """Run the full crawl-parse-PDF pipeline for a single scope.
 
-    parser.add_argument(
-        "--fixture",
-        action="store_true",
-        help="Use saved HTML fixtures instead of live crawling (requires tests/fixtures/)"
-    )
+    Args:
+        args: Parsed CLI arguments.
+        scope: One of "docs" or "help".
+        reporter: CrawlReporter instance for statistics.
+        user_provided_output: True if the user explicitly set --output.
 
-    parser.add_argument(
-        "--lang", "-l",
-        default="ko",
-        help="Language for crawling and PDF output (default: ko)"
-    )
-
-    args = parser.parse_args()
-    
-    # Setup logging
-    log_level = "DEBUG" if args.verbose else "INFO"
-    logger_setup = CrawlerLogger(
-        level=log_level,
-        log_file=args.log_file
-    )
-    
-    # Suppress verbose logging from external libraries
-    logging.getLogger('selenium').setLevel(logging.WARNING)
-    logging.getLogger('urllib3').setLevel(logging.WARNING)
-    logging.getLogger('weasyprint').setLevel(logging.WARNING)
-    logging.getLogger('PIL').setLevel(logging.WARNING)
-    logging.getLogger('fontTools').setLevel(logging.WARNING)
-    logging.getLogger('cssselect2').setLevel(logging.WARNING)
-    logging.getLogger('pyphen').setLevel(logging.WARNING)
-    
+    Returns:
+        0 on success, 1 on failure.
+    """
     # Create configuration
     if args.test:
         config = TestConfig()
         print(f"Running in TEST MODE - {len(config.TEST_URLS)} specific pages")
     else:
         config = Config()
-    
-    # Override config with command line arguments
-    if args.output:
+
+    # Apply scope
+    config.SCOPE = scope
+    config.BASE_URL = config.scope_base_url
+    config.ALLOWED_PATH_PREFIXES = config.scope_prefixes
+
+    # Determine output file
+    if user_provided_output:
         config.OUTPUT_FILE = args.output
-    
+    else:
+        config.OUTPUT_FILE = config.scope_output_file
+
+    # Override config with command line arguments
     if args.max_pages:
         config.MAX_PAGES = args.max_pages
-    
+
     if args.delay:
         config.DELAY_BETWEEN_REQUESTS = args.delay
 
@@ -146,13 +94,11 @@ def main():
             print(f"[Warning] Unsupported language '{args.lang}', falling back to 'en'")
             config.LANGUAGE = "en"
 
-    # Initialize reporter
-    reporter = CrawlReporter()
-    
+    crawler = None
     try:
         # Report start
         reporter.report_start(config.BASE_URL, config.MAX_PAGES)
-        
+
         # Initialize components
         if args.fixture:
             from src.fixture_crawler import FixtureCrawler
@@ -175,19 +121,19 @@ def main():
 
         content_parser = ContentParser(config)
         pdf_generator = PDFGenerator(config)
-        
+
         # Crawl pages
         print("Starting web crawling...")
         crawled_pages = crawler.crawl_all()
-        
+
         if not crawled_pages:
             print("No pages were successfully crawled!")
             return 1
-        
+
         # Report crawling statistics
         if not args.fixture:
             reporter.report_crawl_stats(url_manager, len(crawled_pages))
-        
+
         # Filter out 404 / error pages (Selenium can't detect HTTP status codes)
         _error_title_patterns = ['page could not be found', 'page not found', '404 error']
         crawled_pages = [
@@ -222,82 +168,178 @@ def main():
             except Exception as e:
                 print(f"Error processing page {page_data.url}: {e}")
                 continue
-        
+
         if not processed_pages:
             print("No pages were successfully processed!")
             return 1
-        
+
         # Report content statistics
         reporter.report_content_stats(processed_pages)
-        
+
         # Generate PDF
         print(f"Generating PDF: {config.OUTPUT_FILE}")
         pdf_success = pdf_generator.generate_pdf(processed_pages, config.OUTPUT_FILE)
-        
+
         # Report PDF generation
         reporter.report_pdf_generation(config.OUTPUT_FILE, pdf_success)
-        
+
         if pdf_success:
             print(f"✅ PDF generated successfully: {config.OUTPUT_FILE}")
             print(f"📄 Total pages: {len(processed_pages)}")
-            
+
             # Calculate total words and images
             total_words = sum(page.word_count for page in processed_pages)
             total_images = sum(page.image_count for page in processed_pages)
-            
+
             print(f"📝 Total words: {total_words:,}")
             print(f"🖼️  Total images: {total_images}")
-            
+
             return 0
         else:
             print("❌ PDF generation failed!")
             return 1
-    
+
+    finally:
+        # Clean up crawler
+        if crawler is not None:
+            try:
+                crawler.close()
+            except Exception:
+                pass
+
+
+def main():
+    """Main application entry point."""
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description="Cursor Documentation Crawler - Convert cursor.com/docs to PDF"
+    )
+
+    parser.add_argument(
+        "--test",
+        action="store_true",
+        help="Run in test mode (limited to 5 pages)"
+    )
+
+    parser.add_argument(
+        "--output", "-o",
+        default="cursor_docs.pdf",
+        help="Output PDF file path (default: cursor_docs.pdf)"
+    )
+
+    parser.add_argument(
+        "--max-pages", "-m",
+        type=int,
+        help="Maximum number of pages to crawl"
+    )
+
+    parser.add_argument(
+        "--delay", "-d",
+        type=float,
+        default=1.0,
+        help="Delay between requests in seconds (default: 1.0)"
+    )
+
+    parser.add_argument(
+        "--verbose", "-v",
+        action="store_true",
+        help="Enable verbose logging"
+    )
+
+    parser.add_argument(
+        "--log-file",
+        help="Log file path (optional)"
+    )
+
+    parser.add_argument(
+        "--fixture",
+        action="store_true",
+        help="Use saved HTML fixtures instead of live crawling (requires tests/fixtures/)"
+    )
+
+    parser.add_argument(
+        "--lang", "-l",
+        default="ko",
+        help="Language for crawling and PDF output (default: ko)"
+    )
+
+    parser.add_argument(
+        "--scope", "-s",
+        choices=["docs", "help", "all"],
+        default="docs",
+        help="Crawl scope: 'docs' (technical reference), 'help' (user help center), 'all' (both as separate PDFs). Default: docs"
+    )
+
+    args = parser.parse_args()
+
+    # Setup logging
+    log_level = "DEBUG" if args.verbose else "INFO"
+    logger_setup = CrawlerLogger(
+        level=log_level,
+        log_file=args.log_file
+    )
+
+    # Suppress verbose logging from external libraries
+    logging.getLogger('selenium').setLevel(logging.WARNING)
+    logging.getLogger('urllib3').setLevel(logging.WARNING)
+    logging.getLogger('weasyprint').setLevel(logging.WARNING)
+    logging.getLogger('PIL').setLevel(logging.WARNING)
+    logging.getLogger('fontTools').setLevel(logging.WARNING)
+    logging.getLogger('cssselect2').setLevel(logging.WARNING)
+    logging.getLogger('pyphen').setLevel(logging.WARNING)
+
+    # Determine scopes to run
+    scopes = ["docs", "help"] if args.scope == "all" else [args.scope]
+
+    # Detect if user explicitly provided --output
+    user_provided_output = args.output != "cursor_docs.pdf"
+    # When running all scopes, ignore user-provided output (each scope uses its own default)
+    if args.scope == "all" and user_provided_output:
+        print("[Warning] --output is ignored when --scope=all; each scope uses its default filename")
+        user_provided_output = False
+
+    # Initialize reporter
+    reporter = CrawlReporter()
+
+    exit_code = 0
+    try:
+        for scope in scopes:
+            if len(scopes) > 1:
+                print(f"\n{'=' * 60}")
+                print(f"  Scope: {scope}")
+                print(f"{'=' * 60}\n")
+
+            result = run_single_scope(args, scope, reporter, user_provided_output)
+            if result != 0:
+                exit_code = 1
+
     except KeyboardInterrupt:
         print("\n⚠️  Crawling interrupted by user")
         return 1
-    
+
     except Exception as e:
         reporter.report_error(e, "Main application")
         print(f"❌ Critical Error: {e}")
-        
+
         # Try to save partial results if any pages were crawled
         try:
-            if 'crawled_pages' in locals() and crawled_pages:
-                print(f"💾 Attempting to save {len(crawled_pages)} crawled pages as backup...")
-                
-                from datetime import datetime
-                # Create simple backup file
-                backup_file = f"backup_crawl_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-                with open(backup_file, 'w', encoding='utf-8') as f:
-                    f.write(f"Cursor Documentation Crawl Backup\n")
-                    f.write(f"Generated: {datetime.now()}\n")
-                    f.write(f"Error: {str(e)}\n")
-                    f.write(f"Pages crawled: {len(crawled_pages)}\n\n")
-                    
-                    for i, page in enumerate(crawled_pages, 1):
-                        f.write(f"=== Page {i}: {page.title} ===\n")
-                        f.write(f"URL: {page.url}\n")
-                        f.write(f"Status: {page.status_code}\n")
-                        f.write(f"Content length: {len(page.html_content)}\n")
-                        f.write(f"Links found: {len(page.links)}\n\n")
-                
-                print(f"✅ Backup saved: {backup_file}")
-                
+            from datetime import datetime
+            backup_file = f"backup_crawl_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+            with open(backup_file, 'w', encoding='utf-8') as f:
+                f.write(f"Cursor Documentation Crawl Backup\n")
+                f.write(f"Generated: {datetime.now()}\n")
+                f.write(f"Error: {str(e)}\n\n")
+            print(f"✅ Backup saved: {backup_file}")
         except Exception as backup_error:
             print(f"⚠️  Could not save backup: {backup_error}")
-        
+
         return 1
-    
+
     finally:
-        # Clean up
-        try:
-            crawler.close()
-        except Exception:
-            pass
-        
         # Report completion
         reporter.report_completion()
+
+    return exit_code
 
 
 if __name__ == "__main__":
