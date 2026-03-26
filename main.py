@@ -19,14 +19,11 @@ from src.pdf_generator import PDFGenerator
 from src.logger import CrawlerLogger, CrawlReporter
 
 
-def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str) -> int:
-    """Fetch llms.txt and seed all /docs/* URLs into the URL manager.
-
-    llms.txt lists every official doc page as markdown links with .md suffix.
-    We strip the .md to get the actual page URL.
+def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str) -> set:
+    """Fetch llms.txt and seed URLs matching *seed_regex* into the URL manager.
 
     Returns:
-        Number of URLs successfully seeded.
+        Set of canonical URLs extracted from llms.txt (with .md stripped).
     """
     logger = logging.getLogger(__name__)
     try:
@@ -35,18 +32,45 @@ def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str) -> int:
             text = resp.read().decode("utf-8")
     except (URLError, OSError) as e:
         logger.warning(f"Failed to fetch llms.txt ({llms_txt_url}): {e}")
-        return 0
+        return set()
 
-    # Extract URLs: pattern like https://cursor.com/docs/....md
-    urls = re.findall(seed_regex, text)
+    raw_urls = re.findall(seed_regex, text)
+    llms_urls = {url.removesuffix(".md") for url in raw_urls}
     seeded = 0
-    for url in urls:
-        clean_url = url.removesuffix(".md")
+    for clean_url in llms_urls:
         if url_manager.add_url(clean_url):
             seeded += 1
-    logger.info(f"Seeded {seeded} URLs from llms.txt (found {len(urls)} entries)")
+    logger.info(f"Seeded {seeded} URLs from llms.txt (found {len(llms_urls)} entries)")
     print(f"[Seed] Added {seeded} new URLs from llms.txt")
-    return seeded
+    return llms_urls
+
+
+def check_llms_coverage(llms_urls: set, crawled_pages, logger) -> list:
+    """Compare llms.txt URLs against actually crawled URLs.
+
+    Returns:
+        List of llms.txt URLs that were not crawled.
+    """
+    crawled_urls = set()
+    for p in crawled_pages:
+        crawled_urls.add(p.url)
+        if p.final_url:
+            crawled_urls.add(p.final_url)
+
+    missing = sorted(llms_urls - crawled_urls)
+
+    if not missing:
+        logger.info(f"[Coverage] llms.txt {len(llms_urls)} URLs — all covered")
+        print(f"[Coverage] llms.txt {len(llms_urls)} URLs — all covered")
+    else:
+        logger.warning(
+            f"[Coverage] {len(missing)}/{len(llms_urls)} llms.txt URLs not crawled"
+        )
+        print(f"[Coverage] {len(missing)}/{len(llms_urls)} llms.txt URLs not crawled:")
+        for url in missing:
+            print(f"  - {url}")
+
+    return missing
 
 
 def run_single_scope(args, scope: str, reporter: CrawlReporter,
@@ -111,13 +135,14 @@ def run_single_scope(args, scope: str, reporter: CrawlReporter,
                                      config.ALLOWED_PATH_PREFIXES)
 
             # In test mode, replace BFS discovery with specific test URLs
+            llms_urls = set()
             if args.test and hasattr(config, 'active_test_urls'):
                 url_manager.clear()
                 for url in config.active_test_urls:
                     url_manager.add_url(url)
             else:
                 # Seed URLs from llms.txt to cover pages unreachable via BFS
-                seed_from_llms_txt(url_manager, config.LLMS_TXT_URL, config.scope_seed_regex)
+                llms_urls = seed_from_llms_txt(url_manager, config.LLMS_TXT_URL, config.scope_seed_regex)
 
             from src.selenium_crawler import SeleniumCrawler
             crawler = SeleniumCrawler(config, url_manager)
@@ -157,6 +182,10 @@ def run_single_scope(args, scope: str, reporter: CrawlReporter,
         redirect_filtered = before_redirect_filter - len(crawled_pages)
         if redirect_filtered:
             print(f"[Filter] Removed {redirect_filtered} redirect-only pages")
+
+        # Check llms.txt coverage (skip in test/fixture mode)
+        if not args.fixture and not args.test and llms_urls:
+            check_llms_coverage(llms_urls, crawled_pages, logging.getLogger(__name__))
 
         # Process content
         print("Processing page content...")

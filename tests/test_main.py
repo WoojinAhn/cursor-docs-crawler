@@ -39,8 +39,11 @@ def test_seed_from_llms_txt_success():
     with patch("main.urlopen", return_value=mock_resp):
         seeded = seed_from_llms_txt(mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX)
 
-    # docs (initial seed) + quickstart + models = 3 total, but 2 new
-    assert seeded == 2
+    # Returns the set of canonical URLs from llms.txt
+    assert isinstance(seeded, set)
+    assert len(seeded) == 2
+    assert "https://cursor.com/docs/get-started/quickstart" in seeded
+    assert "https://cursor.com/docs/models" in seeded
 
 
 def test_seed_from_llms_txt_strips_md_suffix():
@@ -66,7 +69,7 @@ def test_seed_from_llms_txt_network_error():
     with patch("main.urlopen", side_effect=URLError("Connection refused")):
         seeded = seed_from_llms_txt(mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX)
 
-    assert seeded == 0
+    assert seeded == set()
 
 
 # --- redirect filter logic ---
