@@ -2,6 +2,8 @@ import re
 
 import pytest
 from src.config import Config
+from src.pdf_generator import PDFGenerator
+from src.models import PageContent
 
 
 class TestScopeConfig:
@@ -86,3 +88,33 @@ class TestSeedRegex:
         urls = [u.removesuffix(".md") for u in matches]
         assert "https://cursor.com/help/getting-started/install" in urls
         assert all("/docs/" not in u for u in urls)
+
+
+class TestPDFScopeTitle:
+    def test_docs_scope_title(self):
+        config = Config()
+        config.SCOPE = "docs"
+        gen = PDFGenerator(config)
+        pages = [PageContent(
+            url="https://cursor.com/docs/test",
+            title="Test",
+            content_html="<p>test</p>",
+            text_content="test",
+        )]
+        html = gen._create_html_document(pages)
+        assert "Cursor Documentation" in html
+        assert "Technical Reference" in html
+
+    def test_help_scope_title(self):
+        config = Config()
+        config.SCOPE = "help"
+        gen = PDFGenerator(config)
+        pages = [PageContent(
+            url="https://cursor.com/help/test",
+            title="Test",
+            content_html="<p>test</p>",
+            text_content="test",
+        )]
+        html = gen._create_html_document(pages)
+        assert "Cursor Help Center" in html
+        assert "User Guide" in html

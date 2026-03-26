@@ -15,7 +15,12 @@ from .page_sorter import PageSorter
 
 class PDFGenerator:
     """Generates PDF from processed page content."""
-    
+
+    _SCOPE_TITLES = {
+        "docs": ("Cursor Documentation", "Technical Reference"),
+        "help": ("Cursor Help Center", "User Guide & Troubleshooting"),
+    }
+
     def __init__(self, config: Config):
         """Initialize PDF generator.
         
@@ -111,6 +116,10 @@ class PDFGenerator:
         # Create page content
         page_content = self._create_page_content(pages)
         
+        # Determine scope-aware title and subtitle
+        scope = getattr(self.config, 'SCOPE', 'docs')
+        title, subtitle = self._SCOPE_TITLES.get(scope, self._SCOPE_TITLES["docs"])
+
         # Combine into full document
         html_doc = f"""
 <!DOCTYPE html>
@@ -118,14 +127,14 @@ class PDFGenerator:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursor Documentation</title>
+    <title>{title}</title>
 </head>
 <body>
     <div class="cover-page">
-        <h1>Cursor Documentation</h1>
-        <p class="subtitle">Complete Documentation Export</p>
+        <h1>{title}</h1>
+        <p class="subtitle">{subtitle}</p>
         <p class="date">Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-        <p class="source">Source: {self.config.BASE_URL}</p>
+        <p class="source">Source: {self.config.scope_base_url}</p>
         <p class="stats">Total Pages: {len(pages)}</p>
     </div>
     
@@ -242,189 +251,192 @@ class PDFGenerator:
         Returns:
             CSS styles string
         """
-        css = """
-        @page {
+        scope = getattr(self.config, 'SCOPE', 'docs')
+        header_title = self._SCOPE_TITLES.get(scope, self._SCOPE_TITLES["docs"])[0]
+
+        css = f"""
+        @page {{
             size: A4;
             margin: 2cm;
-            
-            @top-center {
-                content: "Cursor Documentation";
+
+            @top-center {{
+                content: "{header_title}";
                 font-size: 10pt;
                 color: #666;
-            }
+            }}
             
-            @bottom-center {
+            @bottom-center {{
                 content: counter(page);
                 font-size: 10pt;
                 color: #666;
-            }
-        }
-        
+            }}
+        }}
+
         /* Cover page */
-        .cover-page {
+        .cover-page {{
             text-align: center;
             padding: 4cm 0;
             page-break-after: always;
-        }
-        
-        .cover-page h1 {
+        }}
+
+        .cover-page h1 {{
             font-size: 36pt;
             color: #2c3e50;
             margin-bottom: 1cm;
-        }
-        
-        .cover-page .subtitle {
+        }}
+
+        .cover-page .subtitle {{
             font-size: 18pt;
             color: #7f8c8d;
             margin-bottom: 2cm;
-        }
-        
+        }}
+
         .cover-page .date,
         .cover-page .source,
-        .cover-page .stats {
+        .cover-page .stats {{
             font-size: 12pt;
             color: #95a5a6;
             margin: 0.5cm 0;
-        }
-        
+        }}
+
         /* Table of contents */
-        .table-of-contents {
+        .table-of-contents {{
             page-break-after: always;
-        }
-        
-        .table-of-contents h1 {
+        }}
+
+        .table-of-contents h1 {{
             font-size: 24pt;
             color: #2c3e50;
             margin-bottom: 1cm;
             border-bottom: 2pt solid #3498db;
             padding-bottom: 0.5cm;
-        }
-        
-        .toc-item {
+        }}
+
+        .toc-item {{
             margin: 0.3cm 0;
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-        }
-        
-        .toc-item a {
+        }}
+
+        .toc-item a {{
             color: #2980b9;
             text-decoration: none;
             font-weight: bold;
-        }
-        
-        .toc-item a:hover {
+        }}
+
+        .toc-item a:hover {{
             text-decoration: underline;
-        }
-        
-        .toc-url {
+        }}
+
+        .toc-url {{
             font-size: 9pt;
             color: #7f8c8d;
             font-family: monospace;
-        }
-        
-        .toc-level-0 {
+        }}
+
+        .toc-level-0 {{
             font-size: 12pt;
             margin-left: 0;
-        }
-        
-        .toc-level-1 {
+        }}
+
+        .toc-level-1 {{
             font-size: 11pt;
             margin-left: 1cm;
-        }
-        
-        .toc-level-2 {
+        }}
+
+        .toc-level-2 {{
             font-size: 10pt;
             margin-left: 2cm;
-        }
-        
-        .toc-level-3 {
+        }}
+
+        .toc-level-3 {{
             font-size: 9pt;
             margin-left: 3cm;
-        }
-        
+        }}
+
         /* Page breaks */
-        .page-break {
+        .page-break {{
             page-break-before: always;
-        }
-        
+        }}
+
         /* Page sections */
-        .page-section {
+        .page-section {{
             margin-bottom: 2cm;
-        }
-        
-        .page-header {
+        }}
+
+        .page-header {{
             border-bottom: 1pt solid #bdc3c7;
             padding-bottom: 0.5cm;
             margin-bottom: 1cm;
-        }
-        
-        .page-title {
+        }}
+
+        .page-title {{
             font-size: 20pt;
             color: #2c3e50;
             margin: 0 0 0.3cm 0;
-        }
-        
-        .page-url {
+        }}
+
+        .page-url {{
             font-size: 10pt;
             color: #7f8c8d;
             font-family: monospace;
             margin: 0;
-        }
-        
-        .page-content {
+        }}
+
+        .page-content {{
             line-height: 1.6;
             font-size: 11pt;
-        }
-        
-        .page-footer {
+        }}
+
+        .page-footer {{
             margin-top: 1cm;
             padding-top: 0.5cm;
             border-top: 1pt solid #ecf0f1;
-        }
-        
-        .page-stats {
+        }}
+
+        .page-stats {{
             font-size: 9pt;
             color: #95a5a6;
             text-align: right;
             margin: 0;
-        }
-        
+        }}
+
         /* Content styling */
-        body {
+        body {{
             font-family: 'DejaVu Sans', Arial, sans-serif;
             color: #2c3e50;
             line-height: 1.6;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
+        }}
+
+        h1, h2, h3, h4, h5, h6 {{
             color: #2c3e50;
             margin-top: 1cm;
             margin-bottom: 0.5cm;
-        }
-        
-        h1 { font-size: 18pt; }
-        h2 { font-size: 16pt; }
-        h3 { font-size: 14pt; }
-        h4 { font-size: 12pt; }
-        h5 { font-size: 11pt; }
-        h6 { font-size: 10pt; }
-        
-        p {
+        }}
+
+        h1 {{ font-size: 18pt; }}
+        h2 {{ font-size: 16pt; }}
+        h3 {{ font-size: 14pt; }}
+        h4 {{ font-size: 12pt; }}
+        h5 {{ font-size: 11pt; }}
+        h6 {{ font-size: 10pt; }}
+
+        p {{
             margin: 0.5cm 0;
             text-align: justify;
-        }
-        
+        }}
+
         /* Code styling */
-        code {
+        code {{
             font-family: 'DejaVu Sans Mono', 'Courier New', monospace;
             background-color: #f8f9fa;
             padding: 0.1cm 0.2cm;
             border-radius: 0.1cm;
             font-size: 10pt;
-        }
-        
-        pre {
+        }}
+
+        pre {{
             font-family: 'DejaVu Sans Mono', 'Courier New', monospace;
             background-color: #f8f9fa;
             padding: 0.5cm;
@@ -433,90 +445,90 @@ class PDFGenerator:
             overflow-x: auto;
             font-size: 9pt;
             line-height: 1.4;
-        }
-        
-        pre code {
+        }}
+
+        pre code {{
             background: none;
             padding: 0;
-        }
-        
+        }}
+
         /* Lists */
-        ul, ol {
+        ul, ol {{
             margin: 0.5cm 0;
             padding-left: 1cm;
-        }
-        
-        li {
+        }}
+
+        li {{
             margin: 0.2cm 0;
-        }
-        
+        }}
+
         /* Links */
-        a {
+        a {{
             color: #2980b9;
             text-decoration: none;
-        }
-        
-        a:hover {
+        }}
+
+        a:hover {{
             text-decoration: underline;
-        }
-        
+        }}
+
         /* Images */
-        img {
+        img {{
             max-width: 100%;
             height: auto;
             display: block;
             margin: 0.5cm auto;
             border: 1pt solid #bdc3c7;
             border-radius: 0.2cm;
-        }
-        
+        }}
+
         /* Tables */
-        table {
+        table {{
             width: 100%;
             table-layout: fixed;
             border-collapse: collapse;
             margin: 0.5cm 0;
-        }
+        }}
 
-        th, td {
+        th, td {{
             border: 1pt solid #bdc3c7;
             padding: 0.3cm;
             text-align: left;
             overflow-wrap: break-word;
             word-break: break-word;
-        }
+        }}
 
-        td code, th code {
+        td code, th code {{
             word-break: break-all;
-        }
+        }}
 
-        th {
+        th {{
             background-color: #ecf0f1;
             font-weight: bold;
-        }
-        
+        }}
+
         /* YouTube links */
-        .youtube-video {
+        .youtube-video {{
             background-color: #fff3cd;
             border: 1pt solid #ffeaa7;
             border-radius: 0.2cm;
             padding: 0.5cm;
             margin: 0.5cm 0;
-        }
-        
-        .youtube-link {
+        }}
+
+        .youtube-link {{
             font-weight: bold;
             color: #e74c3c;
-        }
-        
+        }}
+
         /* Blockquotes */
-        blockquote {
+        blockquote {{
             border-left: 3pt solid #3498db;
             margin: 0.5cm 0;
             padding-left: 1cm;
             font-style: italic;
             color: #7f8c8d;
-        }
+        }}
         """
         
         return css
