@@ -9,7 +9,25 @@ import os
 @dataclass
 class Config:
     """Main configuration class for the crawler."""
-    
+
+    _SCOPE_MAP = {
+        "docs": {
+            "prefixes": ["/docs/"],
+            "seed_regex": r'https://cursor\.com/docs[^\s)]+\.md',
+            "output_file": "cursor_docs.pdf",
+            "base_url": "https://cursor.com/docs",
+        },
+        "help": {
+            "prefixes": ["/help/"],
+            "seed_regex": r'https://cursor\.com/help[^\s)]+\.md',
+            "output_file": "cursor_help.pdf",
+            "base_url": "https://cursor.com/help",
+        },
+    }
+
+    # Scope selection
+    SCOPE: str = "docs"
+
     # Basic settings
     BASE_URL: str = "https://cursor.com/docs"
     OUTPUT_FILE: str = "cursor_docs.pdf"
@@ -97,6 +115,35 @@ class Config:
         if not os.access(output_dir, os.W_OK):
             raise ValueError(f"Output directory is not writable: {output_dir}")
     
+    def _get_scope_settings(self) -> dict:
+        """Get settings for the current scope, raising ValueError if invalid."""
+        if self.SCOPE not in self._SCOPE_MAP:
+            raise ValueError(
+                f"Unknown scope '{self.SCOPE}'. "
+                f"Valid scopes: {list(self._SCOPE_MAP.keys())}"
+            )
+        return self._SCOPE_MAP[self.SCOPE]
+
+    @property
+    def scope_prefixes(self) -> List[str]:
+        """Get URL path prefixes for the current scope."""
+        return self._get_scope_settings()["prefixes"]
+
+    @property
+    def scope_seed_regex(self) -> str:
+        """Get seed URL regex pattern for the current scope."""
+        return self._get_scope_settings()["seed_regex"]
+
+    @property
+    def scope_output_file(self) -> str:
+        """Get default output filename for the current scope."""
+        return self._get_scope_settings()["output_file"]
+
+    @property
+    def scope_base_url(self) -> str:
+        """Get base URL for the current scope."""
+        return self._get_scope_settings()["base_url"]
+
     @property
     def domain(self) -> str:
         """Get domain from base URL."""
