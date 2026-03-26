@@ -25,6 +25,7 @@ These serve fundamentally different purposes (reference vs. support), and mixing
 - 📄 **Logical Page Sorting**: Hierarchical page sorting based on URL structure
 - 📊 **Detailed Logging**: Tracks crawling progress and statistics
 - 🧪 **Test Mode**: Quick testing with 10 representative pages
+- 🔍 **llms.txt Coverage Validation**: Post-crawl check flags any pages listed in llms.txt but not crawled
 - ⚡ **Error Recovery**: Handles various error scenarios including network failures and memory issues
 
 ## Installation
@@ -194,10 +195,11 @@ cursor-docs-crawler/
 ## How It Works (Latest)
 
 ### 1. Crawling and Site Mapping Phase
-1. **Starting Point**: Loads `https://cursor.com/docs` in Selenium browser
-2. **URL Seeding from llms.txt**: Fetches `cursor.com/llms.txt` to seed all official doc page URLs — ensures pages unreachable via BFS link traversal are still crawled
-3. **Link Extraction and Normalization**: Extracts all `<a>` links with BeautifulSoup, applies absolute path/hash removal/domain filtering/file filtering/duplicate removal
-4. **Sequential Crawling**: Visits URLs in queue sequentially, repeating the above process to automatically explore the entire site structure
+1. **Scope Selection**: Determines target section (`/docs/`, `/help/`, or both) based on `--scope` option
+2. **URL Seeding from llms.txt**: Fetches `cursor.com/llms.txt` to seed all official page URLs — ensures pages unreachable via BFS link traversal are still crawled
+3. **BFS Crawling**: Loads pages in Selenium (JS rendering required for Next.js SPA), extracts links, builds URL queue
+4. **Link Normalization**: Absolute path conversion, fragment removal, locale stripping (`/ko/docs/...` → `/docs/...`), domain/file filtering, deduplication
+5. **Coverage Validation**: After crawl, checks all llms.txt URLs were actually crawled — flags any gaps
 
 ### 2. Content Processing Phase
 1. **HTML Parsing**: Analyzes HTML structure with BeautifulSoup
@@ -224,6 +226,7 @@ cursor-docs-crawler/
 ### Basic Configuration (src/config.py)
 ```python
 class Config:
+    SCOPE = "docs"  # "docs", "help" — controls target section
     BASE_URL = "https://cursor.com/docs"
     OUTPUT_FILE = "cursor_docs.pdf"
     MAX_PAGES = None  # Unlimited

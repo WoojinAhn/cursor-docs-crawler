@@ -25,6 +25,7 @@ Cursor 문서 사이트(https://cursor.com/docs 및 https://cursor.com/help)의 
 - 📄 **논리적 페이지 정렬**: URL 구조 기반 계층적 페이지 정렬
 - 📊 **상세한 로깅**: 크롤링 진행 상황 및 통계 추적
 - 🧪 **테스트 모드**: 대표 페이지 10개로 빠른 테스트 가능
+- 🔍 **llms.txt 커버리지 검증**: 크롤 후 llms.txt에 등록된 페이지 중 누락된 항목 자동 리포트
 - ⚡ **에러 복구**: 네트워크 오류, 메모리 부족 등 다양한 에러 상황 처리
 
 ## 설치
@@ -194,10 +195,11 @@ cursor-docs-crawler/
 ## 작동 원리 (최신)
 
 ### 1. 크롤링 및 사이트 매핑 단계
-1. **시작점 설정**: `https://cursor.com/docs`을 시작점으로 Selenium 브라우저에서 로딩
+1. **스코프 선택**: `--scope` 옵션에 따라 대상 섹션 결정 (`/docs/`, `/help/`, 또는 둘 다)
 2. **llms.txt 시딩**: `cursor.com/llms.txt`를 파싱하여 모든 공식 문서 URL을 큐에 추가 — BFS 링크 탐색으로 도달할 수 없는 페이지도 크롤링
-3. **링크 추출 및 정규화**: BeautifulSoup으로 모든 `<a>` 링크를 추출, 절대경로/해시제거/도메인필터/파일필터/중복제거
-4. **순차 크롤링**: 큐에 쌓인 URL을 순차적으로 방문하며, 위 과정을 반복하여 사이트 전체 구조를 자동으로 탐색
+3. **BFS 크롤링**: Selenium으로 페이지 로딩 (Next.js SPA이므로 JS 렌더링 필수), 링크 추출, URL 큐 구축
+4. **링크 정규화**: 절대경로 변환, fragment 제거, 로케일 제거 (`/ko/docs/...` → `/docs/...`), 도메인/파일 필터링, 중복 제거
+5. **커버리지 검증**: 크롤 후 llms.txt의 모든 URL이 실제 크롤되었는지 확인 — 누락 시 경고
 
 ### 2. 콘텐츠 처리 단계
 1. **HTML 파싱**: BeautifulSoup으로 HTML 구조 분석
@@ -224,6 +226,7 @@ cursor-docs-crawler/
 ### 기본 설정 (src/config.py)
 ```python
 class Config:
+    SCOPE = "docs"  # "docs", "help" — 대상 섹션 제어
     BASE_URL = "https://cursor.com/docs"
     OUTPUT_FILE = "cursor_docs.pdf"
     MAX_PAGES = None  # 무제한
