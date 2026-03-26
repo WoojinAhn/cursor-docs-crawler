@@ -272,11 +272,12 @@ python -m pytest tests/test_e2e_offline.py -v
 
 **CI Integration (GitHub Actions):**
 
-| Trigger | What runs | Network needed |
-|---------|-----------|:-:|
-| Pull request | Offline tests (from committed fixtures) | No |
-| `workflow_dispatch` | Offline tests (manual trigger) | No |
-| Weekly cron (Sun 03:00 UTC) | Refresh fixtures from live site + commit | Yes |
+| Workflow | Trigger | What runs | Network needed |
+|----------|---------|-----------|:-:|
+| **E2E Test** | Pull request | Offline tests (from committed fixtures) | No |
+| **E2E Test** | Weekly cron (Sun 03:00 UTC) | Refresh fixtures from live site + commit | Yes |
+| **Detect Docs Change** | Daily cron (00:00 UTC) | Fetch llms.txt, compare with snapshot, trigger release if changed | Yes |
+| **Release PDF** | Weekly cron (Sun 06:00 UTC) or auto-triggered by change detection | Generate 4 PDFs (docs+help × ko+en), create GitHub Release | Yes |
 
 ## Error Handling
 

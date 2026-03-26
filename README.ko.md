@@ -272,11 +272,12 @@ python -m pytest tests/test_e2e_offline.py -v
 
 **CI 통합 (GitHub Actions):**
 
-| 트리거 | 실행 내용 | 네트워크 필요 |
-|--------|-----------|:-:|
-| Pull Request | 오프라인 테스트 (커밋된 fixture 사용) | 아니오 |
-| `workflow_dispatch` | 오프라인 테스트 (수동 트리거) | 아니오 |
-| 주간 cron (일요일 03:00 UTC) | 라이브 사이트에서 fixture 갱신 + 커밋 | 예 |
+| 워크플로우 | 트리거 | 실행 내용 | 네트워크 필요 |
+|-----------|--------|-----------|:-:|
+| **E2E Test** | Pull Request | 오프라인 테스트 (커밋된 fixture 사용) | 아니오 |
+| **E2E Test** | 주간 cron (일요일 03:00 UTC) | 라이브 사이트에서 fixture 갱신 + 커밋 | 예 |
+| **Detect Docs Change** | 매일 cron (00:00 UTC) | llms.txt 변경 감지, 변경 시 릴리즈 자동 트리거 | 예 |
+| **Release PDF** | 주간 cron (일요일 06:00 UTC) 또는 변경 감지 시 자동 | 4개 PDF 생성 (docs+help × ko+en), GitHub Release 생성 | 예 |
 
 ## 에러 처리
 

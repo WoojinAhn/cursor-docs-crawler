@@ -1,0 +1,59 @@
+name: Detect Docs Change
+
+on:
+  schedule:
+    # Every day at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-llms-txt:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch current llms.txt
+        run: |
+          curl -sL -H "User-Agent: Cursor Docs Crawler" \
+            https://cursor.com/llms.txt > /tmp/llms-txt-current.txt
+
+      - name: Compare with snapshot
+        id: diff
+        run: |
+          SNAPSHOT=".github/llms-txt-snapshot.txt"
+
+          if [ ! -f "$SNAPSHOT" ]; then
+            echo "No snapshot found — creating initial snapshot"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "initial=true" >> "$GITHUB_OUTPUT"
+          elif diff -q "$SNAPSHOT" /tmp/llms-txt-current.txt > /dev/null 2>&1; then
+            echo "No changes detected"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Changes detected in llms.txt:"
+            diff --unified=0 "$SNAPSHOT" /tmp/llms-txt-current.txt || true
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "initial=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Update snapshot
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          cp /tmp/llms-txt-current.txt .github/llms-txt-snapshot.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/llms-txt-snapshot.txt
+          git commit -m "chore: update llms.txt snapshot ($(date -u +%Y-%m-%d))"
+          git push
+
+      - name: Trigger release workflow
+        if: steps.diff.outputs.changed == 'true' && steps.diff.outputs.initial == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Triggering Release PDF workflow..."
+          gh workflow run "Release PDF"
