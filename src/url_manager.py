@@ -176,10 +176,15 @@ class URLManager:
             if any(path.endswith(ext) for ext in skip_extensions):
                 return False
 
-            # Skip common non-content paths
-            skip_paths = ['/api/', '/admin/', '/login/', '/logout/', '/search/']
-            if any(skip_path in path for skip_path in skip_paths):
-                return False
+            # Skip common non-content paths (only for URLs outside allowed prefixes)
+            # URLs already matched by allowed_path_prefixes (e.g. /docs/, /help/)
+            # are trusted — don't block /docs/cloud-agent/api/endpoints etc.
+            if not self.allowed_path_prefixes or not any(
+                path.startswith(prefix) for prefix in self.allowed_path_prefixes
+            ):
+                skip_paths = ['/api/', '/admin/', '/login/', '/logout/', '/search/']
+                if any(skip_path in path for skip_path in skip_paths):
+                    return False
 
             return True
 
