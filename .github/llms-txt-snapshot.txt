@@ -54,6 +54,7 @@
 - https://cursor.com/docs/integrations/github.md
 - https://cursor.com/docs/integrations/gitlab.md
 - https://cursor.com/docs/integrations/jetbrains.md
+- https://cursor.com/docs/integrations/xcode.md
 - https://cursor.com/docs/reference/deeplinks.md
 
 ## cli
