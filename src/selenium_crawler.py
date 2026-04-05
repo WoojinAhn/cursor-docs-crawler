@@ -54,11 +54,9 @@ class SeleniumCrawler:
             if final_url != url:
                 self.logger.info(f"[Selenium] Redirect detected: {url} -> {final_url}")
 
+            title = self.driver.title or ""
             html = self.driver.page_source
             soup = BeautifulSoup(html, 'html.parser')
-            title = soup.title.string if soup.title and soup.title.string else ""
-
-            # Extract links using the final (redirected) URL as base
             links = self.extract_links(soup, final_url)
             return PageData(
                 url=url,

@@ -13,6 +13,8 @@ from urllib.error import URLError
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from src.config import Config, TestConfig
+
+_USER_AGENT = Config.USER_AGENT
 from src.url_manager import URLManager
 from src.content_parser import ContentParser
 from src.pdf_generator import PDFGenerator
@@ -31,9 +33,8 @@ def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str,
     logger = logging.getLogger(__name__)
     text = None
 
-    # Try live fetch first
     try:
-        req = Request(llms_txt_url, headers={"User-Agent": "Cursor Docs Crawler 1.0"})
+        req = Request(llms_txt_url, headers={"User-Agent": _USER_AGENT})
         with urlopen(req, timeout=15) as resp:
             body = resp.read().decode("utf-8")
             # Validate: must look like llms.txt, not an HTML bot-protection page
@@ -44,7 +45,6 @@ def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str,
     except (URLError, OSError) as e:
         logger.warning(f"Failed to fetch llms.txt ({llms_txt_url}): {e}")
 
-    # Fallback to local snapshot
     if text is None and fallback_path:
         fp = Path(fallback_path)
         if fp.is_file():
