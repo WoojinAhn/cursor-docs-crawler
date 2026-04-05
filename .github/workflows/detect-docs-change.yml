@@ -81,16 +81,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TITLE="[CI] Detect Docs Change failed ($(date -u +%Y-%m-%d))"
-          read -r -d '' BODY << EOFBODY || true
-## Workflow Failure
-
-**Workflow:** Detect Docs Change
-**Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-**Date:** $(date -u +%Y-%m-%dT%H:%M:%SZ)
-**Trigger:** ${{ github.event_name }}
-
-Check the [workflow run logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.
-EOFBODY
+          BODY="## Workflow Failure
+          **Workflow:** Detect Docs Change
+          **Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          **Date:** $(date -u +%Y-%m-%dT%H:%M:%SZ)
+          **Trigger:** ${{ github.event_name }}
+          Check the [workflow run logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details."
 
           # Check for existing open issue
           EXISTING=$(gh issue list --label ci-failure --state open --search "Detect Docs Change failed" --json number --jq '.[0].number' 2>/dev/null || echo "")
