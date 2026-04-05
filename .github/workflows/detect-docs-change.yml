@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: write
       actions: write
+      issues: write
 
     steps:
       - uses: actions/checkout@v4
@@ -73,3 +74,29 @@ jobs:
         run: |
           echo "Triggering Release PDF workflow..."
           gh workflow run "Release PDF"
+
+      - name: Create failure issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="[CI] Detect Docs Change failed ($(date -u +%Y-%m-%d))"
+          BODY="## Workflow Failure
+
+          **Workflow:** Detect Docs Change
+          **Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          **Date:** $(date -u +%Y-%m-%dT%H:%M:%SZ)
+          **Trigger:** ${{ github.event_name }}
+
+          Check the [workflow run logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details."
+
+          # Check for existing open issue
+          EXISTING=$(gh issue list --label ci-failure --state open --search "Detect Docs Change failed" --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+            echo "Added comment to existing issue #$EXISTING"
+          else
+            gh label create ci-failure --color d73a4a --description "Automated CI failure report" 2>/dev/null || true
+            gh issue create --title "$TITLE" --body "$BODY" --label ci-failure
+          fi
