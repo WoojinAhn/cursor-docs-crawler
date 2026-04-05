@@ -339,6 +339,7 @@ def main():
 
     # Suppress verbose logging from external libraries
     logging.getLogger('selenium').setLevel(logging.WARNING)
+    logging.getLogger('seleniumbase').setLevel(logging.WARNING)
     logging.getLogger('urllib3').setLevel(logging.WARNING)
     logging.getLogger('weasyprint').setLevel(logging.WARNING)
     logging.getLogger('PIL').setLevel(logging.WARNING)
