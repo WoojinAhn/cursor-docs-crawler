@@ -188,6 +188,30 @@ jobs:
             cursor_help_ko.pdf \
             cursor_help_en.pdf
 
+      - name: Upload PDFs to NotebookLM
+        if: success() && secrets.NOTEBOOKLM_STORAGE_STATE != ''
+        env:
+          NOTEBOOKLM_STORAGE_STATE: ${{ secrets.NOTEBOOKLM_STORAGE_STATE }}
+          NOTEBOOK_ID: ${{ secrets.NOTEBOOKLM_NOTEBOOK_ID }}
+        run: |
+          pip install "notebooklm-py[browser]" > /dev/null 2>&1
+          playwright install chromium > /dev/null 2>&1
+
+          # Restore session state
+          mkdir -p ~/.notebooklm
+          echo "$NOTEBOOKLM_STORAGE_STATE" | base64 -d > ~/.notebooklm/storage_state.json
+          echo "{\"notebook_id\": \"$NOTEBOOK_ID\"}" > ~/.notebooklm/context.json
+
+          DATE=$(date -u +%Y-%m-%d)
+
+          # Upload with date-stamped names (keep old versions for diff queries)
+          for PDF in cursor_docs_ko.pdf cursor_help_ko.pdf; do
+            NAME="${PDF%.pdf}_${DATE}.pdf"
+            cp "$PDF" "$NAME"
+            echo "Uploading $NAME to NotebookLM..."
+            notebooklm source add "$NAME" || echo "::warning::Failed to upload $NAME to NotebookLM"
+          done
+
       - name: Create failure issue
         if: failure()
         env:
