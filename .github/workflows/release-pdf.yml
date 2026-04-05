@@ -124,8 +124,8 @@ jobs:
 
             echo "$urls" | while read -r url; do
               # Extract section from URL path: /docs/agent/overview -> agent
-              SECTION=$(echo "$url" | sed -E 's|https://cursor\.com/(docs|help)/||' | cut -d/ -f1)
-              PAGE=$(echo "$url" | sed -E 's|https://cursor\.com/(docs|help)/||')
+              SECTION=$(echo "$url" | sed -E 's#https://cursor\.com/(docs|help)/##' | cut -d/ -f1)
+              PAGE=$(echo "$url" | sed -E 's#https://cursor\.com/(docs|help)/##')
               echo "- \`${PAGE}\` (${SECTION})"
             done
           }
