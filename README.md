@@ -200,7 +200,8 @@ cursor-docs-crawler/
 1. **Scope Selection**: Determines target section (`/docs/`, `/help/`, or both) based on `--scope` option
 2. **URL Seeding from llms.txt**: Fetches `cursor.com/llms.txt` to seed all official page URLs — ensures pages unreachable via BFS link traversal are still crawled
 3. **BFS Crawling**: Loads pages via SeleniumBase UC Mode (JS rendering required for Next.js SPA), extracts links, builds URL queue
-4. **Link Normalization**: Absolute path conversion, fragment removal, locale stripping (`/ko/docs/...` → `/docs/...`), domain/file filtering, deduplication
+4. **Image Inlining**: Before extracting HTML, converts all `<img>` sources to base64 data URIs via browser `fetch()` — uses the authenticated browser session to bypass Vercel image blocking
+5. **Link Normalization**: Absolute path conversion, fragment removal, locale stripping (`/ko/docs/...` → `/docs/...`), domain/file filtering, deduplication
 5. **Coverage Validation**: After crawl, checks all llms.txt URLs were actually crawled — flags any gaps
 
 ### 2. Content Processing Phase

@@ -200,7 +200,8 @@ cursor-docs-crawler/
 1. **스코프 선택**: `--scope` 옵션에 따라 대상 섹션 결정 (`/docs/`, `/help/`, 또는 둘 다)
 2. **llms.txt 시딩**: `cursor.com/llms.txt`를 파싱하여 모든 공식 문서 URL을 큐에 추가 — BFS 링크 탐색으로 도달할 수 없는 페이지도 크롤링
 3. **BFS 크롤링**: SeleniumBase UC Mode로 페이지 로딩 (Next.js SPA이므로 JS 렌더링 필수), 링크 추출, URL 큐 구축
-4. **링크 정규화**: 절대경로 변환, fragment 제거, 로케일 제거 (`/ko/docs/...` → `/docs/...`), 도메인/파일 필터링, 중복 제거
+4. **이미지 인라이닝**: HTML 추출 전 모든 `<img>` 소스를 브라우저 `fetch()`로 base64 data URI로 변환 — 인증된 브라우저 세션을 활용하여 Vercel 이미지 차단 우회
+5. **링크 정규화**: 절대경로 변환, fragment 제거, 로케일 제거 (`/ko/docs/...` → `/docs/...`), 도메인/파일 필터링, 중복 제거
 5. **커버리지 검증**: 크롤 후 llms.txt의 모든 URL이 실제 크롤되었는지 확인 — 누락 시 경고
 
 ### 2. 콘텐츠 처리 단계
