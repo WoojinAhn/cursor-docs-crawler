@@ -49,7 +49,7 @@ def test_seed_from_llms_txt_success():
 def test_seed_from_llms_txt_strips_md_suffix():
     """.md 접미사를 제거하여 실제 페이지 URL로 변환한다."""
     mgr = _make_url_manager()
-    llms_txt = "- [Page](https://cursor.com/docs/plugins.md)\n"
+    llms_txt = "# Docs\n- [Page](https://cursor.com/docs/plugins.md)\n"
     mock_resp = MagicMock()
     mock_resp.read.return_value = llms_txt.encode()
     mock_resp.__enter__ = lambda s: s
