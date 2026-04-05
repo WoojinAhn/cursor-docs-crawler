@@ -3,13 +3,10 @@ import time
 import logging
 from urllib.parse import urljoin, urlparse
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+from seleniumbase import Driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 from .models import PageData
 
@@ -22,18 +19,7 @@ class SeleniumCrawler:
         self.config = config
         self.url_manager = url_manager
         self.logger = logging.getLogger(__name__)
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument(f'--lang={config.LANGUAGE}')
-        chrome_options.add_experimental_option('prefs', {
-            'intl.accept_languages': config.LANGUAGE,
-        })
-        self.driver = webdriver.Chrome(
-            service=Service(ChromeDriverManager().install()),
-            options=chrome_options
-        )
+        self.driver = Driver(uc=True, headless=True, locale_code=config.LANGUAGE)
 
     @staticmethod
     def strip_locale(url: str) -> str:
@@ -52,7 +38,7 @@ class SeleniumCrawler:
         self.logger.info(f"[Selenium] Crawling: {url}")
         print(f"[Selenium] Crawling: {url}")
         try:
-            self.driver.get(url)
+            self.driver.uc_open_with_reconnect(url, reconnect_time=4)
 
             # Wait for JS rendering (Next.js SPA needs time to hydrate)
             try:
