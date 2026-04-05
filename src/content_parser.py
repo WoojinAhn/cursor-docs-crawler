@@ -379,8 +379,10 @@ class ContentParser:
                     img.decompose()
                     continue
 
-                # Convert relative URLs to absolute
-                if src.startswith('//'):
+                # Convert relative URLs to absolute (skip data: URIs)
+                if src.startswith('data:'):
+                    pass
+                elif src.startswith('//'):
                     src = f"https:{src}"
                 elif src.startswith('/'):
                     src = f"https://{self.config.domain}{src}"

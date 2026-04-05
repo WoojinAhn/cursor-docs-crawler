@@ -55,6 +55,7 @@ class SeleniumCrawler:
                 self.logger.info(f"[Selenium] Redirect detected: {url} -> {final_url}")
 
             title = self.driver.title or ""
+            self._inline_images_as_base64()
             html = self.driver.page_source
             soup = BeautifulSoup(html, 'html.parser')
             links = self.extract_links(soup, final_url)
@@ -101,6 +102,43 @@ class SeleniumCrawler:
 
         self.logger.debug(f"[Selenium] Extracted {len(links)} valid links from {base_url}")
         return links
+
+    def _inline_images_as_base64(self):
+        """Convert all <img src="http..."> to base64 data URIs via browser fetch.
+
+        Uses the browser's authenticated session so Vercel bot protection
+        doesn't block image requests.
+        """
+        try:
+            result = self.driver.execute_async_script('''
+                const callback = arguments[arguments.length - 1];
+                const imgs = document.querySelectorAll('img[src]:not([src^="data:"])');
+                let converted = 0;
+                if (imgs.length === 0) { callback(0); return; }
+
+                async function run() {
+                    for (const img of imgs) {
+                        try {
+                            const resp = await fetch(img.src);
+                            if (!resp.ok) continue;
+                            const blob = await resp.blob();
+                            const dataUri = await new Promise(resolve => {
+                                const reader = new FileReader();
+                                reader.onloadend = () => resolve(reader.result);
+                                reader.readAsDataURL(blob);
+                            });
+                            img.src = dataUri;
+                            converted++;
+                        } catch(e) {}
+                    }
+                    return converted;
+                }
+                run().then(callback);
+            ''')
+            if result:
+                self.logger.debug(f"[Selenium] Inlined {result} images as base64")
+        except Exception as e:
+            self.logger.warning(f"[Selenium] Image inlining failed: {e}")
 
     def crawl_all(self):
         self.logger.info("[Selenium] Starting crawl process")
