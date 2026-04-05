@@ -188,53 +188,17 @@ jobs:
             cursor_help_ko.pdf \
             cursor_help_en.pdf
 
-      - name: Upload PDFs to NotebookLM
-        if: success() && secrets.NOTEBOOKLM_STORAGE_STATE != ''
+      - name: Trigger post-release ops
+        if: success() && secrets.OPS_DISPATCH_TOKEN != ''
         env:
-          NOTEBOOKLM_STORAGE_STATE: ${{ secrets.NOTEBOOKLM_STORAGE_STATE }}
-          NOTEBOOK_ID: ${{ secrets.NOTEBOOKLM_NOTEBOOK_ID }}
+          GH_TOKEN: ${{ secrets.OPS_DISPATCH_TOKEN }}
         run: |
-          pip install "notebooklm-py[browser]" > /dev/null 2>&1
-          playwright install chromium > /dev/null 2>&1
-
-          # Restore session state
-          mkdir -p ~/.notebooklm
-          echo "$NOTEBOOKLM_STORAGE_STATE" | base64 -d > ~/.notebooklm/storage_state.json
-          echo "{\"notebook_id\": \"$NOTEBOOK_ID\"}" > ~/.notebooklm/context.json
-
-          DATE=$(date -u +%Y-%m-%d)
-
-          # Keep exactly 2 versions per PDF type (previous + current)
-          # 1. Get current sources as JSON
-          SOURCES=$(notebooklm source list --json 2>/dev/null || echo '{"sources":[]}')
-
-          for PREFIX in cursor_docs_ko cursor_help_ko; do
-            # Find all sources matching this prefix, sorted by title (oldest first)
-            MATCHING=$(echo "$SOURCES" | python3 -c "
-          import json, sys
-          data = json.load(sys.stdin)
-          matches = [s for s in data['sources'] if s['title'].startswith('${PREFIX}')]
-          matches.sort(key=lambda s: s['title'])
-          for s in matches:
-              print(s['id'] + '\t' + s['title'])
-          ")
-
-            # If 2+ versions exist, delete all but the newest (keep 1 for diff)
-            COUNT=$(echo "$MATCHING" | grep -c . || echo "0")
-            if [ "$COUNT" -ge 2 ]; then
-              echo "$MATCHING" | awk "NR < $COUNT" | while IFS=$'\t' read -r SID STITLE; do
-                echo "Deleting old source: $STITLE ($SID)"
-                notebooklm source delete "$SID" --yes || true
-              done
-            fi
-
-            # Upload new version with date stamp
-            PDF="${PREFIX}.pdf"
-            NAME="${PREFIX}_${DATE}.pdf"
-            cp "$PDF" "$NAME"
-            echo "Uploading $NAME to NotebookLM..."
-            notebooklm source add "$NAME" || echo "::warning::Failed to upload $NAME"
-          done
+          TAG="docs-$(date -u +%Y-%m-%d)"
+          gh workflow run upload-to-notebooklm.yml \
+            --repo WoojinAhn/cursor-docs-crawler-ops \
+            --ref main \
+            --field release_tag="$TAG" \
+            || echo "::warning::Failed to trigger post-release ops"
 
       - name: Create failure issue
         if: failure()
