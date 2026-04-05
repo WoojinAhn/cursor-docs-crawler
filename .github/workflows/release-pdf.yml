@@ -204,12 +204,36 @@ jobs:
 
           DATE=$(date -u +%Y-%m-%d)
 
-          # Upload with date-stamped names (keep old versions for diff queries)
-          for PDF in cursor_docs_ko.pdf cursor_help_ko.pdf; do
-            NAME="${PDF%.pdf}_${DATE}.pdf"
+          # Keep exactly 2 versions per PDF type (previous + current)
+          # 1. Get current sources as JSON
+          SOURCES=$(notebooklm source list --json 2>/dev/null || echo '{"sources":[]}')
+
+          for PREFIX in cursor_docs_ko cursor_help_ko; do
+            # Find all sources matching this prefix, sorted by title (oldest first)
+            MATCHING=$(echo "$SOURCES" | python3 -c "
+          import json, sys
+          data = json.load(sys.stdin)
+          matches = [s for s in data['sources'] if s['title'].startswith('${PREFIX}')]
+          matches.sort(key=lambda s: s['title'])
+          for s in matches:
+              print(s['id'] + '\t' + s['title'])
+          ")
+
+            # If 2+ versions exist, delete all but the newest (keep 1 for diff)
+            COUNT=$(echo "$MATCHING" | grep -c . || echo "0")
+            if [ "$COUNT" -ge 2 ]; then
+              echo "$MATCHING" | awk "NR < $COUNT" | while IFS=$'\t' read -r SID STITLE; do
+                echo "Deleting old source: $STITLE ($SID)"
+                notebooklm source delete "$SID" --yes || true
+              done
+            fi
+
+            # Upload new version with date stamp
+            PDF="${PREFIX}.pdf"
+            NAME="${PREFIX}_${DATE}.pdf"
             cp "$PDF" "$NAME"
             echo "Uploading $NAME to NotebookLM..."
-            notebooklm source add "$NAME" || echo "::warning::Failed to upload $NAME to NotebookLM"
+            notebooklm source add "$NAME" || echo "::warning::Failed to upload $NAME"
           done
 
       - name: Create failure issue
