@@ -281,6 +281,11 @@ python -m pytest tests/test_e2e_offline.py -v
 | **Detect Docs Change** | 매일 cron (00:00 UTC) | llms.txt 변경 감지, 변경 시 릴리즈 자동 트리거 | 예 |
 | **Release PDF** | 주간 cron (일요일 06:00 UTC) 또는 변경 감지 시 자동 | 4개 PDF 생성 (docs+help × ko+en), GitHub Release 생성 | 예 |
 
+**CI 모니터링:**
+
+- **실패 알림**: 모든 워크플로우 실패 시 `ci-failure` 라벨로 GitHub Issue가 자동 생성되며, 실패한 run 링크가 포함됩니다. 동일 워크플로우의 기존 open 이슈가 있으면 중복 생성 없이 코멘트가 추가됩니다.
+- **릴리즈 변경 요약**: 릴리즈 노트에 이전 릴리즈 대비 추가/삭제된 문서 페이지를 섹션별로 그룹핑하여 표시합니다 (llms.txt diff 기반).
+
 ## 에러 처리
 
 시스템은 다양한 에러 상황을 자동으로 처리합니다:

@@ -108,5 +108,6 @@ Pages are sorted by URL path hierarchy with priority overrides for common doc pa
 ## CI (GitHub Actions)
 
 - **e2e-test.yml**: Offline E2E tests on every PR (committed fixtures). Weekly cron (Sun 03:00 UTC) refreshes fixtures from live site.
-- **detect-docs-change.yml**: Daily cron (00:00 UTC) fetches `cursor.com/llms.txt`, compares with `.github/llms-txt-snapshot.txt`. If changed, commits new snapshot and triggers release workflow. Initial run only creates the snapshot without triggering.
-- **release-pdf.yml**: Weekly cron (Sun 06:00 UTC) or auto-triggered by change detection. Generates 4 PDFs (docs+help × ko+en) and creates a GitHub Release.
+- **detect-docs-change.yml**: Daily cron (00:00 UTC) fetches `cursor.com/llms.txt`, compares with `.github/llms-txt-snapshot.txt`. If changed, commits new snapshot and triggers release workflow. Validates response is actual llms.txt (not bot protection HTML) before updating.
+- **release-pdf.yml**: Weekly cron (Sun 06:00 UTC) or auto-triggered by change detection. Generates 4 PDFs (docs+help × ko+en), validates page counts (min 5 for docs, 3 for help), includes section-level change summary in release notes, and creates a GitHub Release.
+- **Failure monitoring**: All workflows auto-create a `ci-failure` labeled GitHub Issue on failure with run link. Duplicate open issues get comments instead.

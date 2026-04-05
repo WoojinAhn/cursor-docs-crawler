@@ -281,6 +281,11 @@ python -m pytest tests/test_e2e_offline.py -v
 | **Detect Docs Change** | Daily cron (00:00 UTC) | Fetch llms.txt, compare with snapshot, trigger release if changed | Yes |
 | **Release PDF** | Weekly cron (Sun 06:00 UTC) or auto-triggered by change detection | Generate 4 PDFs (docs+help × ko+en), create GitHub Release | Yes |
 
+**CI Monitoring:**
+
+- **Failure alerts**: All workflows auto-create a GitHub Issue (labeled `ci-failure`) on failure, with a link to the failed run. Duplicate open issues receive a comment instead of a new issue.
+- **Release change summary**: Each release includes a "Changes since last release" section showing added/removed documentation pages grouped by section, based on llms.txt diff.
+
 ## Error Handling
 
 The system automatically handles various error scenarios:
