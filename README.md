@@ -394,9 +394,11 @@ This project is distributed under the MIT License.
 
 ## Download PDF
 
-Pre-built PDFs are available on the [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) page — updated weekly.
+Pre-built PDFs are available on the [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) page — updated automatically when documentation changes are detected.
 
 Each release includes 4 PDFs (docs + help, in Korean & English).
+
+**Usage ideas**: Upload to NotebookLM or similar AI knowledge tools as a source, use for offline reference, or compare releases to track documentation changes over time.
 
 ### Latest Stats (2026-03-26)
 

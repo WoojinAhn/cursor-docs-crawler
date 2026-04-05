@@ -394,9 +394,11 @@ pytest tests/ --cov=src
 
 ## PDF 다운로드
 
-PDF는 [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) 페이지에서 다운로드할 수 있습니다 — 매주 자동 갱신.
+PDF는 [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) 페이지에서 다운로드할 수 있습니다 — 문서 변경 감지 시 자동 갱신.
 
 각 릴리즈에는 4개의 PDF가 포함됩니다 (docs + help, 한국어 & 영어).
+
+**활용 예시**: NotebookLM 등 AI 지식 도구에 소스로 업로드, 오프라인 레퍼런스, 릴리즈 간 비교로 문서 변경 추적.
 
 ### 최신 통계 (2026-03-26)
 
