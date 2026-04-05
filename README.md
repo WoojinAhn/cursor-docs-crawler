@@ -153,7 +153,7 @@ cursor-docs-crawler/
 │   ├── constants.py       # Constants definition
 │   ├── models.py          # Data models
 │   ├── url_manager.py     # URL management
-│   ├── selenium_crawler.py # Selenium-based crawler
+│   ├── selenium_crawler.py # Web crawler (SeleniumBase UC Mode)
 │   ├── fixture_crawler.py # Fixture-based crawler (offline)
 │   ├── content_parser.py  # Content parsing
 │   ├── page_sorter.py     # Page sorting
@@ -169,13 +169,15 @@ cursor-docs-crawler/
 │       ├── manifest.json
 │       └── html/
 └── .github/workflows/
-    └── e2e-test.yml       # CI: PR offline tests + weekly fixture refresh
+    ├── e2e-test.yml           # CI: PR offline tests + weekly fixture refresh
+    ├── detect-docs-change.yml # CI: daily llms.txt change detection → triggers release
+    └── release-pdf.yml        # CI: generate PDFs and create GitHub Release
 ```
 
 ## Site Mapping (Site Structure Discovery) Logic
 
 ### Crawling and Link Extraction
-- Uses Selenium to load HTML in a real browser environment with JavaScript rendering
+- Uses SeleniumBase (UC Mode) to load HTML in a real browser environment with JavaScript rendering
 - Parses HTML with BeautifulSoup to extract all `<a href=...>` links
 - Processes extracted links as follows:
   1. **Normalization**: Converts relative paths/hashes/queries to absolute paths, removes fragments
@@ -197,7 +199,7 @@ cursor-docs-crawler/
 ### 1. Crawling and Site Mapping Phase
 1. **Scope Selection**: Determines target section (`/docs/`, `/help/`, or both) based on `--scope` option
 2. **URL Seeding from llms.txt**: Fetches `cursor.com/llms.txt` to seed all official page URLs — ensures pages unreachable via BFS link traversal are still crawled
-3. **BFS Crawling**: Loads pages in Selenium (JS rendering required for Next.js SPA), extracts links, builds URL queue
+3. **BFS Crawling**: Loads pages via SeleniumBase UC Mode (JS rendering required for Next.js SPA), extracts links, builds URL queue
 4. **Link Normalization**: Absolute path conversion, fragment removal, locale stripping (`/ko/docs/...` → `/docs/...`), domain/file filtering, deduplication
 5. **Coverage Validation**: After crawl, checks all llms.txt URLs were actually crawled — flags any gaps
 
@@ -402,8 +404,8 @@ Each release includes 4 PDFs (docs + help, in Korean & English).
 ## Disclaimer
 
 - **Content Copyright**: All documentation content belongs to Anysphere Inc. This tool is provided solely for personal archiving and educational purposes.
-- **Terms of Service**: Use of this tool must comply with [cursor.com's Terms of Service](https://cursor.com/terms). Check `cursor.com/robots.txt` before use.
-- **Responsible Use**: Set appropriate request delays and avoid placing excessive load on the server.
+- **Terms of Service**: Use of this tool must comply with [cursor.com's Terms of Service](https://cursor.com/terms). The `cursor.com/robots.txt` allows crawling of `/docs/` and `/help/` paths.
+- **Responsible Use**: This tool crawls only publicly available documentation pages at a respectful rate with delays between requests. It does not access authenticated endpoints, private data, or internal APIs.
 - **No Warranty**: This tool is provided as-is. The author is not responsible for any issues arising from its use. Users are solely responsible for compliance with applicable laws and terms of service.
 - **Structural Dependency**: This tool depends on cursor.com/docs HTML structure and may break if the site changes.
 - **Takedown**: If Anysphere Inc. requests removal of any content or generated PDFs, we will comply promptly.

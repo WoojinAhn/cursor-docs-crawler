@@ -153,7 +153,7 @@ cursor-docs-crawler/
 │   ├── constants.py       # 상수 정의
 │   ├── models.py          # 데이터 모델
 │   ├── url_manager.py     # URL 관리
-│   ├── selenium_crawler.py # Selenium 기반 크롤러
+│   ├── selenium_crawler.py # 웹 크롤러 (SeleniumBase UC Mode)
 │   ├── fixture_crawler.py # Fixture 기반 크롤러 (오프라인)
 │   ├── content_parser.py  # 콘텐츠 파싱
 │   ├── page_sorter.py     # 페이지 정렬
@@ -169,13 +169,15 @@ cursor-docs-crawler/
 │       ├── manifest.json
 │       └── html/
 └── .github/workflows/
-    └── e2e-test.yml       # CI: PR 오프라인 테스트 + 주간 fixture 갱신
+    ├── e2e-test.yml           # CI: PR 오프라인 테스트 + 주간 fixture 갱신
+    ├── detect-docs-change.yml # CI: 일간 llms.txt 변경 감지 → 릴리즈 트리거
+    └── release-pdf.yml        # CI: PDF 생성 및 GitHub Release 발행
 ```
 
 ## 사이트 매핑(사이트 구조 탐색) 로직 상세
 
 ### 크롤링 및 링크 추출
-- Selenium을 이용해 실제 브라우저 환경에서 JS까지 렌더링된 HTML을 가져옵니다.
+- SeleniumBase (UC Mode)를 이용해 실제 브라우저 환경에서 JS까지 렌더링된 HTML을 가져옵니다.
 - BeautifulSoup으로 HTML을 파싱하여 `<a href=...>` 형태의 모든 링크를 추출합니다.
 - 추출된 링크는 다음과 같이 처리됩니다:
   1. **정규화**: 상대경로/해시/쿼리 등은 절대경로로 변환, fragment(해시)는 제거
@@ -197,7 +199,7 @@ cursor-docs-crawler/
 ### 1. 크롤링 및 사이트 매핑 단계
 1. **스코프 선택**: `--scope` 옵션에 따라 대상 섹션 결정 (`/docs/`, `/help/`, 또는 둘 다)
 2. **llms.txt 시딩**: `cursor.com/llms.txt`를 파싱하여 모든 공식 문서 URL을 큐에 추가 — BFS 링크 탐색으로 도달할 수 없는 페이지도 크롤링
-3. **BFS 크롤링**: Selenium으로 페이지 로딩 (Next.js SPA이므로 JS 렌더링 필수), 링크 추출, URL 큐 구축
+3. **BFS 크롤링**: SeleniumBase UC Mode로 페이지 로딩 (Next.js SPA이므로 JS 렌더링 필수), 링크 추출, URL 큐 구축
 4. **링크 정규화**: 절대경로 변환, fragment 제거, 로케일 제거 (`/ko/docs/...` → `/docs/...`), 도메인/파일 필터링, 중복 제거
 5. **커버리지 검증**: 크롤 후 llms.txt의 모든 URL이 실제 크롤되었는지 확인 — 누락 시 경고
 
@@ -402,8 +404,8 @@ PDF는 [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/late
 ## 면책 조항
 
 - **콘텐츠 저작권**: 모든 문서 콘텐츠의 저작권은 Anysphere Inc.에 있습니다. 이 도구는 개인 아카이빙 및 교육 목적으로만 제공됩니다.
-- **이용 약관**: [cursor.com 이용 약관](https://cursor.com/terms)을 준수하여 사용해야 합니다. 사용 전 `cursor.com/robots.txt`를 확인하세요.
-- **책임감 있는 사용**: 적절한 요청 간격을 설정하고 서버에 과도한 부하를 주지 마세요.
+- **이용 약관**: [cursor.com 이용 약관](https://cursor.com/terms)을 준수하여 사용해야 합니다. `cursor.com/robots.txt`는 `/docs/` 및 `/help/` 경로의 크롤링을 허용하고 있습니다.
+- **책임감 있는 사용**: 이 도구는 공개된 문서 페이지만 적절한 요청 간격을 두고 크롤링합니다. 인증이 필요한 엔드포인트, 비공개 데이터, 내부 API에는 접근하지 않습니다.
 - **무보증**: 이 도구는 있는 그대로 제공됩니다. 사용으로 인해 발생하는 문제에 대해 작성자는 책임지지 않습니다. 관련 법률 및 이용 약관 준수에 대한 책임은 전적으로 사용자에게 있습니다.
 - **구조 의존성**: 이 도구는 cursor.com/docs의 HTML 구조에 의존하며, 사이트 구조가 변경되면 동작하지 않을 수 있습니다.
 - **삭제 요청 대응**: Anysphere Inc.의 콘텐츠 또는 생성된 PDF 삭제 요청 시 즉시 대응합니다.

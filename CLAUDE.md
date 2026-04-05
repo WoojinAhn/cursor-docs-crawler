@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Project Does
 
-A Python web crawler that scrapes the Cursor documentation site (cursor.com/docs and cursor.com/help) using Selenium, cleans the HTML content with BeautifulSoup, and generates PDFs via WeasyPrint. Designed to produce NotebookLM-ready PDFs.
+A Python web crawler that scrapes the Cursor documentation site (cursor.com/docs and cursor.com/help) using SeleniumBase UC Mode, cleans the HTML content with BeautifulSoup, and generates PDFs via WeasyPrint. Designed to produce NotebookLM-ready PDFs.
 
 ## Commands
 
@@ -19,7 +19,7 @@ python main.py
 # Run in test mode (10 representative pages)
 python main.py --test
 
-# Run with offline fixtures (no Selenium/network)
+# Run with offline fixtures (no browser/network)
 python scripts/save_fixtures.py  # One-time: save HTML snapshots
 python main.py --test --fixture  # Fast: offline E2E (~6 seconds)
 
@@ -83,7 +83,7 @@ The pipeline runs in three sequential phases orchestrated by `main.py`:
 
 ### Key Design Decisions
 
-- **Selenium over requests**: cursor.com/docs uses client-side JS rendering, so Selenium with headless Chrome is required to get rendered HTML.
+- **SeleniumBase UC Mode over requests**: cursor.com/docs uses client-side JS rendering and Vercel bot protection, so SeleniumBase UC Mode (undetected Chrome) is required to get rendered HTML.
 - **URL deduplication at two levels**: `URLManager` deduplicates during crawl queue management; `PDFGenerator._deduplicate_pages` deduplicates again before PDF generation (handles redirects where original URL != final URL).
 - **Redirect tracking**: `SeleniumCrawler` captures `driver.current_url` after page load and stores it as `PageData.final_url`. Both original and final URLs are marked as visited.
 - **Locale stripping**: cursor.com auto-redirects to locale-prefixed URLs (e.g. `/ko/docs/...`). `SeleniumCrawler.strip_locale` normalizes these back to canonical `/docs/...` form so deduplication works correctly.
