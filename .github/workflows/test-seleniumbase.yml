@@ -1,0 +1,20 @@
+name: Test SeleniumBase UC Mode
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-uc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install SeleniumBase
+        run: pip install seleniumbase
+
+      - name: Test UC Mode against cursor.com
+        run: python scripts/test_seleniumbase_uc.py
