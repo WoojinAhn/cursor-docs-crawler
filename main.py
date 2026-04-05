@@ -19,19 +19,41 @@ from src.pdf_generator import PDFGenerator
 from src.logger import CrawlerLogger, CrawlReporter
 
 
-def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str) -> set:
+def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str,
+                       fallback_path: str = None) -> set:
     """Fetch llms.txt and seed URLs matching *seed_regex* into the URL manager.
+
+    Falls back to a local file when the live fetch fails.
 
     Returns:
         Set of canonical URLs extracted from llms.txt (with .md stripped).
     """
     logger = logging.getLogger(__name__)
+    text = None
+
+    # Try live fetch first
     try:
         req = Request(llms_txt_url, headers={"User-Agent": "Cursor Docs Crawler 1.0"})
         with urlopen(req, timeout=15) as resp:
-            text = resp.read().decode("utf-8")
+            body = resp.read().decode("utf-8")
+            # Validate: must look like llms.txt, not an HTML bot-protection page
+            if body.lstrip().startswith("#"):
+                text = body
+            else:
+                logger.warning("llms.txt response is not valid markdown — ignoring")
     except (URLError, OSError) as e:
         logger.warning(f"Failed to fetch llms.txt ({llms_txt_url}): {e}")
+
+    # Fallback to local snapshot
+    if text is None and fallback_path:
+        fp = Path(fallback_path)
+        if fp.is_file():
+            logger.info(f"Using local fallback: {fallback_path}")
+            print(f"[Seed] Live llms.txt unavailable — using local snapshot")
+            text = fp.read_text(encoding="utf-8")
+
+    if text is None:
+        logger.warning("No llms.txt available (live or fallback)")
         return set()
 
     raw_urls = re.findall(seed_regex, text)
@@ -142,7 +164,11 @@ def run_single_scope(args, scope: str, reporter: CrawlReporter,
                     url_manager.add_url(url)
             else:
                 # Seed URLs from llms.txt to cover pages unreachable via BFS
-                llms_urls = seed_from_llms_txt(url_manager, config.LLMS_TXT_URL, config.scope_seed_regex)
+                fallback = str(Path(__file__).parent / ".github" / "llms-txt-snapshot.txt")
+                llms_urls = seed_from_llms_txt(
+                    url_manager, config.LLMS_TXT_URL, config.scope_seed_regex,
+                    fallback_path=fallback,
+                )
 
             from src.selenium_crawler import SeleniumCrawler
             crawler = SeleniumCrawler(config, url_manager)

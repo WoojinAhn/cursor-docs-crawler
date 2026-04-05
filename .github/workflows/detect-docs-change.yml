@@ -17,11 +17,27 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Fetch current llms.txt
+        id: fetch
         run: |
-          curl -sL -H "User-Agent: Cursor Docs Crawler" \
-            https://cursor.com/llms.txt > /tmp/llms-txt-current.txt
+          HTTP_CODE=$(curl -sL -o /tmp/llms-txt-current.txt -w "%{http_code}" \
+            -H "User-Agent: Cursor Docs Crawler" \
+            https://cursor.com/llms.txt)
+
+          echo "HTTP status: $HTTP_CODE"
+
+          # Validate: must be 200 and start with '#' (llms.txt markdown format)
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "::warning::llms.txt returned HTTP $HTTP_CODE — skipping"
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          elif ! head -1 /tmp/llms-txt-current.txt | grep -q '^#'; then
+            echo "::warning::llms.txt response is not valid markdown — likely bot protection page"
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Compare with snapshot
+        if: steps.fetch.outputs.valid == 'true'
         id: diff
         run: |
           SNAPSHOT=".github/llms-txt-snapshot.txt"
@@ -41,7 +57,7 @@ jobs:
           fi
 
       - name: Update snapshot
-        if: steps.diff.outputs.changed == 'true'
+        if: steps.fetch.outputs.valid == 'true' && steps.diff.outputs.changed == 'true'
         run: |
           cp /tmp/llms-txt-current.txt .github/llms-txt-snapshot.txt
           git config user.name "github-actions[bot]"
@@ -51,7 +67,7 @@ jobs:
           git push
 
       - name: Trigger release workflow
-        if: steps.diff.outputs.changed == 'true' && steps.diff.outputs.initial == 'false'
+        if: steps.fetch.outputs.valid == 'true' && steps.diff.outputs.changed == 'true' && steps.diff.outputs.initial == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
