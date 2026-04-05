@@ -32,16 +32,49 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Generate Korean docs PDF
-        run: python main.py --scope docs --output cursor_docs_ko.pdf --lang ko --verbose
+        run: |
+          OUTPUT=$(python main.py --scope docs --output cursor_docs_ko.pdf --lang ko --verbose)
+          echo "$OUTPUT"
+          PAGES=$(echo "$OUTPUT" | grep -oP 'Total pages: \K\d+' || echo "0")
+          echo "docs_ko_pages=$PAGES" >> "$GITHUB_ENV"
 
       - name: Generate English docs PDF
-        run: python main.py --scope docs --output cursor_docs_en.pdf --lang en --verbose
+        run: |
+          OUTPUT=$(python main.py --scope docs --output cursor_docs_en.pdf --lang en --verbose)
+          echo "$OUTPUT"
+          PAGES=$(echo "$OUTPUT" | grep -oP 'Total pages: \K\d+' || echo "0")
+          echo "docs_en_pages=$PAGES" >> "$GITHUB_ENV"
 
       - name: Generate Korean help PDF
-        run: python main.py --scope help --output cursor_help_ko.pdf --lang ko --verbose
+        run: |
+          OUTPUT=$(python main.py --scope help --output cursor_help_ko.pdf --lang ko --verbose)
+          echo "$OUTPUT"
+          PAGES=$(echo "$OUTPUT" | grep -oP 'Total pages: \K\d+' || echo "0")
+          echo "help_ko_pages=$PAGES" >> "$GITHUB_ENV"
 
       - name: Generate English help PDF
-        run: python main.py --scope help --output cursor_help_en.pdf --lang en --verbose
+        run: |
+          OUTPUT=$(python main.py --scope help --output cursor_help_en.pdf --lang en --verbose)
+          echo "$OUTPUT"
+          PAGES=$(echo "$OUTPUT" | grep -oP 'Total pages: \K\d+' || echo "0")
+          echo "help_en_pages=$PAGES" >> "$GITHUB_ENV"
+
+      - name: Validate PDF page counts
+        run: |
+          MIN_DOCS=5
+          MIN_HELP=3
+          echo "Page counts — docs_ko: $docs_ko_pages, docs_en: $docs_en_pages, help_ko: $help_ko_pages, help_en: $help_en_pages"
+
+          FAILED=false
+          [ "$docs_ko_pages" -lt "$MIN_DOCS" ] && echo "::error::docs_ko has only $docs_ko_pages pages (min: $MIN_DOCS)" && FAILED=true
+          [ "$docs_en_pages" -lt "$MIN_DOCS" ] && echo "::error::docs_en has only $docs_en_pages pages (min: $MIN_DOCS)" && FAILED=true
+          [ "$help_ko_pages" -lt "$MIN_HELP" ] && echo "::error::help_ko has only $help_ko_pages pages (min: $MIN_HELP)" && FAILED=true
+          [ "$help_en_pages" -lt "$MIN_HELP" ] && echo "::error::help_en has only $help_en_pages pages (min: $MIN_HELP)" && FAILED=true
+
+          if [ "$FAILED" = true ]; then
+            echo "::error::Aborting release — PDF page counts below minimum threshold"
+            exit 1
+          fi
 
       - name: Create GitHub Release
         env:
