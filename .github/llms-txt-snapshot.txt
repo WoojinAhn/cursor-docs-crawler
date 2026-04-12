@@ -17,13 +17,15 @@
 ## Agent
 
 - https://cursor.com/docs/agent/overview.md
+- https://cursor.com/docs/agent/agents-window.md
+- https://cursor.com/docs/agent/agent-review.md
 - https://cursor.com/docs/agent/plan-mode.md
 - https://cursor.com/docs/agent/prompting.md
 - https://cursor.com/docs/agent/debug-mode.md
 - https://cursor.com/docs/agent/tools/terminal.md
   - https://cursor.com/docs/agent/tools/browser.md
   - https://cursor.com/docs/agent/tools/search.md
-- https://cursor.com/docs/configuration/worktrees.md
+  - https://cursor.com/docs/configuration/worktrees.md
 - https://cursor.com/docs/agent/security.md
 
 ## customizing
@@ -40,6 +42,8 @@
 - https://cursor.com/docs/cloud-agent.md
 - https://cursor.com/docs/cloud-agent/setup.md
 - https://cursor.com/docs/cloud-agent/capabilities.md
+- https://cursor.com/docs/cloud-agent/my-machines.md
+- https://cursor.com/docs/cloud-agent/self-hosted-pool.md
 - https://cursor.com/docs/bugbot.md
 - https://cursor.com/docs/cloud-agent/automations.md
 - https://cursor.com/docs/cloud-agent/best-practices.md
