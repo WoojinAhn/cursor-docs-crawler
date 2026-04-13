@@ -189,10 +189,14 @@ jobs:
             cursor_help_en.pdf
 
       - name: Trigger post-release ops
-        if: ${{ success() && secrets.OPS_DISPATCH_TOKEN != '' }}
+        if: success()
         env:
           GH_TOKEN: ${{ secrets.OPS_DISPATCH_TOKEN }}
         run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::notice::OPS_DISPATCH_TOKEN not configured, skipping post-release ops"
+            exit 0
+          fi
           TAG="docs-$(date -u +%Y-%m-%d)"
           gh workflow run upload-to-notebooklm.yml \
             --repo WoojinAhn/cursor-docs-crawler-ops \
