@@ -3,7 +3,7 @@ name: Release PDF
 on:
   workflow_dispatch:
   schedule:
-    # Weekly Sunday 06:00 UTC (after fixture refresh at 03:00)
+    # Weekly: Sunday 06:00 UTC (after fixture refresh at 03:00)
     - cron: '0 6 * * 0'
 
 jobs:
