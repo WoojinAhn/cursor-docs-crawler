@@ -25,6 +25,7 @@
 - https://cursor.com/docs/agent/tools/terminal.md
   - https://cursor.com/docs/agent/tools/browser.md
   - https://cursor.com/docs/agent/tools/search.md
+  - https://cursor.com/docs/agent/tools/canvas.md
   - https://cursor.com/docs/configuration/worktrees.md
 - https://cursor.com/docs/agent/security.md
 
