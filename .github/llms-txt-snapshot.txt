@@ -6,7 +6,7 @@
 - https://cursor.com/docs/get-started/quickstart.md
 - https://cursor.com/docs/models-and-pricing.md
   - https://cursor.com/docs/models/claude-4-6-sonnet.md
-  - https://cursor.com/docs/models/claude-opus-4-6.md
+  - https://cursor.com/docs/models/claude-opus-4-7.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
   - https://cursor.com/docs/models/gpt-5-4.md
   - https://cursor.com/docs/models/gpt-5-3-codex.md
