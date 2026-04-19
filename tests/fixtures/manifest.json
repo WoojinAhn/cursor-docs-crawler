@@ -51,8 +51,8 @@
       "https://cursor.com/docs/rules",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/models-and-pricing",
-      "https://cursor.com/docs/models/claude-opus-4-6",
       "https://cursor.com/docs/models/claude-4-6-sonnet",
+      "https://cursor.com/docs/models/claude-opus-4-7",
       "https://cursor.com/docs/models/cursor-composer-2",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-3-codex",
@@ -60,7 +60,7 @@
       "https://cursor.com/docs/models/grok-4-20"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-04-12T05:26:53.030694"
+    "saved_at": "2026-04-19T05:32:16.742105"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -74,7 +74,7 @@
       "https://cursor.com/docs/get-started/quickstart",
       "https://cursor.com/docs/models-and-pricing",
       "https://cursor.com/docs/models/claude-4-6-sonnet",
-      "https://cursor.com/docs/models/claude-opus-4-6",
+      "https://cursor.com/docs/models/claude-opus-4-7",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-4",
       "https://cursor.com/docs/models/gpt-5-3-codex",
@@ -119,8 +119,8 @@
       "https://cursor.com/docs/cli/headless",
       "https://cursor.com/docs/models/cursor-composer-2",
       "https://cursor.com/docs/models/cursor-composer-2",
-      "https://cursor.com/docs/models/claude-opus-4-6",
       "https://cursor.com/docs/models/claude-4-6-sonnet",
+      "https://cursor.com/docs/models/claude-opus-4-7",
       "https://cursor.com/docs/models/cursor-composer-2",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-3-codex",
@@ -131,7 +131,7 @@
       "https://cursor.com/docs/account/teams/pricing#cursor-token-fee"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-04-12T05:26:57.979353"
+    "saved_at": "2026-04-19T05:32:21.735710"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -192,8 +192,8 @@
       "https://cursor.com/docs/account/teams/admin-api#get-spending-data",
       "https://cursor.com/docs/agent/tools/search",
       "https://cursor.com/docs/enterprise",
-      "https://cursor.com/docs/models/claude-opus-4-6",
       "https://cursor.com/docs/models/claude-4-6-sonnet",
+      "https://cursor.com/docs/models/claude-opus-4-7",
       "https://cursor.com/docs/models/cursor-composer-2",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-3-codex",
@@ -201,7 +201,7 @@
       "https://cursor.com/docs/models/grok-4-20"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-04-12T05:27:02.796372"
+    "saved_at": "2026-04-19T05:32:26.636514"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -256,7 +256,7 @@
       "https://cursor.com/docs/agent/tools/browser"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-04-12T05:27:07.335369"
+    "saved_at": "2026-04-19T05:32:31.142293"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -268,7 +268,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-04-12T05:27:11.847719"
+    "saved_at": "2026-04-19T05:32:35.655221"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -320,7 +320,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-04-12T05:27:16.395941"
+    "saved_at": "2026-04-19T05:32:40.155574"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -391,10 +391,11 @@
       "https://cursor.com/docs/account/teams/admin-api",
       "https://cursor.com/docs/account/teams/analytics-api",
       "https://cursor.com/docs/account/teams/ai-code-tracking-api",
-      "https://cursor.com/docs/cloud-agent/api/endpoints"
+      "https://cursor.com/docs/cloud-agent/api/endpoints",
+      "https://cursor.com/docs/api/sdk/typescript"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-04-12T05:27:20.972239"
+    "saved_at": "2026-04-19T05:32:44.738817"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -450,11 +451,11 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-04-12T05:27:25.460162"
+    "saved_at": "2026-04-19T05:32:49.273553"
   },
   {
     "url": "https://cursor.com/docs/rules",
-    "title": "규칙 | Cursor Docs",
+    "title": "Rules | Cursor Docs",
     "filename": "docs__rules.html",
     "links": [
       "https://cursor.com/docs",
@@ -503,7 +504,7 @@
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-04-12T05:27:30.226587"
+    "saved_at": "2026-04-19T05:32:54.383939"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -617,6 +618,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-04-12T05:27:34.779153"
+    "saved_at": "2026-04-19T05:32:58.943959"
   }
 ]
