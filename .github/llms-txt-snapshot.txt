@@ -166,7 +166,7 @@
 - https://cursor.com/help/models-and-usage/available-models.md
 - https://cursor.com/help/models-and-usage/api-keys.md
 - https://cursor.com/help/models-and-usage/usage-limits.md
-- https://cursor.com/help/models-and-usage/token-fee.md
+- https://cursor.com/help/models-and-usage/token-rate.md
 
 ## Security and privacy
 
