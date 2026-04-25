@@ -8,7 +8,7 @@
   - https://cursor.com/docs/models/claude-4-6-sonnet.md
   - https://cursor.com/docs/models/claude-opus-4-7.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
-  - https://cursor.com/docs/models/gpt-5-4.md
+  - https://cursor.com/docs/models/gpt-5-5.md
   - https://cursor.com/docs/models/gpt-5-3-codex.md
   - https://cursor.com/docs/models/grok-4-20.md
   - https://cursor.com/docs/models/cursor-composer-2.md
