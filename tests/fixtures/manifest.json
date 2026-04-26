@@ -56,11 +56,11 @@
       "https://cursor.com/docs/models/cursor-composer-2",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-3-codex",
-      "https://cursor.com/docs/models/gpt-5-4",
+      "https://cursor.com/docs/models/gpt-5-5",
       "https://cursor.com/docs/models/grok-4-20"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-04-19T05:32:16.742105"
+    "saved_at": "2026-04-26T05:43:10.312719"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -76,7 +76,7 @@
       "https://cursor.com/docs/models/claude-4-6-sonnet",
       "https://cursor.com/docs/models/claude-opus-4-7",
       "https://cursor.com/docs/models/gemini-3-1-pro",
-      "https://cursor.com/docs/models/gpt-5-4",
+      "https://cursor.com/docs/models/gpt-5-5",
       "https://cursor.com/docs/models/gpt-5-3-codex",
       "https://cursor.com/docs/models/grok-4-20",
       "https://cursor.com/docs/models/cursor-composer-2",
@@ -124,14 +124,12 @@
       "https://cursor.com/docs/models/cursor-composer-2",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-3-codex",
-      "https://cursor.com/docs/models/gpt-5-4",
+      "https://cursor.com/docs/models/gpt-5-5",
       "https://cursor.com/docs/models/grok-4-20",
-      "https://cursor.com/docs/account/teams/pricing",
-      "https://cursor.com/docs/account/teams/pricing",
-      "https://cursor.com/docs/account/teams/pricing#cursor-token-fee"
+      "https://cursor.com/docs/account/teams/pricing"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-04-19T05:32:21.735710"
+    "saved_at": "2026-04-26T05:43:15.160089"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -197,11 +195,11 @@
       "https://cursor.com/docs/models/cursor-composer-2",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-3-codex",
-      "https://cursor.com/docs/models/gpt-5-4",
+      "https://cursor.com/docs/models/gpt-5-5",
       "https://cursor.com/docs/models/grok-4-20"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-04-19T05:32:26.636514"
+    "saved_at": "2026-04-26T05:43:20.064001"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -256,7 +254,7 @@
       "https://cursor.com/docs/agent/tools/browser"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-04-19T05:32:31.142293"
+    "saved_at": "2026-04-26T05:43:24.568179"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -268,7 +266,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-04-19T05:32:35.655221"
+    "saved_at": "2026-04-26T05:43:29.088354"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -320,7 +318,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-04-19T05:32:40.155574"
+    "saved_at": "2026-04-26T05:43:33.638042"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -395,7 +393,7 @@
       "https://cursor.com/docs/api/sdk/typescript"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-04-19T05:32:44.738817"
+    "saved_at": "2026-04-26T05:43:38.223903"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -451,7 +449,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-04-19T05:32:49.273553"
+    "saved_at": "2026-04-26T05:43:42.714094"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -504,11 +502,11 @@
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-04-19T05:32:54.383939"
+    "saved_at": "2026-04-26T05:43:47.376316"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
-    "title": "엔터프라이즈 | Cursor Docs",
+    "title": "Enterprise | Cursor Docs",
     "filename": "docs__enterprise.html",
     "links": [
       "https://cursor.com/docs",
@@ -618,6 +616,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-04-19T05:32:58.943959"
+    "saved_at": "2026-04-26T05:43:51.943321"
   }
 ]
