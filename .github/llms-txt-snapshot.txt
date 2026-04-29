@@ -62,6 +62,10 @@
 - https://cursor.com/docs/integrations/xcode.md
 - https://cursor.com/docs/reference/deeplinks.md
 
+## SDK
+
+- https://cursor.com/docs/sdk/typescript.md
+
 ## cli
 
 - https://cursor.com/docs/cli/overview.md
@@ -93,6 +97,7 @@
   - https://cursor.com/docs/enterprise/model-and-integration-management.md
   - https://cursor.com/docs/enterprise/pooled-usage.md
   - https://cursor.com/docs/enterprise/compliance-and-monitoring.md
+  - https://cursor.com/docs/enterprise/baa.md
   - https://cursor.com/docs/enterprise/deployment-patterns.md
   - https://cursor.com/docs/account/enterprise/service-accounts.md
   - https://cursor.com/docs/account/enterprise/billing-groups.md
