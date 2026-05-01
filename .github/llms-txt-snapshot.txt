@@ -46,6 +46,7 @@
 - https://cursor.com/docs/cloud-agent/my-machines.md
 - https://cursor.com/docs/cloud-agent/self-hosted-pool.md
 - https://cursor.com/docs/bugbot.md
+- https://cursor.com/docs/security-review.md
 - https://cursor.com/docs/cloud-agent/automations.md
 - https://cursor.com/docs/cloud-agent/best-practices.md
 - https://cursor.com/docs/cloud-agent/security-network.md
