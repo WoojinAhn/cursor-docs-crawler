@@ -194,6 +194,8 @@
 - https://cursor.com/help/account-and-billing/spend-limits.md
 - https://cursor.com/help/account-and-billing/enterprise.md
 - https://cursor.com/help/account-and-billing/change-email.md
+- https://cursor.com/help/account-and-billing/payment-issues.md
+- https://cursor.com/help/account-and-billing/payment-not-applied.md
 - https://cursor.com/help/account-and-billing/cancel.md
 - https://cursor.com/help/account-and-billing/refunds.md
 - https://cursor.com/help/account-and-billing/delete-account.md
