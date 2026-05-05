@@ -39,7 +39,7 @@ def seed_from_llms_txt(url_manager, llms_txt_url: str, seed_regex: str,
         fp = Path(fallback_path)
         if fp.is_file():
             logger.info(f"Using local fallback: {fallback_path}")
-            print(f"[Seed] Live llms.txt unavailable — using local snapshot")
+            print("[Seed] Live llms.txt unavailable — using local snapshot")
             text = fp.read_text(encoding="utf-8")
 
     if text is None:

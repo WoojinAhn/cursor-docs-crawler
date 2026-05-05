@@ -1,5 +1,6 @@
 from src.url_manager import URLManager
 
+
 def test_add_url_and_dedup():
     mgr = URLManager("https://test.com")
     # base_url이 이미 추가되어 있으므로, 다른 URL부터 테스트
@@ -11,11 +12,11 @@ def test_add_url_and_dedup():
     assert mgr.add_url("/page2")
     url = mgr.get_next_url()
     assert url is not None and url.startswith("https://test.com")
-    
+
     # 해시-only URL 테스트 - 정규화되어 base_url과 중복이므로 False
     mgr2 = URLManager("https://test.com")
     result = mgr2.add_url("https://test.com/#section")
-    assert result == False  # fragment 제거 후 base URL과 동일 → 중복
+    assert result is False  # fragment 제거 후 base URL과 동일 → 중복
 
 
 def test_queued_urls_set_sync():

@@ -5,8 +5,6 @@ from urllib.parse import urljoin, urlparse
 import logging
 from collections import deque
 
-from .config import Config
-
 
 class URLManager:
     """Manages URLs for crawling with deduplication and filtering."""
@@ -49,49 +47,49 @@ class URLManager:
 
         # Add initial URL
         self.add_url(self.base_url)
-    
+
     def add_url(self, url: str) -> bool:
         """Add URL to crawling queue.
-        
+
         Args:
             url: URL to add
-            
+
         Returns:
             True if URL was added, False if skipped
         """
         if not url:
             return False
-        
+
         # Normalize URL
         normalized_url = self._normalize_url(url)
-        
+
         # Check if we should crawl this URL
         if not self.should_crawl(normalized_url):
             return False
-        
+
         # Check for duplicates
         if normalized_url in self._visited_urls or normalized_url in self._queued_urls:
             self._stats['duplicates'] += 1
             self.logger.debug(f"Duplicate URL skipped: {normalized_url}")
             return False
-        
+
         # Check page limit
         if self.max_pages and self._stats['total_found'] >= self.max_pages:
             self._skipped_urls.add(normalized_url)
             self._stats['skipped'] += 1
             self.logger.debug(f"Page limit reached, URL skipped: {normalized_url}")
             return False
-        
+
         # Add to queue
         self._urls_to_visit.append(normalized_url)
         self._queued_urls.add(normalized_url)
         self._stats['total_found'] += 1
         self.logger.debug(f"URL added to queue: {normalized_url}")
         return True
-    
+
     def get_next_url(self) -> Optional[str]:
         """Get next URL to crawl.
-        
+
         Returns:
             Next URL or None if queue is empty
         """
@@ -101,10 +99,10 @@ class URLManager:
         url = self._urls_to_visit.popleft()
         self._queued_urls.discard(url)
         return url
-    
+
     def mark_visited(self, url: str) -> None:
         """Mark URL as visited.
-        
+
         Args:
             url: URL that was visited
         """
@@ -112,10 +110,10 @@ class URLManager:
         self._visited_urls.add(normalized_url)
         self._stats['visited'] += 1
         self.logger.debug(f"URL marked as visited: {normalized_url}")
-    
+
     def mark_failed(self, url: str) -> None:
         """Mark URL as failed.
-        
+
         Args:
             url: URL that failed to crawl
         """
@@ -123,19 +121,19 @@ class URLManager:
         self._failed_urls.add(normalized_url)
         self._stats['failed'] += 1
         self.logger.warning(f"URL marked as failed: {normalized_url}")
-    
+
     def is_visited(self, url: str) -> bool:
         """Check if URL has been visited.
-        
+
         Args:
             url: URL to check
-            
+
         Returns:
             True if URL was visited
         """
         normalized_url = self._normalize_url(url)
         return normalized_url in self._visited_urls
-    
+
     def should_crawl(self, url: str) -> bool:
         """Check if URL should be crawled.
 
@@ -191,45 +189,45 @@ class URLManager:
         except Exception as e:
             self.logger.error(f"Error checking URL {url}: {e}")
             return False
-    
+
     def _normalize_url(self, url: str) -> str:
         """Normalize URL for consistent comparison.
-        
+
         Args:
             url: URL to normalize
-            
+
         Returns:
             Normalized URL
         """
         if not url:
             return url
-        
+
         # Convert relative URLs to absolute
         if url.startswith('/'):
             url = urljoin(self.base_url, url)
         elif not url.startswith(('http://', 'https://')):
             url = urljoin(self.base_url, url)
-        
+
         # Parse and rebuild URL to normalize
         parsed = urlparse(url)
         path = parsed.path or '/'
 
         # Remove fragment (hash)
         normalized = f"{parsed.scheme}://{parsed.netloc}{path}"
-        
+
         # Add query if present
         if parsed.query:
             normalized += f"?{parsed.query}"
-        
+
         # Remove trailing slash except for root
         if normalized.endswith('/') and len(parsed.path) > 1:
             normalized = normalized.rstrip('/')
-        
+
         return normalized
-    
+
     def get_stats(self) -> Dict[str, int]:
         """Get crawling statistics.
-        
+
         Returns:
             Dictionary with statistics
         """
@@ -242,31 +240,31 @@ class URLManager:
             'remaining': len(self._urls_to_visit),
             'success_rate': round((self._stats['visited'] / max(self._stats['total_found'], 1)) * 100, 2)
         }
-    
+
     def has_urls(self) -> bool:
         """Check if there are URLs to crawl.
-        
+
         Returns:
             True if there are URLs in queue
         """
         return len(self._urls_to_visit) > 0
-    
+
     def get_visited_urls(self) -> List[str]:
         """Get list of visited URLs.
-        
+
         Returns:
             List of visited URLs
         """
         return list(self._visited_urls)
-    
+
     def get_failed_urls(self) -> List[str]:
         """Get list of failed URLs.
-        
+
         Returns:
             List of failed URLs
         """
         return list(self._failed_urls)
-    
+
     def clear(self) -> None:
         """Clear all URLs and statistics."""
         self._urls_to_visit.clear()

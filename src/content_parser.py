@@ -3,7 +3,7 @@
 import logging
 import re
 from typing import List, Optional
-from bs4 import BeautifulSoup, Tag, NavigableString
+from bs4 import BeautifulSoup, Tag
 
 from .config import Config
 from .models import PageData, PageContent
@@ -11,33 +11,33 @@ from .models import PageData, PageContent
 
 class ContentParser:
     """Parser for cleaning HTML content and extracting main documentation."""
-    
+
     def __init__(self, config: Config):
         """Initialize content parser.
-        
+
         Args:
             config: Configuration object
         """
         self.config = config
         self.logger = logging.getLogger(__name__)
-    
+
     def parse_page(self, page_data: PageData) -> PageContent:
         """Parse page data into clean content.
-        
+
         Args:
             page_data: Raw page data from crawler
-            
+
         Returns:
             PageContent object with cleaned content
         """
         self.logger.info(f"[Parser] Parsing content for: {page_data.url}")
-        
+
         try:
             soup = BeautifulSoup(page_data.html_content, 'html.parser')
-            
+
             # Remove unwanted elements
             cleaned_soup = self.remove_unwanted_elements(soup)
-            
+
             # Extract main content (must happen before class stripping)
             main_content = self.extract_main_content(cleaned_soup)
 
@@ -49,16 +49,16 @@ class ContentParser:
 
             # Process images
             processed_content = self.process_images(main_content)
-            
+
             # Process YouTube links
             final_content = self.process_youtube_links(processed_content)
-            
+
             # Extract text content
             text_content = self._extract_text_content(final_content)
-            
+
             # Extract image URLs
             image_urls = self._extract_image_urls(final_content)
-            
+
             # Create page content
             page_content = PageContent(
                 url=page_data.url,
@@ -68,14 +68,14 @@ class ContentParser:
                 images=image_urls,
                 final_url=page_data.final_url
             )
-            
+
             self.logger.debug(
                 f"Parsed {page_data.url}: {page_content.word_count} words, "
                 f"{page_content.image_count} images"
             )
-            
+
             return page_content
-            
+
         except Exception as e:
             self.logger.error(f"Error parsing {page_data.url}: {e}")
             # Try to extract basic content as fallback
@@ -83,7 +83,7 @@ class ContentParser:
                 basic_soup = BeautifulSoup(page_data.html_content, 'html.parser')
                 basic_text = basic_soup.get_text(strip=True)[:1000]  # First 1000 chars
                 basic_title = page_data.title or "Error Page"
-                
+
                 return PageContent(
                     url=page_data.url,
                     title=basic_title,
@@ -100,7 +100,7 @@ class ContentParser:
                     text_content=f"Error parsing content: {str(e)}",
                     images=[]
                 )
-    
+
     def _should_protect(self, element: Tag, content_el: Optional[Tag] = None) -> bool:
         """Check if element should be protected from removal.
 
@@ -109,8 +109,8 @@ class ContentParser:
         if element.name in ('html', 'body'):
             return True
         if content_el and (element is content_el
-                          or content_el in element.parents
-                          or element in content_el.parents):
+                           or content_el in element.parents
+                           or element in content_el.parents):
             return True
         if element.get('data-name') == 'frame':
             return True
@@ -306,13 +306,13 @@ class ContentParser:
                                    or element in content_el.parents):
                     continue
                 element.decompose()
-    
+
     def extract_main_content(self, soup: BeautifulSoup) -> BeautifulSoup:
         """Extract main content area from HTML.
-        
+
         Args:
             soup: Cleaned BeautifulSoup object
-            
+
         Returns:
             BeautifulSoup object with main content
         """
@@ -321,7 +321,7 @@ class ContentParser:
             self.logger.info("🔍 Found codebase-indexing.png - preserving entire content")
             # Create a copy of the soup to avoid modifying the original
             return soup
-        
+
         # Try to find main content using selectors
         for selector in self.config.CONTENT_SELECTORS:
             main_element = soup.select_one(selector)
@@ -333,7 +333,7 @@ class ContentParser:
                 return new_soup
             else:
                 self.logger.debug(f"Selector '{selector}' not found")
-        
+
         # Fallback: try to find content by common patterns
         content_candidates = [
             # First check for frame elements (documentation images)
@@ -344,24 +344,24 @@ class ContentParser:
             soup.find('section', class_=re.compile(r'.*content.*|.*main.*', re.I)),
             soup.find('div', id=re.compile(r'.*content.*|.*main.*', re.I)),
         ]
-        
+
         for candidate in content_candidates:
             if candidate and self._has_substantial_content(candidate):
                 self.logger.debug("Found main content using fallback pattern")
                 new_soup = BeautifulSoup('', 'html.parser')
                 new_soup.append(candidate.extract())
                 return new_soup
-        
+
         # Last resort: use body content
         body = soup.find('body')
         if body:
             self.logger.debug("Using body content as fallback")
             return soup
-        
+
         # If all else fails, return the soup as-is
         self.logger.warning("Could not identify main content area")
         return soup
-    
+
     def process_images(self, soup: BeautifulSoup) -> BeautifulSoup:
         """Process images in the content."""
         seen_srcs = set()
@@ -415,7 +415,7 @@ class ContentParser:
                 img.replace_with(placeholder)
 
         return soup
-    
+
     def _is_ui_icon(self, img: Tag, src: str) -> bool:
         """Check if image is a UI icon that should be removed."""
         # Dimension check FIRST – small images are icons regardless of path
@@ -461,7 +461,7 @@ class ContentParser:
             return True
 
         return False
-    
+
     def _is_documentation_image(self, img: Tag, src: str) -> bool:
         """Check if image is a documentation image that should be kept."""
         src_lower = src.lower()
@@ -501,13 +501,13 @@ class ContentParser:
             return True
 
         return False
-    
+
     def process_youtube_links(self, soup: BeautifulSoup) -> BeautifulSoup:
         """Process YouTube videos and convert to links.
-        
+
         Args:
             soup: BeautifulSoup object
-            
+
         Returns:
             BeautifulSoup object with YouTube videos converted to links
         """
@@ -519,7 +519,7 @@ class ContentParser:
                 video_link = self._create_youtube_link(src, soup)
                 if video_link:
                     iframe.replace_with(video_link)
-        
+
         # Process direct YouTube links
         for link in soup.find_all('a', href=True):
             href = link['href']
@@ -529,122 +529,122 @@ class ContentParser:
                     link.string = f"YouTube Video: {href}"
                 else:
                     link.string = f"🎥 {link.get_text().strip()}"
-        
+
         return soup
-    
+
     def _extract_text_content(self, soup: BeautifulSoup) -> str:
         """Extract clean text content from HTML.
-        
+
         Args:
             soup: BeautifulSoup object
-            
+
         Returns:
             Clean text content
         """
         # Get text and clean it up
         text = soup.get_text(separator=' ', strip=True)
-        
+
         # Normalize whitespace
         text = re.sub(r'\s+', ' ', text)
-        
+
         # Remove excessive newlines
         text = re.sub(r'\n\s*\n', '\n\n', text)
-        
+
         return text.strip()
-    
+
     def _extract_image_urls(self, soup: BeautifulSoup) -> List[str]:
         """Extract image URLs from HTML.
-        
+
         Args:
             soup: BeautifulSoup object
-            
+
         Returns:
             List of image URLs
         """
         image_urls = []
-        
+
         for img in soup.find_all('img'):
             src = img.get('src', '')
             if src and src not in image_urls:
                 image_urls.append(src)
-        
+
         return image_urls
-    
+
     def _has_substantial_content(self, element: Tag) -> bool:
         """Check if element has substantial content.
-        
+
         Args:
             element: BeautifulSoup element
-            
+
         Returns:
             True if element has substantial content
         """
         if not element:
             return False
-        
+
         text = element.get_text(strip=True)
-        
+
         # Check text length
         if len(text) < 100:
             return False
-        
+
         # Check for content indicators
         content_indicators = ['h1', 'h2', 'h3', 'p', 'article', 'section']
         has_structure = any(element.find(tag) for tag in content_indicators)
-        
+
         return has_structure
-    
+
     def _remove_empty_elements(self, soup: BeautifulSoup) -> None:
         """Remove empty elements from soup.
-        
+
         Args:
             soup: BeautifulSoup object to clean
         """
         # Elements that should be removed if empty
         removable_if_empty = ['p', 'div', 'span', 'section', 'article', 'aside']
-        
+
         for tag_name in removable_if_empty:
             for element in soup.find_all(tag_name):
                 if not element.get_text(strip=True) and not element.find_all(['img', 'video', 'audio', 'iframe']):
                     element.decompose()
-    
+
     def _create_youtube_link(self, src: str, soup: BeautifulSoup) -> Optional[Tag]:
         """Create a YouTube link from iframe src.
-        
+
         Args:
             src: iframe src URL
             soup: BeautifulSoup object for creating new elements
-            
+
         Returns:
             New link element or None
         """
         try:
             # Extract video ID from various YouTube URL formats
             video_id = None
-            
+
             if 'youtube.com/embed/' in src:
                 video_id = src.split('youtube.com/embed/')[-1].split('?')[0]
             elif 'youtube.com/watch?v=' in src:
                 video_id = src.split('v=')[-1].split('&')[0]
             elif 'youtu.be/' in src:
                 video_id = src.split('youtu.be/')[-1].split('?')[0]
-            
+
             if video_id:
                 # Create link element
                 link = soup.new_tag('a', href=f"https://www.youtube.com/watch?v={video_id}")
                 link.string = f"🎥 YouTube Video: https://www.youtube.com/watch?v={video_id}"
-                
+
                 # Wrap in paragraph for better formatting
                 paragraph = soup.new_tag('p')
                 paragraph.append(link)
-                
+
                 return paragraph
-        
+
         except Exception as e:
             self.logger.warning(f"Error creating YouTube link from {src}: {e}")
-        
-        return None    
-    
+
+        return None
+
     def _remove_navigation_text(self, soup: BeautifulSoup,
                                 content_el: Optional[Tag] = None) -> None:
         """Remove navigation text patterns that commonly appear in sidebars.
@@ -702,12 +702,12 @@ class ContentParser:
                 self.logger.debug(f"Removing short navigation text: {text}")
                 element.decompose()
                 continue
-        
+
         # Remove elements that contain multiple navigation items (like menu lists)
         for element in soup.find_all(['ul', 'ol', 'nav']):
             text = element.get_text(strip=True)
             nav_matches = sum(1 for pattern in nav_text_patterns if pattern.lower() in text.lower())
-            
+
             # If more than 3 navigation patterns are found, likely a navigation menu
             if nav_matches >= 3 and len(text) < 500:  # Not too long to avoid removing real content
                 self.logger.debug(f"Removing navigation menu with {nav_matches} nav items")

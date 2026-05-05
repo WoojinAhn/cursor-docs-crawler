@@ -1,0 +1,53 @@
+name: Lint
+
+on:
+  pull_request:
+    paths:
+      - '**.py'
+      - '.flake8'
+      - '.github/workflows/lint.yml'
+  workflow_dispatch:
+
+jobs:
+  flake8:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install flake8
+        run: pip install flake8
+
+      - name: Run flake8
+        run: flake8 src/ tests/
+
+      - name: Create failure issue
+        if: failure() && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          TRIGGER: ${{ github.event_name }}
+        run: |
+          TITLE="[CI] Lint failed ($(date -u +%Y-%m-%d))"
+          BODY="## Workflow Failure
+          **Workflow:** Lint
+          **Run:** $RUN_URL
+          **Date:** $(date -u +%Y-%m-%dT%H:%M:%SZ)
+          **Trigger:** $TRIGGER
+          Check the [workflow run logs]($RUN_URL) for details."
+
+          EXISTING=$(gh issue list --label ci-failure --state open --search "Lint failed" --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+            echo "Added comment to existing issue #$EXISTING"
+          else
+            gh label create ci-failure --color d73a4a --description "Automated CI failure report" 2>/dev/null || true
+            gh issue create --title "$TITLE" --body "$BODY" --label ci-failure
+          fi
