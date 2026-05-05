@@ -4,6 +4,7 @@ from src.config import Config
 from src.pdf_generator import PDFGenerator
 from src.models import PageContent
 
+
 def test_generate_pdf_success():
     pdf_gen = PDFGenerator(Config())
     page = PageContent(url="https://test.com", title="Test", content_html="<h1>Test</h1>", text_content="Test")
@@ -14,6 +15,7 @@ def test_generate_pdf_success():
         assert os.path.exists(path)
     finally:
         os.unlink(path)
+
 
 def test_deduplicate_pages():
     pdf_gen = PDFGenerator(Config())
@@ -29,7 +31,9 @@ def test_generate_pdf_fallback_when_sort_fails(monkeypatch):
     page = PageContent(url="https://test.com", title="Test", content_html="<h1>Test</h1>", text_content="Test")
 
     # page_sorter.sort_pages가 예외를 던지도록 패치
-    monkeypatch.setattr(pdf_gen.page_sorter, "sort_pages", lambda pages: (_ for _ in ()).throw(RuntimeError("sort failed")))
+    def _raise(_pages):
+        raise RuntimeError("sort failed")
+    monkeypatch.setattr(pdf_gen.page_sorter, "sort_pages", _raise)
 
     with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tmp:
         path = tmp.name

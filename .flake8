@@ -1,0 +1,16 @@
+[flake8]
+max-line-length = 120
+extend-ignore =
+    E203,
+    W503
+exclude =
+    .venv,
+    .git,
+    __pycache__,
+    build,
+    dist,
+    docs,
+    downloaded_files,
+    tests/fixtures
+per-file-ignores =
+    tests/*:E402

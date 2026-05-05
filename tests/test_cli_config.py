@@ -8,7 +8,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.config import Config, TestConfig
+from src.config import Config
 from src.pdf_generator import PDFGenerator
 from src.models import PageContent
 
@@ -75,7 +75,6 @@ def test_config_invalid_output_ext():
 def test_lang_supported_value(capsys):
     """지원되는 언어 코드는 그대로 config.LANGUAGE에 반영된다."""
     with patch("sys.argv", ["main.py", "--lang", "ja", "--test"]):
-        from main import main as main_fn
         import argparse
 
         parser = argparse.ArgumentParser()

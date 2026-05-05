@@ -1,7 +1,7 @@
-import pytest
 from src.config import Config
 from src.content_parser import ContentParser
 from src.models import PageData
+
 
 def test_parse_page_basic():
     parser = ContentParser(Config())
@@ -12,6 +12,7 @@ def test_parse_page_basic():
     assert result.word_count > 0
     assert result.image_count == 1
 
+
 def test_parse_page_fallback():
     parser = ContentParser(Config())
     # BeautifulSoup이 파싱할 수 없는 이상한 HTML로 Exception 유발
@@ -21,4 +22,4 @@ def test_parse_page_fallback():
     result = parser.parse_page(page)
     # 정상적으로 파싱되어야 함 (script 태그 제거됨)
     assert "Content" in result.content_html
-    assert "script" not in result.content_html.lower() 
+    assert "script" not in result.content_html.lower()
