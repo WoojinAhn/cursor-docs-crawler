@@ -9,7 +9,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from main import seed_from_llms_txt
+from src.seed import seed_from_llms_txt
 from src.config import Config
 from src.url_manager import URLManager
 from src.models import PageData
@@ -45,7 +45,7 @@ def test_seed_from_llms_txt_success():
     mock_resp.__enter__ = lambda s: s
     mock_resp.__exit__ = MagicMock(return_value=False)
 
-    with patch("main.urlopen", return_value=mock_resp):
+    with patch("src.seed.urlopen", return_value=mock_resp):
         seeded = seed_from_llms_txt(mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX)
 
     # Returns the set of canonical URLs from llms.txt
@@ -64,7 +64,7 @@ def test_seed_from_llms_txt_strips_md_suffix():
     mock_resp.__enter__ = lambda s: s
     mock_resp.__exit__ = MagicMock(return_value=False)
 
-    with patch("main.urlopen", return_value=mock_resp):
+    with patch("src.seed.urlopen", return_value=mock_resp):
         seed_from_llms_txt(mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX)
 
     # Should have added https://cursor.com/docs/plugins (without .md)
@@ -75,7 +75,7 @@ def test_seed_from_llms_txt_network_error():
     """네트워크 오류 시 0을 반환하고 크래시하지 않는다."""
     mgr = _make_url_manager()
 
-    with patch("main.urlopen", side_effect=URLError("Connection refused")):
+    with patch("src.seed.urlopen", side_effect=URLError("Connection refused")):
         seeded = seed_from_llms_txt(mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX)
 
     assert seeded == set()
@@ -92,7 +92,7 @@ def test_seed_from_llms_txt_uses_fallback_on_network_error(tmp_path):
         encoding="utf-8",
     )
 
-    with patch("main.urlopen", side_effect=URLError("dns failure")):
+    with patch("src.seed.urlopen", side_effect=URLError("dns failure")):
         seeded = seed_from_llms_txt(
             mgr,
             "https://cursor.com/llms.txt",
@@ -111,7 +111,7 @@ def test_seed_from_llms_txt_no_fallback_returns_empty(tmp_path):
     mgr = _make_url_manager()
     missing = tmp_path / "does-not-exist.txt"
 
-    with patch("main.urlopen", side_effect=URLError("offline")):
+    with patch("src.seed.urlopen", side_effect=URLError("offline")):
         seeded = seed_from_llms_txt(
             mgr,
             "https://cursor.com/llms.txt",
@@ -137,7 +137,7 @@ def test_seed_from_llms_txt_rejects_html_response_uses_fallback(tmp_path):
     )
     mock_resp = _mock_urlopen_response(html_body)
 
-    with patch("main.urlopen", return_value=mock_resp):
+    with patch("src.seed.urlopen", return_value=mock_resp):
         seeded = seed_from_llms_txt(
             mgr,
             "https://cursor.com/llms.txt",
@@ -155,7 +155,7 @@ def test_seed_from_llms_txt_rejects_html_response_no_fallback():
     html_body = "<!DOCTYPE html><html><body>blocked</body></html>"
     mock_resp = _mock_urlopen_response(html_body)
 
-    with patch("main.urlopen", return_value=mock_resp):
+    with patch("src.seed.urlopen", return_value=mock_resp):
         seeded = seed_from_llms_txt(
             mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX
         )
@@ -169,7 +169,7 @@ def test_seed_from_llms_txt_accepts_markdown_with_leading_whitespace():
     body = "\n  \n# Cursor Docs\n- [Page](https://cursor.com/docs/api.md)\n"
     mock_resp = _mock_urlopen_response(body)
 
-    with patch("main.urlopen", return_value=mock_resp):
+    with patch("src.seed.urlopen", return_value=mock_resp):
         seeded = seed_from_llms_txt(
             mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX
         )
