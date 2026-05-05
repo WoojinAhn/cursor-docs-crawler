@@ -17,6 +17,15 @@ from src.models import PageData
 _DOCS_SEED_REGEX = Config._SCOPE_MAP["docs"]["seed_regex"]
 
 
+def _mock_urlopen_response(body: str):
+    """Build a context-manager mock for urlopen returning *body*."""
+    mock_resp = MagicMock()
+    mock_resp.read.return_value = body.encode()
+    mock_resp.__enter__ = lambda s: s
+    mock_resp.__exit__ = MagicMock(return_value=False)
+    return mock_resp
+
+
 # --- seed_from_llms_txt ---
 
 def _make_url_manager():
@@ -70,6 +79,102 @@ def test_seed_from_llms_txt_network_error():
         seeded = seed_from_llms_txt(mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX)
 
     assert seeded == set()
+
+
+def test_seed_from_llms_txt_uses_fallback_on_network_error(tmp_path):
+    """네트워크 실패 + fallback 파일 존재 시 캐시에서 시딩한다."""
+    mgr = _make_url_manager()
+    fallback = tmp_path / "llms-txt-snapshot.txt"
+    fallback.write_text(
+        "# Cursor Docs\n"
+        "- [Quickstart](https://cursor.com/docs/quickstart.md)\n"
+        "- [Models](https://cursor.com/docs/models.md)\n",
+        encoding="utf-8",
+    )
+
+    with patch("main.urlopen", side_effect=URLError("dns failure")):
+        seeded = seed_from_llms_txt(
+            mgr,
+            "https://cursor.com/llms.txt",
+            _DOCS_SEED_REGEX,
+            fallback_path=str(fallback),
+        )
+
+    assert "https://cursor.com/docs/quickstart" in seeded
+    assert "https://cursor.com/docs/models" in seeded
+    # URLs are added to the manager queue
+    assert "https://cursor.com/docs/quickstart" in mgr._queued_urls
+
+
+def test_seed_from_llms_txt_no_fallback_returns_empty(tmp_path):
+    """네트워크 실패 + fallback 파일 부재 시 빈 셋을 반환한다."""
+    mgr = _make_url_manager()
+    missing = tmp_path / "does-not-exist.txt"
+
+    with patch("main.urlopen", side_effect=URLError("offline")):
+        seeded = seed_from_llms_txt(
+            mgr,
+            "https://cursor.com/llms.txt",
+            _DOCS_SEED_REGEX,
+            fallback_path=str(missing),
+        )
+
+    assert seeded == set()
+
+
+def test_seed_from_llms_txt_rejects_html_response_uses_fallback(tmp_path):
+    """봇 차단 HTML 응답은 거부하고 fallback을 사용한다."""
+    mgr = _make_url_manager()
+    fallback = tmp_path / "llms-txt-snapshot.txt"
+    fallback.write_text(
+        "# Cursor Docs\n- [Page](https://cursor.com/docs/cached.md)\n",
+        encoding="utf-8",
+    )
+
+    html_body = (
+        "<html><head><title>Just a moment...</title></head>"
+        "<body>Verifying you are human</body></html>"
+    )
+    mock_resp = _mock_urlopen_response(html_body)
+
+    with patch("main.urlopen", return_value=mock_resp):
+        seeded = seed_from_llms_txt(
+            mgr,
+            "https://cursor.com/llms.txt",
+            _DOCS_SEED_REGEX,
+            fallback_path=str(fallback),
+        )
+
+    # HTML body must not be parsed as llms.txt
+    assert seeded == {"https://cursor.com/docs/cached"}
+
+
+def test_seed_from_llms_txt_rejects_html_response_no_fallback():
+    """봇 차단 HTML 응답 + fallback 없음 → 빈 셋."""
+    mgr = _make_url_manager()
+    html_body = "<!DOCTYPE html><html><body>blocked</body></html>"
+    mock_resp = _mock_urlopen_response(html_body)
+
+    with patch("main.urlopen", return_value=mock_resp):
+        seeded = seed_from_llms_txt(
+            mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX
+        )
+
+    assert seeded == set()
+
+
+def test_seed_from_llms_txt_accepts_markdown_with_leading_whitespace():
+    """선행 공백/개행이 있어도 '#'으로 시작하면 유효한 llms.txt로 인정한다."""
+    mgr = _make_url_manager()
+    body = "\n  \n# Cursor Docs\n- [Page](https://cursor.com/docs/api.md)\n"
+    mock_resp = _mock_urlopen_response(body)
+
+    with patch("main.urlopen", return_value=mock_resp):
+        seeded = seed_from_llms_txt(
+            mgr, "https://cursor.com/llms.txt", _DOCS_SEED_REGEX
+        )
+
+    assert "https://cursor.com/docs/api" in seeded
 
 
 # --- redirect filter logic ---
