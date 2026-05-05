@@ -1,0 +1,48 @@
+name: Actionlint
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download actionlint
+        id: get_actionlint
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+        shell: bash
+
+      - name: Run actionlint
+        run: ${{ steps.get_actionlint.outputs.executable }} -color
+        shell: bash
+
+      - name: Create failure issue
+        if: failure() && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE="[CI] Actionlint failed ($(date -u +%Y-%m-%d))"
+          BODY="## Workflow Failure
+          **Workflow:** Actionlint
+          **Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          **Date:** $(date -u +%Y-%m-%dT%H:%M:%SZ)
+          **Trigger:** ${{ github.event_name }}
+          Check the [workflow run logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details."
+
+          EXISTING=$(gh issue list --label ci-failure --state open --search "Actionlint failed" --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY"
+            echo "Added comment to existing issue #$EXISTING"
+          else
+            gh label create ci-failure --color d73a4a --description "Automated CI failure report" 2>/dev/null || true
+            gh issue create --title "$TITLE" --body "$BODY" --label ci-failure
+          fi
