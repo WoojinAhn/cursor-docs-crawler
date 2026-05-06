@@ -227,4 +227,4 @@ All documentation is available in multiple languages. To access a specific langu
 - French: `https://cursor.com/fr/docs/bugbot.md`
 - And more...
 
-Available languages: cn, ja, zh-Hant, es, fr, pt-BR, ko, ru, tr, id, de
+Available languages: cn, ja, zh-Hant, es, fr, pt-BR, ko, ru, tr, id, de, hi
