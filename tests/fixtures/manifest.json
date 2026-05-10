@@ -27,6 +27,7 @@
       "https://cursor.com/docs/cloud-agent/capabilities",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
+      "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
@@ -59,10 +60,10 @@
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-3-codex",
       "https://cursor.com/docs/models/gpt-5-5",
-      "https://cursor.com/docs/models/grok-4-20"
+      "https://cursor.com/docs/models/grok-4-3"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-05-03T06:08:01.607612"
+    "saved_at": "2026-05-10T06:14:16.674703"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -80,7 +81,7 @@
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-5",
       "https://cursor.com/docs/models/gpt-5-3-codex",
-      "https://cursor.com/docs/models/grok-4-20",
+      "https://cursor.com/docs/models/grok-4-3",
       "https://cursor.com/docs/models/cursor-composer-2",
       "https://cursor.com/docs/agent/overview",
       "https://cursor.com/docs/agent/agents-window",
@@ -100,6 +101,7 @@
       "https://cursor.com/docs/cloud-agent/capabilities",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
+      "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
@@ -129,11 +131,11 @@
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-3-codex",
       "https://cursor.com/docs/models/gpt-5-5",
-      "https://cursor.com/docs/models/grok-4-20",
+      "https://cursor.com/docs/models/grok-4-3",
       "https://cursor.com/docs/account/teams/pricing"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-05-03T06:08:06.703288"
+    "saved_at": "2026-05-10T06:14:21.741390"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -163,6 +165,7 @@
       "https://cursor.com/docs/cloud-agent/capabilities",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
+      "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
@@ -202,10 +205,10 @@
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gpt-5-3-codex",
       "https://cursor.com/docs/models/gpt-5-5",
-      "https://cursor.com/docs/models/grok-4-20"
+      "https://cursor.com/docs/models/grok-4-3"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-05-03T06:08:11.876227"
+    "saved_at": "2026-05-10T06:14:26.669219"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -235,6 +238,7 @@
       "https://cursor.com/docs/cloud-agent/capabilities",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
+      "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
@@ -262,7 +266,7 @@
       "https://cursor.com/docs/agent/tools/browser"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-05-03T06:08:16.414601"
+    "saved_at": "2026-05-10T06:14:31.225653"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -274,7 +278,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-05-03T06:08:20.923106"
+    "saved_at": "2026-05-10T06:14:35.750200"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -304,6 +308,7 @@
       "https://cursor.com/docs/cloud-agent/capabilities",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
+      "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
@@ -328,7 +333,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-05-03T06:08:25.452362"
+    "saved_at": "2026-05-10T06:14:40.327647"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -356,6 +361,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints#archive-an-agent",
       "https://cursor.com/docs/cloud-agent/api/endpoints#unarchive-an-agent",
       "https://cursor.com/docs/cloud-agent/api/endpoints#delete-an-agent-permanently",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#worker-tokens",
       "https://cursor.com/docs/cloud-agent/api/endpoints#api-key-info",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-models",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-github-repositories",
@@ -408,7 +414,7 @@
       "https://cursor.com/docs/account/enterprise/service-accounts"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-05-03T06:08:30.013847"
+    "saved_at": "2026-05-10T06:14:44.911083"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -438,6 +444,7 @@
       "https://cursor.com/docs/cloud-agent/capabilities",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
+      "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
@@ -466,7 +473,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-05-03T06:08:34.530556"
+    "saved_at": "2026-05-10T06:14:49.450576"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -496,6 +503,7 @@
       "https://cursor.com/docs/cloud-agent/capabilities",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
+      "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
@@ -521,7 +529,7 @@
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-05-03T06:08:39.364146"
+    "saved_at": "2026-05-10T06:14:54.204189"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -551,6 +559,7 @@
       "https://cursor.com/docs/cloud-agent/capabilities",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
+      "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
@@ -640,6 +649,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-05-03T06:08:43.905324"
+    "saved_at": "2026-05-10T06:14:58.767208"
   }
 ]
