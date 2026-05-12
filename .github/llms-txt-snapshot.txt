@@ -57,6 +57,7 @@
 ## Integrations
 
 - https://cursor.com/docs/integrations/slack.md
+- https://cursor.com/docs/integrations/microsoft-teams.md
 - https://cursor.com/docs/integrations/linear.md
 - https://cursor.com/docs/integrations/github.md
 - https://cursor.com/docs/integrations/gitlab.md
@@ -191,6 +192,7 @@
 - https://cursor.com/help/account-and-billing/teams-management.md
 - https://cursor.com/help/account-and-billing/invoices.md
 - https://cursor.com/help/account-and-billing/overages.md
+- https://cursor.com/help/account-and-billing/bugbot-usage-based-billing.md
 - https://cursor.com/help/account-and-billing/spend-alerts.md
 - https://cursor.com/help/account-and-billing/spend-limits.md
 - https://cursor.com/help/account-and-billing/enterprise.md
