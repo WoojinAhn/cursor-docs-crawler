@@ -29,13 +29,14 @@
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
-      "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/cloud-agent/security-network",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
+      "https://cursor.com/docs/integrations/microsoft-teams",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -63,7 +64,7 @@
       "https://cursor.com/docs/models/grok-4-3"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-05-10T06:14:16.674703"
+    "saved_at": "2026-05-17T06:25:18.512852"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -103,13 +104,14 @@
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
-      "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/cloud-agent/security-network",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
+      "https://cursor.com/docs/integrations/microsoft-teams",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -135,7 +137,7 @@
       "https://cursor.com/docs/account/teams/pricing"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-05-10T06:14:21.741390"
+    "saved_at": "2026-05-17T06:25:23.569830"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -167,13 +169,14 @@
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
-      "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/cloud-agent/security-network",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
+      "https://cursor.com/docs/integrations/microsoft-teams",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -208,7 +211,7 @@
       "https://cursor.com/docs/models/grok-4-3"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-05-10T06:14:26.669219"
+    "saved_at": "2026-05-17T06:25:28.589485"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -240,13 +243,14 @@
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
-      "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/cloud-agent/security-network",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
+      "https://cursor.com/docs/integrations/microsoft-teams",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -266,7 +270,7 @@
       "https://cursor.com/docs/agent/tools/browser"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-05-10T06:14:31.225653"
+    "saved_at": "2026-05-17T06:25:33.139439"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -278,7 +282,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-05-10T06:14:35.750200"
+    "saved_at": "2026-05-17T06:25:37.657482"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -310,13 +314,14 @@
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
-      "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/cloud-agent/security-network",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
+      "https://cursor.com/docs/integrations/microsoft-teams",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -333,7 +338,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-05-10T06:14:40.327647"
+    "saved_at": "2026-05-17T06:25:42.511948"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -414,7 +419,7 @@
       "https://cursor.com/docs/account/enterprise/service-accounts"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-05-10T06:14:44.911083"
+    "saved_at": "2026-05-17T06:25:47.076936"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -446,13 +451,14 @@
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
-      "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/cloud-agent/security-network",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
+      "https://cursor.com/docs/integrations/microsoft-teams",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -473,7 +479,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-05-10T06:14:49.450576"
+    "saved_at": "2026-05-17T06:25:51.600124"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -505,13 +511,14 @@
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
-      "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/cloud-agent/security-network",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
+      "https://cursor.com/docs/integrations/microsoft-teams",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -529,7 +536,7 @@
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-05-10T06:14:54.204189"
+    "saved_at": "2026-05-17T06:25:56.437469"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -561,13 +568,14 @@
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
       "https://cursor.com/docs/bugbot",
-      "https://cursor.com/docs/security-review",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/cloud-agent/security-network",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
+      "https://cursor.com/docs/integrations/microsoft-teams",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -649,6 +657,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-05-10T06:14:58.767208"
+    "saved_at": "2026-05-17T06:26:00.992107"
   }
 ]
