@@ -69,6 +69,7 @@
 ## SDK
 
 - https://cursor.com/docs/sdk/typescript.md
+- https://cursor.com/docs/sdk/python.md
 
 ## cli
 
