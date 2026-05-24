@@ -37,6 +37,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
       "https://cursor.com/docs/integrations/microsoft-teams",
+      "https://cursor.com/docs/integrations/jira",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -44,6 +45,7 @@
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
+      "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -57,14 +59,15 @@
       "https://cursor.com/docs/models-and-pricing",
       "https://cursor.com/docs/models/claude-4-6-sonnet",
       "https://cursor.com/docs/models/claude-opus-4-7",
-      "https://cursor.com/docs/models/cursor-composer-2",
+      "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
+      "https://cursor.com/docs/models/gemini-3-5-flash",
       "https://cursor.com/docs/models/gpt-5-3-codex",
       "https://cursor.com/docs/models/gpt-5-5",
       "https://cursor.com/docs/models/grok-4-3"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-05-17T06:25:18.512852"
+    "saved_at": "2026-05-24T06:39:35.792348"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -80,10 +83,11 @@
       "https://cursor.com/docs/models/claude-4-6-sonnet",
       "https://cursor.com/docs/models/claude-opus-4-7",
       "https://cursor.com/docs/models/gemini-3-1-pro",
+      "https://cursor.com/docs/models/gemini-3-5-flash",
       "https://cursor.com/docs/models/gpt-5-5",
       "https://cursor.com/docs/models/gpt-5-3-codex",
       "https://cursor.com/docs/models/grok-4-3",
-      "https://cursor.com/docs/models/cursor-composer-2",
+      "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/agent/overview",
       "https://cursor.com/docs/agent/agents-window",
       "https://cursor.com/docs/agent/agent-review",
@@ -112,6 +116,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
       "https://cursor.com/docs/integrations/microsoft-teams",
+      "https://cursor.com/docs/integrations/jira",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -119,25 +124,27 @@
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
+      "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
-      "https://cursor.com/docs/models/cursor-composer-2",
-      "https://cursor.com/docs/models/cursor-composer-2",
+      "https://cursor.com/docs/models/cursor-composer-2-5",
+      "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/claude-4-6-sonnet",
       "https://cursor.com/docs/models/claude-opus-4-7",
-      "https://cursor.com/docs/models/cursor-composer-2",
+      "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
+      "https://cursor.com/docs/models/gemini-3-5-flash",
       "https://cursor.com/docs/models/gpt-5-3-codex",
       "https://cursor.com/docs/models/gpt-5-5",
       "https://cursor.com/docs/models/grok-4-3",
       "https://cursor.com/docs/account/teams/pricing"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-05-17T06:25:23.569830"
+    "saved_at": "2026-05-24T06:39:41.100076"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -177,6 +184,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
       "https://cursor.com/docs/integrations/microsoft-teams",
+      "https://cursor.com/docs/integrations/jira",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -184,6 +192,7 @@
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
+      "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -204,14 +213,15 @@
       "https://cursor.com/docs/enterprise",
       "https://cursor.com/docs/models/claude-4-6-sonnet",
       "https://cursor.com/docs/models/claude-opus-4-7",
-      "https://cursor.com/docs/models/cursor-composer-2",
+      "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
+      "https://cursor.com/docs/models/gemini-3-5-flash",
       "https://cursor.com/docs/models/gpt-5-3-codex",
       "https://cursor.com/docs/models/gpt-5-5",
       "https://cursor.com/docs/models/grok-4-3"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-05-17T06:25:28.589485"
+    "saved_at": "2026-05-24T06:39:46.145988"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -251,6 +261,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
       "https://cursor.com/docs/integrations/microsoft-teams",
+      "https://cursor.com/docs/integrations/jira",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -258,6 +269,7 @@
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
+      "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -270,7 +282,7 @@
       "https://cursor.com/docs/agent/tools/browser"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-05-17T06:25:33.139439"
+    "saved_at": "2026-05-24T06:39:50.694335"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -282,7 +294,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-05-17T06:25:37.657482"
+    "saved_at": "2026-05-24T06:39:55.214899"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -322,6 +334,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
       "https://cursor.com/docs/integrations/microsoft-teams",
+      "https://cursor.com/docs/integrations/jira",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -329,6 +342,7 @@
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
+      "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -338,7 +352,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-05-17T06:25:42.511948"
+    "saved_at": "2026-05-24T06:39:59.761097"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -367,6 +381,10 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints#unarchive-an-agent",
       "https://cursor.com/docs/cloud-agent/api/endpoints#delete-an-agent-permanently",
       "https://cursor.com/docs/cloud-agent/api/endpoints#worker-tokens",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#list-workers",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#get-fleet-summary",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#get-worker-by-id",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#list-pending-pool-requests",
       "https://cursor.com/docs/cloud-agent/api/endpoints#api-key-info",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-models",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-github-repositories",
@@ -416,10 +434,12 @@
       "https://cursor.com/docs/account/teams/ai-code-tracking-api",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/sdk/typescript",
+      "https://cursor.com/docs/sdk/python",
+      "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/account/enterprise/service-accounts"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-05-17T06:25:47.076936"
+    "saved_at": "2026-05-24T06:40:04.333698"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -459,6 +479,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
       "https://cursor.com/docs/integrations/microsoft-teams",
+      "https://cursor.com/docs/integrations/jira",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -466,6 +487,7 @@
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
+      "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -473,13 +495,14 @@
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
       "https://cursor.com/docs/reference/ignore-file",
-      "https://cursor.com/docs/agent/overview#tools",
+      "https://cursor.com/docs/agent/tools/terminal#auto-run-mode",
+      "https://cursor.com/docs/agent/tools/terminal#protection-settings",
       "https://cursor.com/docs/reference/permissions",
       "https://cursor.com/docs/mcp",
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-05-17T06:25:51.600124"
+    "saved_at": "2026-05-24T06:40:08.869649"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -519,6 +542,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
       "https://cursor.com/docs/integrations/microsoft-teams",
+      "https://cursor.com/docs/integrations/jira",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -526,6 +550,7 @@
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
+      "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -536,7 +561,7 @@
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-05-17T06:25:56.437469"
+    "saved_at": "2026-05-24T06:40:13.750881"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -576,6 +601,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints",
       "https://cursor.com/docs/integrations/slack",
       "https://cursor.com/docs/integrations/microsoft-teams",
+      "https://cursor.com/docs/integrations/jira",
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
@@ -583,6 +609,7 @@
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
+      "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -592,6 +619,7 @@
       "https://cursor.com/docs/enterprise",
       "https://cursor.com/docs/enterprise/privacy-and-data-governance",
       "https://cursor.com/docs/enterprise/network-configuration",
+      "https://cursor.com/docs/enterprise/endpoint-security",
       "https://cursor.com/docs/enterprise/llm-safety-and-controls",
       "https://cursor.com/docs/enterprise/model-and-integration-management",
       "https://cursor.com/docs/enterprise/pooled-usage",
@@ -604,6 +632,7 @@
       "https://cursor.com/docs/enterprise/identity-and-access-management",
       "https://cursor.com/docs/enterprise/privacy-and-data-governance",
       "https://cursor.com/docs/enterprise/network-configuration",
+      "https://cursor.com/docs/enterprise/endpoint-security",
       "https://cursor.com/docs/enterprise/llm-safety-and-controls",
       "https://cursor.com/docs/enterprise/model-and-integration-management",
       "https://cursor.com/docs/enterprise/compliance-and-monitoring",
@@ -657,6 +686,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-05-17T06:26:00.992107"
+    "saved_at": "2026-05-24T06:40:18.312679"
   }
 ]
