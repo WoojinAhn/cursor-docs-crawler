@@ -86,6 +86,16 @@
   - https://cursor.com/docs/cli/reference/permissions.md
   - https://cursor.com/docs/cli/reference/configuration.md
 
+## cursor-review
+
+- https://cursor.com/docs/cursor-review/overview.md
+- https://cursor.com/docs/cursor-review/pr-inbox.md
+- https://cursor.com/docs/cursor-review/pr-page.md
+- https://cursor.com/docs/cursor-review/merge-queue.md
+- https://cursor.com/docs/cursor-review/cli/authentication.md
+- https://cursor.com/docs/cursor-review/cli/stacking.md
+- https://cursor.com/docs/cursor-review/cli/parameters.md
+
 ## Account
 
 - https://cursor.com/docs/account/teams/setup.md
