@@ -105,10 +105,12 @@
   - https://cursor.com/docs/account/teams/dashboard.md
   - https://cursor.com/docs/account/teams/analytics.md
 - https://cursor.com/docs/enterprise.md
+  - https://cursor.com/docs/enterprise/organizations.md
   - https://cursor.com/docs/enterprise/identity-and-access-management.md
     - https://cursor.com/docs/account/teams/scim.md
   - https://cursor.com/docs/enterprise/privacy-and-data-governance.md
   - https://cursor.com/docs/enterprise/network-configuration.md
+  - https://cursor.com/docs/enterprise/private-connectivity.md
   - https://cursor.com/docs/enterprise/endpoint-security.md
   - https://cursor.com/docs/enterprise/llm-safety-and-controls.md
   - https://cursor.com/docs/enterprise/model-and-integration-management.md
@@ -196,6 +198,7 @@
 - https://cursor.com/help/security-and-privacy/regions.md
 - https://cursor.com/help/security-and-privacy/compliance.md
 - https://cursor.com/help/security-and-privacy/sso.md
+- https://cursor.com/help/security-and-privacy/account-compromised.md
 - https://cursor.com/help/security-and-privacy/marketplace-security.md
 
 ## Account and billing
