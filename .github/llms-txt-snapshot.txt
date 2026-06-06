@@ -153,12 +153,18 @@
 
 - https://cursor.com/help/getting-started/install.md
 - https://cursor.com/help/getting-started/first-project.md
+- https://cursor.com/help/getting-started/build-ai-coding-agent.md
 - https://cursor.com/help/getting-started/migrate-vscode.md
 - https://cursor.com/help/getting-started/migrate-jetbrains.md
 
 ## AI features
 
 - https://cursor.com/help/ai-features/agent.md
+- https://cursor.com/help/ai-features/coding-agents.md
+- https://cursor.com/help/ai-features/agentic-coding.md
+- https://cursor.com/help/ai-features/ai-pair-programming.md
+- https://cursor.com/help/ai-features/multi-agent.md
+- https://cursor.com/help/ai-features/vibe-coding.md
 - https://cursor.com/help/ai-features/plan-mode.md
 - https://cursor.com/help/ai-features/ask-mode.md
 - https://cursor.com/help/ai-features/debug-mode.md
@@ -168,6 +174,7 @@
 - https://cursor.com/help/ai-features/terminal.md
 - https://cursor.com/help/ai-features/browser.md
 - https://cursor.com/help/ai-features/cloud-agents.md
+- https://cursor.com/help/ai-features/background-agents.md
 - https://cursor.com/help/ai-features/automations.md
 - https://cursor.com/help/ai-features/shared-transcripts.md
 - https://cursor.com/help/ai-features/bugbot.md
