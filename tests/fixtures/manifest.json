@@ -52,6 +52,10 @@
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
+      "https://cursor.com/docs/cursor-review/overview",
+      "https://cursor.com/docs/cursor-review/pr-inbox",
+      "https://cursor.com/docs/cursor-review/pr-page",
+      "https://cursor.com/docs/cursor-review/merge-queue",
       "https://cursor.com/docs/get-started/quickstart",
       "https://cursor.com/docs/models-and-pricing",
       "https://cursor.com/docs/rules",
@@ -67,7 +71,7 @@
       "https://cursor.com/docs/models/grok-build-0-1"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-05-31T07:00:09.200205"
+    "saved_at": "2026-06-07T07:07:38.270188"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -131,6 +135,10 @@
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
+      "https://cursor.com/docs/cursor-review/overview",
+      "https://cursor.com/docs/cursor-review/pr-inbox",
+      "https://cursor.com/docs/cursor-review/pr-page",
+      "https://cursor.com/docs/cursor-review/merge-queue",
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/claude-4-6-sonnet",
@@ -144,7 +152,7 @@
       "https://cursor.com/docs/account/teams/pricing"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-05-31T07:00:14.853640"
+    "saved_at": "2026-06-07T07:07:43.367754"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -199,6 +207,10 @@
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
+      "https://cursor.com/docs/cursor-review/overview",
+      "https://cursor.com/docs/cursor-review/pr-inbox",
+      "https://cursor.com/docs/cursor-review/pr-page",
+      "https://cursor.com/docs/cursor-review/merge-queue",
       "https://cursor.com/docs/account/teams/setup",
       "https://cursor.com/docs/account/teams/pricing",
       "https://cursor.com/docs/account/teams/members",
@@ -221,7 +233,7 @@
       "https://cursor.com/docs/models/grok-build-0-1"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-05-31T07:00:20.042214"
+    "saved_at": "2026-06-07T07:07:48.234641"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -276,13 +288,17 @@
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
+      "https://cursor.com/docs/cursor-review/overview",
+      "https://cursor.com/docs/cursor-review/pr-inbox",
+      "https://cursor.com/docs/cursor-review/pr-page",
+      "https://cursor.com/docs/cursor-review/merge-queue",
       "https://cursor.com/docs/rules",
       "https://cursor.com/docs/agent/tools/search",
       "https://cursor.com/docs/rules",
       "https://cursor.com/docs/agent/tools/browser"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-05-31T07:00:24.595636"
+    "saved_at": "2026-06-07T07:07:52.787794"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -294,7 +310,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-05-31T07:00:29.114718"
+    "saved_at": "2026-06-07T07:07:57.307069"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -349,10 +365,14 @@
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
+      "https://cursor.com/docs/cursor-review/overview",
+      "https://cursor.com/docs/cursor-review/pr-inbox",
+      "https://cursor.com/docs/cursor-review/pr-page",
+      "https://cursor.com/docs/cursor-review/merge-queue",
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-05-31T07:00:33.665742"
+    "saved_at": "2026-06-07T07:08:01.861970"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -439,7 +459,7 @@
       "https://cursor.com/docs/account/enterprise/service-accounts"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-05-31T07:00:38.540017"
+    "saved_at": "2026-06-07T07:08:06.434185"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -494,6 +514,10 @@
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
+      "https://cursor.com/docs/cursor-review/overview",
+      "https://cursor.com/docs/cursor-review/pr-inbox",
+      "https://cursor.com/docs/cursor-review/pr-page",
+      "https://cursor.com/docs/cursor-review/merge-queue",
       "https://cursor.com/docs/reference/ignore-file",
       "https://cursor.com/docs/agent/tools/terminal#run-mode",
       "https://cursor.com/docs/agent/tools/terminal#how-auto-review-works",
@@ -503,7 +527,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-05-31T07:00:43.082444"
+    "saved_at": "2026-06-07T07:08:10.975498"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -558,11 +582,15 @@
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
+      "https://cursor.com/docs/cursor-review/overview",
+      "https://cursor.com/docs/cursor-review/pr-inbox",
+      "https://cursor.com/docs/cursor-review/pr-page",
+      "https://cursor.com/docs/cursor-review/merge-queue",
       "https://cursor.com/docs/enterprise",
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-05-31T07:00:47.832909"
+    "saved_at": "2026-06-07T07:08:15.862617"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -617,9 +645,15 @@
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
+      "https://cursor.com/docs/cursor-review/overview",
+      "https://cursor.com/docs/cursor-review/pr-inbox",
+      "https://cursor.com/docs/cursor-review/pr-page",
+      "https://cursor.com/docs/cursor-review/merge-queue",
       "https://cursor.com/docs/enterprise",
+      "https://cursor.com/docs/enterprise/organizations",
       "https://cursor.com/docs/enterprise/privacy-and-data-governance",
       "https://cursor.com/docs/enterprise/network-configuration",
+      "https://cursor.com/docs/enterprise/private-connectivity",
       "https://cursor.com/docs/enterprise/endpoint-security",
       "https://cursor.com/docs/enterprise/llm-safety-and-controls",
       "https://cursor.com/docs/enterprise/model-and-integration-management",
@@ -630,9 +664,12 @@
       "https://cursor.com/docs/account/enterprise/service-accounts",
       "https://cursor.com/docs/account/enterprise/billing-groups",
       "https://cursor.com/docs/integrations/cursor-blame",
+      "https://cursor.com/docs/enterprise/organizations",
+      "https://cursor.com/docs/enterprise/organizations",
       "https://cursor.com/docs/enterprise/identity-and-access-management",
       "https://cursor.com/docs/enterprise/privacy-and-data-governance",
       "https://cursor.com/docs/enterprise/network-configuration",
+      "https://cursor.com/docs/enterprise/private-connectivity",
       "https://cursor.com/docs/enterprise/endpoint-security",
       "https://cursor.com/docs/enterprise/llm-safety-and-controls",
       "https://cursor.com/docs/enterprise/model-and-integration-management",
@@ -687,6 +724,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-05-31T07:00:52.385484"
+    "saved_at": "2026-06-07T07:08:20.418257"
   }
 ]
