@@ -115,6 +115,7 @@
   - https://cursor.com/docs/enterprise/endpoint-security.md
   - https://cursor.com/docs/enterprise/llm-safety-and-controls.md
   - https://cursor.com/docs/enterprise/model-and-integration-management.md
+  - https://cursor.com/docs/account/enterprise/cyber-safeguards.md
   - https://cursor.com/docs/enterprise/pooled-usage.md
   - https://cursor.com/docs/enterprise/compliance-and-monitoring.md
   - https://cursor.com/docs/enterprise/baa.md
