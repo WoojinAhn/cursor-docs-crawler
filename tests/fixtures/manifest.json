@@ -25,6 +25,7 @@
       "https://cursor.com/docs/cloud-agent",
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/capabilities",
+      "https://cursor.com/docs/cloud-agent/choose-runtime",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
@@ -42,6 +43,8 @@
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
+      "https://cursor.com/docs/integrations/azure-devops",
+      "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
@@ -74,7 +77,7 @@
       "https://cursor.com/docs/models/grok-build-0-1"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-06-14T07:25:01.044629"
+    "saved_at": "2026-06-21T08:02:18.928599"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -112,6 +115,7 @@
       "https://cursor.com/docs/cloud-agent",
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/capabilities",
+      "https://cursor.com/docs/cloud-agent/choose-runtime",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
@@ -129,6 +133,8 @@
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
+      "https://cursor.com/docs/integrations/azure-devops",
+      "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
@@ -159,7 +165,7 @@
       "https://cursor.com/docs/account/teams/pricing"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-06-14T07:25:06.404572"
+    "saved_at": "2026-06-21T08:02:24.349744"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -187,6 +193,7 @@
       "https://cursor.com/docs/cloud-agent",
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/capabilities",
+      "https://cursor.com/docs/cloud-agent/choose-runtime",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
@@ -204,6 +211,8 @@
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
+      "https://cursor.com/docs/integrations/azure-devops",
+      "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
@@ -243,7 +252,7 @@
       "https://cursor.com/docs/models/grok-build-0-1"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-06-14T07:25:11.719418"
+    "saved_at": "2026-06-21T08:02:29.557527"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -271,6 +280,7 @@
       "https://cursor.com/docs/cloud-agent",
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/capabilities",
+      "https://cursor.com/docs/cloud-agent/choose-runtime",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
@@ -288,6 +298,8 @@
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
+      "https://cursor.com/docs/integrations/azure-devops",
+      "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
@@ -310,7 +322,7 @@
       "https://cursor.com/docs/agent/tools/browser"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-06-14T07:25:16.296516"
+    "saved_at": "2026-06-21T08:02:34.107621"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -322,7 +334,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-06-14T07:25:20.846211"
+    "saved_at": "2026-06-21T08:02:38.643616"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -350,6 +362,7 @@
       "https://cursor.com/docs/cloud-agent",
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/capabilities",
+      "https://cursor.com/docs/cloud-agent/choose-runtime",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
@@ -367,6 +380,8 @@
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
+      "https://cursor.com/docs/integrations/azure-devops",
+      "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
@@ -386,7 +401,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-06-14T07:25:25.437987"
+    "saved_at": "2026-06-21T08:02:43.202055"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -424,6 +439,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-github-repositories",
       "https://cursor.com/docs/cloud-agent/api/webhooks",
       "https://cursor.com/docs/account/teams/admin-api",
+      "https://cursor.com/docs/account/organizations/organization-admin-api",
       "https://cursor.com/docs/account/teams/admin-api#get-team-members",
       "https://cursor.com/docs/account/teams/admin-api#get-audit-logs",
       "https://cursor.com/docs/account/teams/admin-api#get-daily-usage-data",
@@ -473,7 +489,7 @@
       "https://cursor.com/docs/account/enterprise/service-accounts"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-06-14T07:25:30.066882"
+    "saved_at": "2026-06-21T08:02:47.786633"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -501,6 +517,7 @@
       "https://cursor.com/docs/cloud-agent",
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/capabilities",
+      "https://cursor.com/docs/cloud-agent/choose-runtime",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
@@ -518,6 +535,8 @@
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
+      "https://cursor.com/docs/integrations/azure-devops",
+      "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
@@ -543,7 +562,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-06-14T07:25:34.619608"
+    "saved_at": "2026-06-21T08:02:52.331775"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -571,6 +590,7 @@
       "https://cursor.com/docs/cloud-agent",
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/capabilities",
+      "https://cursor.com/docs/cloud-agent/choose-runtime",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
@@ -588,6 +608,8 @@
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
+      "https://cursor.com/docs/integrations/azure-devops",
+      "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
@@ -608,7 +630,7 @@
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-06-14T07:25:40.075327"
+    "saved_at": "2026-06-21T08:02:57.074194"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -636,6 +658,7 @@
       "https://cursor.com/docs/cloud-agent",
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/capabilities",
+      "https://cursor.com/docs/cloud-agent/choose-runtime",
       "https://cursor.com/docs/cloud-agent/my-machines",
       "https://cursor.com/docs/cloud-agent/self-hosted-pool",
       "https://cursor.com/docs/cloud-agent/self-hosted-cloud-run",
@@ -653,6 +676,8 @@
       "https://cursor.com/docs/integrations/linear",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/integrations/gitlab",
+      "https://cursor.com/docs/integrations/azure-devops",
+      "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
       "https://cursor.com/docs/reference/deeplinks",
@@ -747,6 +772,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-06-14T07:25:44.655058"
+    "saved_at": "2026-06-21T08:03:01.637989"
   }
 ]
