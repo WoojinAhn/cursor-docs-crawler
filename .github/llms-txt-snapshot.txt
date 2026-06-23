@@ -24,12 +24,14 @@
 - https://cursor.com/docs/agent/plan-mode.md
 - https://cursor.com/docs/agent/prompting.md
 - https://cursor.com/docs/agent/debug-mode.md
+- https://cursor.com/docs/agent/design-mode.md
 - https://cursor.com/docs/agent/tools/terminal.md
   - https://cursor.com/docs/agent/tools/browser.md
   - https://cursor.com/docs/agent/tools/search.md
   - https://cursor.com/docs/agent/tools/canvas.md
   - https://cursor.com/docs/configuration/worktrees.md
 - https://cursor.com/docs/agent/security.md
+  - https://cursor.com/docs/agent/security/run-modes.md
 
 ## customizing
 
@@ -91,16 +93,6 @@
   - https://cursor.com/docs/cli/reference/authentication.md
   - https://cursor.com/docs/cli/reference/permissions.md
   - https://cursor.com/docs/cli/reference/configuration.md
-
-## cursor-review
-
-- https://cursor.com/docs/cursor-review/overview.md
-- https://cursor.com/docs/cursor-review/pr-inbox.md
-- https://cursor.com/docs/cursor-review/pr-page.md
-- https://cursor.com/docs/cursor-review/merge-queue.md
-- https://cursor.com/docs/cursor-review/cli/authentication.md
-- https://cursor.com/docs/cursor-review/cli/stacking.md
-- https://cursor.com/docs/cursor-review/cli/parameters.md
 
 ## Account
 
