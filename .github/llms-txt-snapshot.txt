@@ -35,6 +35,7 @@
 
 ## customizing
 
+- https://cursor.com/docs/customize-cursor.md
 - https://cursor.com/docs/plugins.md
 - https://cursor.com/docs/rules.md
 - https://cursor.com/docs/skills.md
