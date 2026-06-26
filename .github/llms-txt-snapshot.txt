@@ -106,6 +106,7 @@
   - https://cursor.com/docs/account/teams/analytics.md
 - https://cursor.com/docs/enterprise.md
   - https://cursor.com/docs/enterprise/organizations.md
+  - https://cursor.com/docs/enterprise/organization-groups.md
   - https://cursor.com/docs/enterprise/identity-and-access-management.md
     - https://cursor.com/docs/account/teams/scim.md
   - https://cursor.com/docs/enterprise/privacy-and-data-governance.md
