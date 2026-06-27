@@ -122,6 +122,7 @@
   - https://cursor.com/docs/enterprise/deployment-patterns.md
   - https://cursor.com/docs/account/enterprise/service-accounts.md
   - https://cursor.com/docs/account/enterprise/billing-groups.md
+  - https://cursor.com/docs/enterprise/security-hardening.md
   - https://cursor.com/docs/integrations/cursor-blame.md
 
 # CLI Documentation
