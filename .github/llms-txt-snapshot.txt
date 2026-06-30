@@ -48,6 +48,7 @@
 - https://cursor.com/docs/cloud-agent.md
 - https://cursor.com/docs/cloud-agent/setup.md
 - https://cursor.com/docs/cloud-agent/capabilities.md
+- https://cursor.com/docs/cloud-agent/mobile.md
 - https://cursor.com/docs/cloud-agent/choose-runtime.md
 - https://cursor.com/docs/cloud-agent/my-machines.md
 - https://cursor.com/docs/cloud-agent/self-hosted-pool.md
@@ -179,6 +180,7 @@
 - https://cursor.com/help/ai-features/browser.md
 - https://cursor.com/help/ai-features/cloud-agents.md
 - https://cursor.com/help/ai-features/background-agents.md
+- https://cursor.com/help/ai-features/mobile-app.md
 - https://cursor.com/help/ai-features/automations.md
 - https://cursor.com/help/ai-features/shared-transcripts.md
 - https://cursor.com/help/ai-features/bugbot.md
@@ -216,6 +218,7 @@
 
 - https://cursor.com/help/account-and-billing/pricing.md
 - https://cursor.com/help/account-and-billing/billing.md
+- https://cursor.com/help/account-and-billing/app-store-subscription.md
 - https://cursor.com/help/account-and-billing/teams-setup.md
 - https://cursor.com/help/account-and-billing/teams-management.md
 - https://cursor.com/help/account-and-billing/invoices.md
