@@ -12,7 +12,7 @@
   - https://cursor.com/docs/models/gemini-3-5-flash.md
   - https://cursor.com/docs/models/gpt-5-5.md
   - https://cursor.com/docs/models/gpt-5-3-codex.md
-  - https://cursor.com/docs/models/grok-build-0-1.md
+  - https://cursor.com/docs/models/grok-4-5.md
   - https://cursor.com/docs/models/cursor-composer-2-5.md
 - https://cursor.comhttps://cursor.com/changelog.md
 
@@ -201,6 +201,7 @@
 ## Models and usage
 
 - https://cursor.com/help/models-and-usage/available-models.md
+- https://cursor.com/help/models-and-usage/grok-4-5.md
 - https://cursor.com/help/models-and-usage/api-keys.md
 - https://cursor.com/help/models-and-usage/usage-limits.md
 - https://cursor.com/help/models-and-usage/token-rate.md
