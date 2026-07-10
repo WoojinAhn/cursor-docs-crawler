@@ -10,8 +10,9 @@
   - https://cursor.com/docs/models/claude-fable-5.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
   - https://cursor.com/docs/models/gemini-3-5-flash.md
-  - https://cursor.com/docs/models/gpt-5-5.md
-  - https://cursor.com/docs/models/gpt-5-3-codex.md
+  - https://cursor.com/docs/models/gpt-5-6-sol.md
+  - https://cursor.com/docs/models/gpt-5-6-terra.md
+  - https://cursor.com/docs/models/gpt-5-6-luna.md
   - https://cursor.com/docs/models/grok-4-5.md
   - https://cursor.com/docs/models/cursor-composer-2-5.md
 - https://cursor.comhttps://cursor.com/changelog.md
