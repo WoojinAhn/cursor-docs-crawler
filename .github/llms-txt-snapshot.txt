@@ -170,6 +170,8 @@
 - https://cursor.com/help/ai-features/agentic-coding.md
 - https://cursor.com/help/ai-features/ai-pair-programming.md
 - https://cursor.com/help/ai-features/multi-agent.md
+- https://cursor.com/help/ai-features/side-chats.md
+- https://cursor.com/help/ai-features/conversation-search.md
 - https://cursor.com/help/ai-features/vibe-coding.md
 - https://cursor.com/help/ai-features/plan-mode.md
 - https://cursor.com/help/ai-features/ask-mode.md
