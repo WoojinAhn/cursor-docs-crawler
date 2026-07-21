@@ -55,7 +55,8 @@
 - https://cursor.com/docs/bugbot.md
 - https://cursor.com/docs/security-agents.md
 - https://cursor.com/docs/approval-agents.md
-- https://cursor.com/docs/cloud-agent/security-network.md
+- https://cursor.com/docs/cloud-agent/security.md
+  - https://cursor.com/docs/cloud-agent/security-network.md
 - https://cursor.com/docs/cloud-agent/settings.md
 - https://cursor.com/docs/cloud-agent/api/endpoints.md
 
