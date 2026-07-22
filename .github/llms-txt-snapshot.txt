@@ -9,7 +9,7 @@
   - https://cursor.com/docs/models/claude-opus-4-8.md
   - https://cursor.com/docs/models/claude-fable-5.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
-  - https://cursor.com/docs/models/gemini-3-5-flash.md
+  - https://cursor.com/docs/models/gemini-3-6-flash.md
   - https://cursor.com/docs/models/gpt-5-6-sol.md
   - https://cursor.com/docs/models/gpt-5-6-terra.md
   - https://cursor.com/docs/models/gpt-5-6-luna.md
@@ -79,6 +79,7 @@
 
 - https://cursor.com/docs/sdk/typescript.md
 - https://cursor.com/docs/sdk/python.md
+- https://cursor.com/docs/sdk/changelog.md
 
 ## cli
 
