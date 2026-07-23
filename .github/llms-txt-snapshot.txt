@@ -5,6 +5,7 @@
 - https://cursor.com/docs.md
 - https://cursor.com/docs/get-started/quickstart.md
 - https://cursor.com/docs/models-and-pricing.md
+  - https://cursor.com/docs/cursor-router.md
   - https://cursor.com/docs/models/claude-sonnet-5.md
   - https://cursor.com/docs/models/claude-opus-4-8.md
   - https://cursor.com/docs/models/claude-fable-5.md
@@ -202,6 +203,7 @@
 ## Models and usage
 
 - https://cursor.com/help/models-and-usage/available-models.md
+- https://cursor.com/help/models-and-usage/cursor-router.md
 - https://cursor.com/help/models-and-usage/grok-4-5.md
 - https://cursor.com/help/models-and-usage/api-keys.md
 - https://cursor.com/help/models-and-usage/usage-limits.md
