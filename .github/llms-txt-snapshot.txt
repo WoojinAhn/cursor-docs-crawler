@@ -238,6 +238,7 @@
 - https://cursor.com/help/account-and-billing/cancel.md
 - https://cursor.com/help/account-and-billing/refunds.md
 - https://cursor.com/help/account-and-billing/delete-account.md
+- https://cursor.com/help/account-and-billing/referral-program.md
 - https://cursor.com/help/account-and-billing/student-discount.md
 
 ## Integrations
