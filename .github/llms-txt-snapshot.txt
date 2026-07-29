@@ -222,6 +222,7 @@
 
 - https://cursor.com/help/account-and-billing/pricing.md
 - https://cursor.com/help/account-and-billing/billing.md
+- https://cursor.com/help/account-and-billing/cursor-start.md
 - https://cursor.com/help/account-and-billing/app-store-subscription.md
 - https://cursor.com/help/account-and-billing/teams-setup.md
 - https://cursor.com/help/account-and-billing/teams-management.md
