@@ -193,7 +193,6 @@
 - https://cursor.com/help/customization/context.md
 - https://cursor.com/help/customization/mcp.md
 - https://cursor.com/help/customization/skills.md
-- https://cursor.com/help/customization/indexing.md
 - https://cursor.com/help/customization/ignore-files.md
 - https://cursor.com/help/customization/extensions.md
 - https://cursor.com/help/customization/plugins.md
