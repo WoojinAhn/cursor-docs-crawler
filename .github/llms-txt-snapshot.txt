@@ -270,7 +270,6 @@ All documentation is available in multiple languages. To access a specific langu
 
 - Spanish: `https://cursor.com/es/docs/bugbot.md`
 - Japanese: `https://cursor.com/ja/docs/bugbot.md`
-- French: `https://cursor.com/fr/docs/bugbot.md`
-- And more...
+- Simplified Chinese: `https://cursor.com/cn/docs/bugbot.md`
 
-Available languages: cn, ja, zh-Hant, es, fr, pt-BR, ko, ru, tr, id, de, hi
+Available languages: cn, ru, ja, pt-BR, es
