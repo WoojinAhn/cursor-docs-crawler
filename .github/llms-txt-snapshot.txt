@@ -14,6 +14,7 @@
   - https://cursor.com/docs/models/gpt-5-6-sol.md
   - https://cursor.com/docs/models/gpt-5-6-terra.md
   - https://cursor.com/docs/models/gpt-5-6-luna.md
+  - https://cursor.com/docs/models/grok-4-6.md
   - https://cursor.com/docs/models/grok-4-5.md
   - https://cursor.com/docs/models/cursor-composer-2-5.md
 - https://cursor.comhttps://cursor.com/changelog.md
@@ -51,6 +52,7 @@
 - https://cursor.com/docs/cloud-agent/setup.md
 - https://cursor.com/docs/cloud-agent/builds.md
 - https://cursor.com/docs/cloud-agent/capabilities.md
+  - https://cursor.com/docs/cloud-agent/metadata.md
 - https://cursor.com/docs/cloud-agent/best-practices.md
 - https://cursor.com/docs/cloud-agent/automations.md
 - https://cursor.com/docs/bugbot.md
@@ -209,6 +211,7 @@
 
 - https://cursor.com/help/models-and-usage/available-models.md
 - https://cursor.com/help/models-and-usage/cursor-router.md
+- https://cursor.com/help/models-and-usage/grok-4-6.md
 - https://cursor.com/help/models-and-usage/grok-4-5.md
 - https://cursor.com/help/models-and-usage/api-keys.md
 - https://cursor.com/help/models-and-usage/usage-limits.md
@@ -253,6 +256,18 @@
 - https://cursor.com/help/integrations/github-gitlab.md
 - https://cursor.com/help/integrations/cli.md
 - https://cursor.com/help/integrations/third-party.md
+
+## Grok Bot
+
+- https://cursor.com/help/grok-bot/getting-started.md
+- https://cursor.com/help/grok-bot/sign-in.md
+- https://cursor.com/help/grok-bot/mobile.md
+- https://cursor.com/help/grok-bot/plans.md
+- https://cursor.com/help/grok-bot/supergrok-heavy.md
+- https://cursor.com/help/grok-bot/mobile-purchase.md
+- https://cursor.com/help/grok-bot/connect-plugins.md
+- https://cursor.com/help/grok-bot/secrets.md
+- https://cursor.com/help/grok-bot/get-help.md
 
 ## Troubleshooting
 
