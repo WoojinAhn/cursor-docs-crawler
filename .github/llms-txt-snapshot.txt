@@ -10,7 +10,7 @@
   - https://cursor.com/docs/models/claude-opus-5.md
   - https://cursor.com/docs/models/claude-fable-5.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
-  - https://cursor.com/docs/models/gemini-3-6-flash.md
+  - https://cursor.com/docs/models/gemini-3-7-flash.md
   - https://cursor.com/docs/models/gpt-5-6-sol.md
   - https://cursor.com/docs/models/gpt-5-6-terra.md
   - https://cursor.com/docs/models/gpt-5-6-luna.md
