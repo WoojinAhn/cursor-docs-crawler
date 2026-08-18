@@ -66,6 +66,21 @@
 - https://cursor.com/docs/cloud-agent/settings.md
 - https://cursor.com/docs/cloud-agent/api/endpoints.md
 
+## origin
+
+- https://cursor.com/docs/origin.md
+- https://cursor.com/docs/origin/cli.md
+  - https://cursor.com/docs/origin/cli/reference/commands.md
+  - https://cursor.com/docs/origin/cli/reference/pull-requests.md
+- https://cursor.com/docs/origin/create-repository.md
+- https://cursor.com/docs/origin/git.md
+- https://cursor.com/docs/origin/mirror-github.md
+- https://cursor.com/docs/origin/pull-requests.md
+- https://cursor.com/docs/origin/browse.md
+- https://cursor.com/docs/origin/settings.md
+- https://cursor.com/docs/origin/codebase-settings.md
+- https://cursor.com/docs/origin/integrations.md
+
 ## Integrations
 
 - https://cursor.com/docs/integrations/slack.md
