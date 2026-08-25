@@ -175,6 +175,104 @@
 - https://cursor.com/docs/cli/reference/output-format.md
 - https://cursor.com/docs/cli/reference/terminal-setup.md
 
+# API Documentation
+
+## API Overview
+
+- https://cursor.com/docs/api.md
+- https://cursor.com/docs/api.md#authentication
+- https://cursor.com/docs/api.md#rate-limits
+- https://cursor.com/docs/api.md#best-practices
+
+## Cloud Agents API
+
+- https://cursor.com/docs/cloud-agent/api/endpoints.md
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-an-agent
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-agents
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-agent
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-runs
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#stream-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#cancel-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-artifacts
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#download-an-artifact
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#archive-an-agent
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#unarchive-an-agent
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-agent-permanently
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#worker-tokens
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-workers
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-fleet-summary
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-by-id
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-pools
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#register-a-pool
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#deregister-a-pool
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-pending-pool-requests
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#watch-pending-pool-requests
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#claim-a-pending-request
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#api-key-info
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-models
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-github-repositories
+- https://cursor.com/docs/cloud-agent/api/webhooks.md
+
+## Admin API
+
+- https://cursor.com/docs/account/teams/admin-api.md
+- https://cursor.com/docs/account/organizations/organization-admin-api.md
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#list-organization-members
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#organization-groups
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#get-pooled-usage
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#get-usage-events
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#get-daily-usage-data
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#get-spending-data
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#model-access
+- https://cursor.com/docs/account/teams/admin-api.md#get-team-members
+- https://cursor.com/docs/account/teams/admin-api.md#get-audit-logs
+- https://cursor.com/docs/account/teams/admin-api.md#get-daily-usage-data
+- https://cursor.com/docs/account/teams/admin-api.md#get-spending-data
+- https://cursor.com/docs/account/teams/admin-api.md#get-usage-events-data
+- https://cursor.com/docs/account/teams/admin-api.md#set-user-spend-limit
+- https://cursor.com/docs/account/teams/admin-api.md#remove-team-member
+- https://cursor.com/docs/account/teams/admin-api.md#get-team-repo-blocklists
+- https://cursor.com/docs/account/teams/admin-api.md#upsert-repo-blocklists
+- https://cursor.com/docs/account/teams/admin-api.md#delete-repo-blocklist
+- https://cursor.com/docs/account/teams/admin-api.md#billing-groups
+- https://cursor.com/docs/account/teams/admin-api.md#list-groups
+- https://cursor.com/docs/account/teams/admin-api.md#get-group
+- https://cursor.com/docs/account/teams/admin-api.md#create-group
+- https://cursor.com/docs/account/teams/admin-api.md#update-group
+- https://cursor.com/docs/account/teams/admin-api.md#delete-group
+- https://cursor.com/docs/account/teams/admin-api.md#add-members-to-group
+- https://cursor.com/docs/account/teams/admin-api.md#remove-members-from-group
+- https://cursor.com/docs/account/teams/admin-api.md#model-access
+
+## Analytics API
+
+- https://cursor.com/docs/account/teams/analytics-api.md
+- https://cursor.com/docs/account/teams/analytics-api.md#agent-edits
+- https://cursor.com/docs/account/teams/analytics-api.md#tab-usage
+- https://cursor.com/docs/account/teams/analytics-api.md#daily-active-users-dau
+- https://cursor.com/docs/account/teams/analytics-api.md#client-versions
+- https://cursor.com/docs/account/teams/analytics-api.md#model-usage
+- https://cursor.com/docs/account/teams/analytics-api.md#top-file-extensions
+- https://cursor.com/docs/account/teams/analytics-api.md#mcp-adoption
+- https://cursor.com/docs/account/teams/analytics-api.md#commands-adoption
+- https://cursor.com/docs/account/teams/analytics-api.md#plans-adoption
+- https://cursor.com/docs/account/teams/analytics-api.md#skills-adoption
+- https://cursor.com/docs/account/teams/analytics-api.md#ask-mode-adoption
+- https://cursor.com/docs/account/teams/analytics-api.md#conversation-insights
+- https://cursor.com/docs/account/teams/analytics-api.md#leaderboard
+- https://cursor.com/docs/account/teams/analytics-api.md#bugbot-analytics
+- https://cursor.com/docs/account/teams/analytics-api.md#by-user-endpoints
+
+## AI Code Tracking API
+
+- https://cursor.com/docs/account/teams/ai-code-tracking-api.md
+- https://cursor.com/docs/account/teams/ai-code-tracking-api.md#get-ai-commit-metrics-json-paginated
+- https://cursor.com/docs/account/teams/ai-code-tracking-api.md#download-ai-commit-metrics-csv-streaming
+- https://cursor.com/docs/account/teams/ai-code-tracking-api.md#get-ai-code-change-metrics-json-paginated
+- https://cursor.com/docs/account/teams/ai-code-tracking-api.md#download-ai-code-change-metrics-csv-streaming
+
 # Help Center
 
 ## Getting started
