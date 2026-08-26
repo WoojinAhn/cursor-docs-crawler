@@ -210,6 +210,7 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-pending-pool-requests
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#watch-pending-pool-requests
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#claim-a-pending-request
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#release-a-claim
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#api-key-info
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-models
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-github-repositories
