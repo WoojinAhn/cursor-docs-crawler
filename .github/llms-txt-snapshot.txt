@@ -202,7 +202,7 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-agent-permanently
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#worker-tokens
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-workers
-- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-fleet-summary
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-summary
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-by-id
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-pools
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#register-a-pool
@@ -379,6 +379,7 @@
 - https://cursor.com/help/grok-bot/plans.md
 - https://cursor.com/help/grok-bot/supergrok-heavy.md
 - https://cursor.com/help/grok-bot/mobile-purchase.md
+- https://cursor.com/help/grok-bot/delete-account.md
 - https://cursor.com/help/grok-bot/connect-plugins.md
 - https://cursor.com/help/grok-bot/computer-recovery.md
 - https://cursor.com/help/grok-bot/secrets.md
