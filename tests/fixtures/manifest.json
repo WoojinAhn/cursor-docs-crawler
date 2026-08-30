@@ -84,7 +84,7 @@
       "https://cursor.com/docs/models/grok-4-6"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-08-23T03:52:09.560893"
+    "saved_at": "2026-08-30T08:59:48.913431"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -187,7 +187,7 @@
       "https://cursor.com/docs/account/teams/pricing"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-08-23T03:52:15.770282"
+    "saved_at": "2026-08-30T08:59:54.293440"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -281,7 +281,7 @@
       "https://cursor.com/docs/models/grok-4-6"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-08-23T03:52:21.620357"
+    "saved_at": "2026-08-30T08:59:59.631749"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -354,13 +354,13 @@
       "https://cursor.com/docs/rules",
       "https://cursor.com/docs/agent/tools/browser",
       "https://cursor.com/docs/agent/agents-window",
-      "https://cursor.com/docs/cli",
-      "https://cursor.com/docs/cli",
+      "https://cursor.com/docs/cli/overview",
+      "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/agent/prompting#custom-modes",
       "https://cursor.com/docs/skills#built-in-cursor-skills"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-08-23T03:52:26.148932"
+    "saved_at": "2026-08-30T09:00:04.315080"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -372,7 +372,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-08-23T03:52:30.650369"
+    "saved_at": "2026-08-30T09:00:08.827154"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -444,7 +444,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-08-23T03:52:35.173868"
+    "saved_at": "2026-08-30T09:00:13.415873"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -474,7 +474,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints#delete-an-agent-permanently",
       "https://cursor.com/docs/cloud-agent/api/endpoints#worker-tokens",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-workers",
-      "https://cursor.com/docs/cloud-agent/api/endpoints#get-fleet-summary",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#get-worker-summary",
       "https://cursor.com/docs/cloud-agent/api/endpoints#get-worker-by-id",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-pools",
       "https://cursor.com/docs/cloud-agent/api/endpoints#register-a-pool",
@@ -482,6 +482,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-pending-pool-requests",
       "https://cursor.com/docs/cloud-agent/api/endpoints#watch-pending-pool-requests",
       "https://cursor.com/docs/cloud-agent/api/endpoints#claim-a-pending-request",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#release-a-claim",
       "https://cursor.com/docs/cloud-agent/api/endpoints#api-key-info",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-models",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-github-repositories",
@@ -552,6 +553,7 @@
       "https://cursor.com/docs/api/origin#user-authenticated-cli-requests",
       "https://cursor.com/docs/api/origin#discovery-and-signing-keys",
       "https://cursor.com/docs/api/origin#scopes",
+      "https://cursor.com/docs/api/origin#mirrored-repositories",
       "https://cursor.com/docs/api/origin#rate-limits",
       "https://cursor.com/docs/api/origin#response-headers",
       "https://cursor.com/docs/api/origin#exceeding-the-limit",
@@ -581,6 +583,7 @@
       "https://cursor.com/docs/api/origin#list-app-installation-repositories",
       "https://cursor.com/docs/api/origin#list-webhook-deliveries",
       "https://cursor.com/docs/api/origin#batch-redeliver-webhook-deliveries",
+      "https://cursor.com/docs/api/origin#ping-webhook",
       "https://cursor.com/docs/api/origin#repositories",
       "https://cursor.com/docs/api/origin#list-repos",
       "https://cursor.com/docs/api/origin#get-repo",
@@ -591,6 +594,8 @@
       "https://cursor.com/docs/api/origin#post-check-run",
       "https://cursor.com/docs/api/origin#batch-upsert-check-runs",
       "https://cursor.com/docs/api/origin#get-check-run",
+      "https://cursor.com/docs/api/origin#list-check-run-annotations",
+      "https://cursor.com/docs/api/origin#create-check-run-annotations",
       "https://cursor.com/docs/api/origin#get-check-suite",
       "https://cursor.com/docs/api/origin#list-check-runs-for-suite",
       "https://cursor.com/docs/api/origin#list-check-runs-for-commit",
@@ -610,6 +615,12 @@
       "https://cursor.com/docs/api/origin#list-matching-git-refs-by-path",
       "https://cursor.com/docs/api/origin#get-tag",
       "https://cursor.com/docs/api/origin#get-tree",
+      "https://cursor.com/docs/api/origin#labels",
+      "https://cursor.com/docs/api/origin#list-labels",
+      "https://cursor.com/docs/api/origin#create-label",
+      "https://cursor.com/docs/api/origin#get-label",
+      "https://cursor.com/docs/api/origin#delete-label",
+      "https://cursor.com/docs/api/origin#update-label",
       "https://cursor.com/docs/api/origin#pull-requests",
       "https://cursor.com/docs/api/origin#list-pull-requests",
       "https://cursor.com/docs/api/origin#get-pull-request",
@@ -636,6 +647,7 @@
       "https://cursor.com/docs/api/origin#create-ruleset",
       "https://cursor.com/docs/api/origin#get-ruleset",
       "https://cursor.com/docs/api/origin#update-ruleset",
+      "https://cursor.com/docs/api/origin#delete-ruleset",
       "https://cursor.com/docs/account/teams/admin-api",
       "https://cursor.com/docs/account/teams/analytics-api",
       "https://cursor.com/docs/account/teams/ai-code-tracking-api",
@@ -652,7 +664,7 @@
       "https://cursor.com/docs/account/enterprise/service-accounts"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-08-23T03:52:39.738383"
+    "saved_at": "2026-08-30T09:00:17.993909"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -729,7 +741,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-08-23T03:52:44.252318"
+    "saved_at": "2026-08-30T09:00:22.510842"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -802,7 +814,7 @@
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-08-23T03:52:49.434839"
+    "saved_at": "2026-08-30T09:00:27.243325"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -936,7 +948,7 @@
       "https://cursor.com/docs/enterprise/deployment-patterns#mdm-configuration",
       "https://cursor.com/docs/account/teams/dashboard",
       "https://cursor.com/docs/account/enterprise/billing-groups",
-      "https://cursor.com/docs/account/teams/analytics#analytics",
+      "https://cursor.com/docs/account/teams/analytics",
       "https://cursor.com/docs/account/teams/analytics",
       "https://cursor.com/docs/account/teams/analytics",
       "https://cursor.com/docs/account/teams/ai-code-tracking-api",
@@ -948,7 +960,7 @@
       "https://cursor.com/docs/account/enterprise/service-accounts",
       "https://cursor.com/docs/enterprise/privacy-and-data-governance#privacy-mode-enforcement",
       "https://cursor.com/docs/rules#team-rules",
-      "https://cursor.com/docs/hooks#hooks",
+      "https://cursor.com/docs/hooks",
       "https://cursor.com/docs/hooks#team-distribution",
       "https://cursor.com/docs/agent/security/run-modes#sandboxing",
       "https://cursor.com/docs/enterprise/model-and-integration-management#git-repository-blocklist",
@@ -957,6 +969,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-08-23T03:52:53.970416"
+    "saved_at": "2026-08-30T09:00:31.786749"
   }
 ]
