@@ -36,6 +36,16 @@
 - https://cursor.com/docs/agent/security.md
   - https://cursor.com/docs/agent/security/run-modes.md
 
+## grok-bot
+
+- https://cursor.com/docs/grok-bot.md
+- https://cursor.com/docs/grok-bot/get-started.md
+- https://cursor.com/docs/grok-bot/use-cases.md
+- https://cursor.com/docs/grok-bot/work.md
+- https://cursor.com/docs/grok-bot/settings.md
+- https://cursor.com/docs/grok-bot/teams.md
+  - https://cursor.com/docs/grok-bot/identity.md
+
 ## customizing
 
 - https://cursor.com/docs/customize-cursor.md
