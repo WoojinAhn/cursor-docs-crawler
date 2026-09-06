@@ -16,6 +16,11 @@
       "https://cursor.com/docs/agent/prompting",
       "https://cursor.com/docs/agent/debug-mode",
       "https://cursor.com/docs/agent/design-mode",
+      "https://cursor.com/docs/grok-bot",
+      "https://cursor.com/docs/grok-bot/get-started",
+      "https://cursor.com/docs/grok-bot/use-cases",
+      "https://cursor.com/docs/grok-bot/work",
+      "https://cursor.com/docs/grok-bot/settings",
       "https://cursor.com/docs/customize-cursor",
       "https://cursor.com/docs/plugins",
       "https://cursor.com/docs/rules",
@@ -27,6 +32,7 @@
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/builds",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
@@ -71,12 +77,12 @@
       "https://cursor.com/docs/customize-cursor",
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/models-and-pricing",
-      "https://cursor.com/docs/models/claude-fable-5",
+      "https://cursor.com/docs/models/claude-fable-5-1",
       "https://cursor.com/docs/models/claude-opus-5",
       "https://cursor.com/docs/models/claude-sonnet-5",
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
-      "https://cursor.com/docs/models/gemini-3-7-flash",
+      "https://cursor.com/docs/models/gemini-3-8-flash",
       "https://cursor.com/docs/models/gpt-5-6-luna",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
@@ -84,7 +90,7 @@
       "https://cursor.com/docs/models/grok-4-6"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-08-30T08:59:48.913431"
+    "saved_at": "2026-09-06T07:43:31.605041"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -100,9 +106,9 @@
       "https://cursor.com/docs/cursor-router",
       "https://cursor.com/docs/models/claude-sonnet-5",
       "https://cursor.com/docs/models/claude-opus-5",
-      "https://cursor.com/docs/models/claude-fable-5",
+      "https://cursor.com/docs/models/claude-fable-5-1",
       "https://cursor.com/docs/models/gemini-3-1-pro",
-      "https://cursor.com/docs/models/gemini-3-7-flash",
+      "https://cursor.com/docs/models/gemini-3-8-flash",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/gpt-5-6-luna",
@@ -116,6 +122,11 @@
       "https://cursor.com/docs/agent/prompting",
       "https://cursor.com/docs/agent/debug-mode",
       "https://cursor.com/docs/agent/design-mode",
+      "https://cursor.com/docs/grok-bot",
+      "https://cursor.com/docs/grok-bot/get-started",
+      "https://cursor.com/docs/grok-bot/use-cases",
+      "https://cursor.com/docs/grok-bot/work",
+      "https://cursor.com/docs/grok-bot/settings",
       "https://cursor.com/docs/customize-cursor",
       "https://cursor.com/docs/plugins",
       "https://cursor.com/docs/rules",
@@ -127,6 +138,7 @@
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/builds",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
@@ -173,11 +185,11 @@
       "https://cursor.com/docs/models/grok-4-5",
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/cursor-composer-2-5",
-      "https://cursor.com/docs/models/claude-fable-5",
+      "https://cursor.com/docs/models/claude-fable-5-1",
       "https://cursor.com/docs/models/claude-opus-5",
       "https://cursor.com/docs/models/claude-sonnet-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
-      "https://cursor.com/docs/models/gemini-3-7-flash",
+      "https://cursor.com/docs/models/gemini-3-8-flash",
       "https://cursor.com/docs/models/gpt-5-6-luna",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
@@ -187,7 +199,7 @@
       "https://cursor.com/docs/account/teams/pricing"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-08-30T08:59:54.293440"
+    "saved_at": "2026-09-06T07:43:37.136291"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -206,6 +218,11 @@
       "https://cursor.com/docs/agent/prompting",
       "https://cursor.com/docs/agent/debug-mode",
       "https://cursor.com/docs/agent/design-mode",
+      "https://cursor.com/docs/grok-bot",
+      "https://cursor.com/docs/grok-bot/get-started",
+      "https://cursor.com/docs/grok-bot/use-cases",
+      "https://cursor.com/docs/grok-bot/work",
+      "https://cursor.com/docs/grok-bot/settings",
       "https://cursor.com/docs/customize-cursor",
       "https://cursor.com/docs/plugins",
       "https://cursor.com/docs/rules",
@@ -217,6 +234,7 @@
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/builds",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
@@ -268,12 +286,12 @@
       "https://cursor.com/docs/account/teams/admin-api#get-spending-data",
       "https://cursor.com/docs/models-and-pricing#auto-modes",
       "https://cursor.com/docs/enterprise",
-      "https://cursor.com/docs/models/claude-fable-5",
+      "https://cursor.com/docs/models/claude-fable-5-1",
       "https://cursor.com/docs/models/claude-opus-5",
       "https://cursor.com/docs/models/claude-sonnet-5",
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
-      "https://cursor.com/docs/models/gemini-3-7-flash",
+      "https://cursor.com/docs/models/gemini-3-8-flash",
       "https://cursor.com/docs/models/gpt-5-6-luna",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
@@ -281,7 +299,7 @@
       "https://cursor.com/docs/models/grok-4-6"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-08-30T08:59:59.631749"
+    "saved_at": "2026-09-06T07:43:42.291378"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -300,6 +318,11 @@
       "https://cursor.com/docs/agent/prompting",
       "https://cursor.com/docs/agent/debug-mode",
       "https://cursor.com/docs/agent/design-mode",
+      "https://cursor.com/docs/grok-bot",
+      "https://cursor.com/docs/grok-bot/get-started",
+      "https://cursor.com/docs/grok-bot/use-cases",
+      "https://cursor.com/docs/grok-bot/work",
+      "https://cursor.com/docs/grok-bot/settings",
       "https://cursor.com/docs/customize-cursor",
       "https://cursor.com/docs/plugins",
       "https://cursor.com/docs/rules",
@@ -311,6 +334,7 @@
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/builds",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
@@ -360,7 +384,7 @@
       "https://cursor.com/docs/skills#built-in-cursor-skills"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-08-30T09:00:04.315080"
+    "saved_at": "2026-09-06T07:43:47.028070"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -372,7 +396,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-08-30T09:00:08.827154"
+    "saved_at": "2026-09-06T07:43:51.576766"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -391,6 +415,11 @@
       "https://cursor.com/docs/agent/prompting",
       "https://cursor.com/docs/agent/debug-mode",
       "https://cursor.com/docs/agent/design-mode",
+      "https://cursor.com/docs/grok-bot",
+      "https://cursor.com/docs/grok-bot/get-started",
+      "https://cursor.com/docs/grok-bot/use-cases",
+      "https://cursor.com/docs/grok-bot/work",
+      "https://cursor.com/docs/grok-bot/settings",
       "https://cursor.com/docs/customize-cursor",
       "https://cursor.com/docs/plugins",
       "https://cursor.com/docs/rules",
@@ -402,6 +431,7 @@
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/builds",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
@@ -444,7 +474,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-08-30T09:00:13.415873"
+    "saved_at": "2026-09-06T07:43:56.144483"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -502,6 +532,7 @@
       "https://cursor.com/docs/account/teams/admin-api#get-spending-data",
       "https://cursor.com/docs/account/teams/admin-api#get-usage-events-data",
       "https://cursor.com/docs/account/teams/admin-api#set-user-spend-limit",
+      "https://cursor.com/docs/account/teams/admin-api#set-user-spend-limits-in-bulk-preview",
       "https://cursor.com/docs/account/teams/admin-api#remove-team-member",
       "https://cursor.com/docs/account/teams/admin-api#get-team-repo-blocklists",
       "https://cursor.com/docs/account/teams/admin-api#upsert-repo-blocklists",
@@ -589,6 +620,7 @@
       "https://cursor.com/docs/api/origin#get-repo",
       "https://cursor.com/docs/api/origin#create-repo",
       "https://cursor.com/docs/api/origin#list-branches",
+      "https://cursor.com/docs/api/origin#get-repo-tarball",
       "https://cursor.com/docs/api/origin#sync-mirror",
       "https://cursor.com/docs/api/origin#checks",
       "https://cursor.com/docs/api/origin#post-check-run",
@@ -605,12 +637,15 @@
       "https://cursor.com/docs/api/origin#get-commit",
       "https://cursor.com/docs/api/origin#list-commit-files",
       "https://cursor.com/docs/api/origin#compare-commits",
+      "https://cursor.com/docs/api/origin#list-comparison-files",
       "https://cursor.com/docs/api/origin#get-contents",
       "https://cursor.com/docs/api/origin#batch-get-contents",
       "https://cursor.com/docs/api/origin#git-data",
       "https://cursor.com/docs/api/origin#get-blob",
       "https://cursor.com/docs/api/origin#get-git-commit",
+      "https://cursor.com/docs/api/origin#create-commit-from-files",
       "https://cursor.com/docs/api/origin#get-git-ref",
+      "https://cursor.com/docs/api/origin#create-git-ref",
       "https://cursor.com/docs/api/origin#list-matching-git-refs",
       "https://cursor.com/docs/api/origin#list-matching-git-refs-by-path",
       "https://cursor.com/docs/api/origin#get-tag",
@@ -630,6 +665,7 @@
       "https://cursor.com/docs/api/origin#get-pull-request-comment",
       "https://cursor.com/docs/api/origin#create-pull-request-comment",
       "https://cursor.com/docs/api/origin#update-pull-request-comment",
+      "https://cursor.com/docs/api/origin#update-pull-request-thread",
       "https://cursor.com/docs/api/origin#list-pull-request-commits",
       "https://cursor.com/docs/api/origin#list-pull-request-files",
       "https://cursor.com/docs/api/origin#list-pull-request-labels",
@@ -638,6 +674,9 @@
       "https://cursor.com/docs/api/origin#remove-all-pull-request-labels",
       "https://cursor.com/docs/api/origin#remove-pull-request-label",
       "https://cursor.com/docs/api/origin#merge-pull-request",
+      "https://cursor.com/docs/api/origin#list-pull-request-requested-reviewers",
+      "https://cursor.com/docs/api/origin#request-pull-request-reviewers",
+      "https://cursor.com/docs/api/origin#remove-pull-request-requested-reviewers",
       "https://cursor.com/docs/api/origin#list-pull-request-reviews",
       "https://cursor.com/docs/api/origin#create-pull-request-review",
       "https://cursor.com/docs/api/origin#update-pull-request-review",
@@ -664,7 +703,7 @@
       "https://cursor.com/docs/account/enterprise/service-accounts"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-08-30T09:00:17.993909"
+    "saved_at": "2026-09-06T07:44:00.860924"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -685,6 +724,11 @@
       "https://cursor.com/docs/agent/design-mode",
       "https://cursor.com/docs/agent/security",
       "https://cursor.com/docs/agent/security/run-modes",
+      "https://cursor.com/docs/grok-bot",
+      "https://cursor.com/docs/grok-bot/get-started",
+      "https://cursor.com/docs/grok-bot/use-cases",
+      "https://cursor.com/docs/grok-bot/work",
+      "https://cursor.com/docs/grok-bot/settings",
       "https://cursor.com/docs/customize-cursor",
       "https://cursor.com/docs/plugins",
       "https://cursor.com/docs/rules",
@@ -696,6 +740,7 @@
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/builds",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
@@ -741,7 +786,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-08-30T09:00:22.510842"
+    "saved_at": "2026-09-06T07:44:05.467224"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -760,6 +805,11 @@
       "https://cursor.com/docs/agent/prompting",
       "https://cursor.com/docs/agent/debug-mode",
       "https://cursor.com/docs/agent/design-mode",
+      "https://cursor.com/docs/grok-bot",
+      "https://cursor.com/docs/grok-bot/get-started",
+      "https://cursor.com/docs/grok-bot/use-cases",
+      "https://cursor.com/docs/grok-bot/work",
+      "https://cursor.com/docs/grok-bot/settings",
       "https://cursor.com/docs/customize-cursor",
       "https://cursor.com/docs/plugins",
       "https://cursor.com/docs/rules",
@@ -771,6 +821,7 @@
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/builds",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
@@ -814,7 +865,7 @@
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-08-30T09:00:27.243325"
+    "saved_at": "2026-09-06T07:44:10.453556"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -833,6 +884,11 @@
       "https://cursor.com/docs/agent/prompting",
       "https://cursor.com/docs/agent/debug-mode",
       "https://cursor.com/docs/agent/design-mode",
+      "https://cursor.com/docs/grok-bot",
+      "https://cursor.com/docs/grok-bot/get-started",
+      "https://cursor.com/docs/grok-bot/use-cases",
+      "https://cursor.com/docs/grok-bot/work",
+      "https://cursor.com/docs/grok-bot/settings",
       "https://cursor.com/docs/customize-cursor",
       "https://cursor.com/docs/plugins",
       "https://cursor.com/docs/rules",
@@ -844,6 +900,7 @@
       "https://cursor.com/docs/cloud-agent/setup",
       "https://cursor.com/docs/cloud-agent/builds",
       "https://cursor.com/docs/cloud-agent/best-practices",
+      "https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime",
       "https://cursor.com/docs/cloud-agent/automations",
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
@@ -969,6 +1026,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-08-30T09:00:31.786749"
+    "saved_at": "2026-09-06T07:44:15.045356"
   }
 ]
