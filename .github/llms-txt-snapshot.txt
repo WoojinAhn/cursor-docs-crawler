@@ -11,6 +11,7 @@
   - https://cursor.com/docs/models/claude-fable-5-1.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
   - https://cursor.com/docs/models/gemini-3-8-flash.md
+  - https://cursor.com/docs/models/muse-spark-1-3.md
   - https://cursor.com/docs/models/gpt-5-6-sol.md
   - https://cursor.com/docs/models/gpt-5-6-terra.md
   - https://cursor.com/docs/models/gpt-5-6-luna.md
@@ -369,6 +370,8 @@
 - https://cursor.com/help/account-and-billing/billing.md
 - https://cursor.com/help/account-and-billing/cursor-start.md
 - https://cursor.com/help/account-and-billing/app-store-subscription.md
+- https://cursor.com/help/account-and-billing/google-play-subscription.md
+- https://cursor.com/help/account-and-billing/on-demand-usage-for-mobile-subscriptions.md
 - https://cursor.com/help/account-and-billing/teams-setup.md
 - https://cursor.com/help/account-and-billing/teams-management.md
 - https://cursor.com/help/account-and-billing/invoices.md
