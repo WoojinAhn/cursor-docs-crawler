@@ -48,6 +48,7 @@
   - https://cursor.com/docs/grok-bot/identity.md
   - https://cursor.com/docs/grok-bot/private-networks.md
   - https://cursor.com/docs/grok-bot/proxies.md
+  - https://cursor.com/docs/grok-bot/computers.md
   - https://cursor.com/docs/grok-bot/security.md
     - https://cursor.com/docs/grok-bot/security-faq.md
 
@@ -297,6 +298,14 @@
 - https://cursor.com/docs/account/teams/ai-code-tracking-api.md#get-ai-code-change-metrics-json-paginated
 - https://cursor.com/docs/account/teams/ai-code-tracking-api.md#download-ai-code-change-metrics-csv-streaming
 
+## Origin API
+
+- https://cursor.com/docs/api/origin/llms-full.txt
+- https://cursor.com/docs/api/origin/llms.txt
+- https://cursor.com/docs/api/origin/openapi.yaml
+- https://cursor.com/docs/api/origin/changelog
+- https://cursor.com/docs/api/origin/grants-api
+
 # Help Center
 
 ## Getting started
@@ -399,7 +408,8 @@
 
 ## Grok Bot
 
-- https://cursor.com/help/grok-bot/getting-started.md
+- https://cursor.com/help/grok-bot/onboarding.md
+- https://cursor.com/help/grok-bot/how-to.md
 - https://cursor.com/help/grok-bot/sign-in.md
 - https://cursor.com/help/grok-bot/mobile.md
 - https://cursor.com/help/grok-bot/plans.md
