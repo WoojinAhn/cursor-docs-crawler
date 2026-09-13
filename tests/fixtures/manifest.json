@@ -87,10 +87,11 @@
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/grok-4-5",
-      "https://cursor.com/docs/models/grok-4-6"
+      "https://cursor.com/docs/models/grok-4-6",
+      "https://cursor.com/docs/models/muse-spark-1-3"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-09-06T07:43:31.605041"
+    "saved_at": "2026-09-13T08:05:27.685845"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -109,6 +110,7 @@
       "https://cursor.com/docs/models/claude-fable-5-1",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gemini-3-8-flash",
+      "https://cursor.com/docs/models/muse-spark-1-3",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/gpt-5-6-luna",
@@ -193,13 +195,15 @@
       "https://cursor.com/docs/models/gpt-5-6-luna",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
+      "https://cursor.com/docs/models/muse-spark-1-3",
       "https://cursor.com/docs/enterprise/privacy-and-data-governance",
       "https://cursor.com/docs/cloud-agent",
       "https://cursor.com/docs/cloud-agent/mobile",
-      "https://cursor.com/docs/account/teams/pricing"
+      "https://cursor.com/docs/account/teams/pricing",
+      "https://cursor.com/docs/cursor-router"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-09-06T07:43:37.136291"
+    "saved_at": "2026-09-13T08:05:33.022571"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -296,10 +300,11 @@
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/grok-4-5",
-      "https://cursor.com/docs/models/grok-4-6"
+      "https://cursor.com/docs/models/grok-4-6",
+      "https://cursor.com/docs/models/muse-spark-1-3"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-09-06T07:43:42.291378"
+    "saved_at": "2026-09-13T08:05:38.030622"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -384,7 +389,7 @@
       "https://cursor.com/docs/skills#built-in-cursor-skills"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-09-06T07:43:47.028070"
+    "saved_at": "2026-09-13T08:05:42.758703"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -396,7 +401,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-09-06T07:43:51.576766"
+    "saved_at": "2026-09-13T08:05:47.292618"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -474,7 +479,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-09-06T07:43:56.144483"
+    "saved_at": "2026-09-13T08:05:51.953299"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -594,7 +599,22 @@
       "https://cursor.com/docs/api/origin#signature-verification",
       "https://cursor.com/docs/api/origin#delivery-envelope",
       "https://cursor.com/docs/api/origin#events",
-      "https://cursor.com/docs/api/origin#payload-families",
+      "https://cursor.com/docs/api/origin#event-payloads",
+      "https://cursor.com/docs/api/origin#repository-created",
+      "https://cursor.com/docs/api/origin#repository-deleted",
+      "https://cursor.com/docs/api/origin#repository-push",
+      "https://cursor.com/docs/api/origin#repository-metadata-updated",
+      "https://cursor.com/docs/api/origin#pull-request-events",
+      "https://cursor.com/docs/api/origin#pull-request-comment",
+      "https://cursor.com/docs/api/origin#pull-request-review-events",
+      "https://cursor.com/docs/api/origin#pull-request-reviewer-events",
+      "https://cursor.com/docs/api/origin#check-run-events",
+      "https://cursor.com/docs/api/origin#check-run-rerequested",
+      "https://cursor.com/docs/api/origin#installation-created",
+      "https://cursor.com/docs/api/origin#installation-updated",
+      "https://cursor.com/docs/api/origin#installation-suspended",
+      "https://cursor.com/docs/api/origin#installation-unsuspended",
+      "https://cursor.com/docs/api/origin#installation-deleted",
       "https://cursor.com/docs/api/origin#recovery",
       "https://cursor.com/docs/api/origin#common-conventions",
       "https://cursor.com/docs/api/origin#pagination",
@@ -615,19 +635,32 @@
       "https://cursor.com/docs/api/origin#list-webhook-deliveries",
       "https://cursor.com/docs/api/origin#batch-redeliver-webhook-deliveries",
       "https://cursor.com/docs/api/origin#ping-webhook",
+      "https://cursor.com/docs/api/origin#get-app",
+      "https://cursor.com/docs/api/origin#update-app",
+      "https://cursor.com/docs/api/origin#add-app-signing-key",
+      "https://cursor.com/docs/api/origin#revoke-app-signing-key",
+      "https://cursor.com/docs/api/origin#list-namespace-apps",
+      "https://cursor.com/docs/api/origin#create-app",
       "https://cursor.com/docs/api/origin#repositories",
       "https://cursor.com/docs/api/origin#list-repos",
       "https://cursor.com/docs/api/origin#get-repo",
+      "https://cursor.com/docs/api/origin#update-repo",
       "https://cursor.com/docs/api/origin#create-repo",
       "https://cursor.com/docs/api/origin#list-branches",
       "https://cursor.com/docs/api/origin#get-repo-tarball",
       "https://cursor.com/docs/api/origin#sync-mirror",
+      "https://cursor.com/docs/api/origin#detach-repo-mirror",
+      "https://cursor.com/docs/api/origin#get-mirror-transition-job",
+      "https://cursor.com/docs/api/origin#get-active-mirror-transition-job",
+      "https://cursor.com/docs/api/origin#force-repo-mirror-cutover",
+      "https://cursor.com/docs/api/origin#transition-repo-mirror",
       "https://cursor.com/docs/api/origin#checks",
       "https://cursor.com/docs/api/origin#post-check-run",
       "https://cursor.com/docs/api/origin#batch-upsert-check-runs",
       "https://cursor.com/docs/api/origin#get-check-run",
       "https://cursor.com/docs/api/origin#list-check-run-annotations",
       "https://cursor.com/docs/api/origin#create-check-run-annotations",
+      "https://cursor.com/docs/api/origin#rerequest-check-run",
       "https://cursor.com/docs/api/origin#get-check-suite",
       "https://cursor.com/docs/api/origin#list-check-runs-for-suite",
       "https://cursor.com/docs/api/origin#list-check-runs-for-commit",
@@ -650,6 +683,14 @@
       "https://cursor.com/docs/api/origin#list-matching-git-refs-by-path",
       "https://cursor.com/docs/api/origin#get-tag",
       "https://cursor.com/docs/api/origin#get-tree",
+      "https://cursor.com/docs/api/origin#grants",
+      "https://cursor.com/docs/api/origin#list-repository-grants",
+      "https://cursor.com/docs/api/origin#upsert-repository-grant",
+      "https://cursor.com/docs/api/origin#delete-repository-grant",
+      "https://cursor.com/docs/api/origin#list-namespace-grants",
+      "https://cursor.com/docs/api/origin#upsert-namespace-grant",
+      "https://cursor.com/docs/api/origin#delete-namespace-grant",
+      "https://cursor.com/docs/api/origin/grants-api",
       "https://cursor.com/docs/api/origin#labels",
       "https://cursor.com/docs/api/origin#list-labels",
       "https://cursor.com/docs/api/origin#create-label",
@@ -700,10 +741,11 @@
       "https://cursor.com/docs/sdk/typescript#cursor-router",
       "https://cursor.com/docs/sdk/python#cursor-router",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
-      "https://cursor.com/docs/account/enterprise/service-accounts"
+      "https://cursor.com/docs/account/enterprise/service-accounts",
+      "https://cursor.com/docs/api/origin#authentication"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-09-06T07:44:00.860924"
+    "saved_at": "2026-09-13T08:05:56.597492"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -786,7 +828,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-09-06T07:44:05.467224"
+    "saved_at": "2026-09-13T08:06:01.220787"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -865,7 +907,7 @@
       "https://cursor.com/docs/enterprise"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-09-06T07:44:10.453556"
+    "saved_at": "2026-09-13T08:06:06.020753"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -1026,6 +1068,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-09-06T07:44:15.045356"
+    "saved_at": "2026-09-13T08:06:10.715298"
   }
 ]
