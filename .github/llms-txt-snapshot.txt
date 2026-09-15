@@ -270,6 +270,7 @@
 - https://cursor.com/docs/account/teams/admin-api.md#add-members-to-group
 - https://cursor.com/docs/account/teams/admin-api.md#remove-members-from-group
 - https://cursor.com/docs/account/teams/admin-api.md#model-access
+- https://cursor.com/docs/account/teams/admin-api.md#grok-bot
 
 ## Analytics API
 
