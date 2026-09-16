@@ -261,6 +261,15 @@
 - https://cursor.com/docs/account/teams/admin-api.md#get-team-repo-blocklists
 - https://cursor.com/docs/account/teams/admin-api.md#upsert-repo-blocklists
 - https://cursor.com/docs/account/teams/admin-api.md#delete-repo-blocklist
+- https://cursor.com/docs/account/teams/admin-api.md#team-directory-groups
+- https://cursor.com/docs/account/teams/admin-api.md#list-team-directory-groups
+- https://cursor.com/docs/account/teams/admin-api.md#get-team-directory-group
+- https://cursor.com/docs/account/teams/admin-api.md#create-team-directory-group
+- https://cursor.com/docs/account/teams/admin-api.md#update-team-directory-group
+- https://cursor.com/docs/account/teams/admin-api.md#delete-team-directory-group
+- https://cursor.com/docs/account/teams/admin-api.md#list-team-directory-group-members
+- https://cursor.com/docs/account/teams/admin-api.md#add-team-directory-group-members
+- https://cursor.com/docs/account/teams/admin-api.md#remove-team-directory-group-members
 - https://cursor.com/docs/account/teams/admin-api.md#billing-groups
 - https://cursor.com/docs/account/teams/admin-api.md#list-groups
 - https://cursor.com/docs/account/teams/admin-api.md#get-group
