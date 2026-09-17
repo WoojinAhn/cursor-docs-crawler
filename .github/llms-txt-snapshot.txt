@@ -24,6 +24,7 @@
 
 - https://cursor.com/docs/agent/overview.md
 - https://cursor.com/docs/agent/agents-window.md
+- https://cursor.com/docs/agent/projects.md
 - https://cursor.com/docs/agent/agent-review.md
 - https://cursor.com/docs/agent/plan-mode.md
 - https://cursor.com/docs/agent/prompting.md
