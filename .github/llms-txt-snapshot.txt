@@ -98,6 +98,7 @@
   - https://cursor.com/docs/origin/cli/reference/pull-requests.md
 - https://cursor.com/docs/origin/create-repository.md
 - https://cursor.com/docs/origin/git.md
+- https://cursor.com/docs/origin/clonekit-ci.md
 - https://cursor.com/docs/origin/mirror-github.md
 - https://cursor.com/docs/origin/pull-requests.md
 - https://cursor.com/docs/origin/browse.md
