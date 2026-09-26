@@ -47,6 +47,7 @@
 - https://cursor.com/docs/grok-bot/work.md
 - https://cursor.com/docs/grok-bot/settings.md
 - https://cursor.com/docs/grok-bot/teams.md
+  - https://cursor.com/docs/grok-bot/deployment.md
   - https://cursor.com/docs/grok-bot/identity.md
   - https://cursor.com/docs/grok-bot/private-networks.md
   - https://cursor.com/docs/grok-bot/proxies.md
@@ -319,6 +320,7 @@
 - https://cursor.com/docs/api/origin/openapi.yaml
 - https://cursor.com/docs/api/origin/changelog
 - https://cursor.com/docs/api/origin/grants-api
+- https://cursor.com/docs/api/origin/acting-as-users
 
 # Help Center
 
@@ -434,6 +436,9 @@
 - https://cursor.com/help/grok-bot/delete-account.md
 - https://cursor.com/help/grok-bot/connect-plugins.md
 - https://cursor.com/help/grok-bot/routines.md
+- https://cursor.com/help/grok-bot/edit-bot.md
+- https://cursor.com/help/grok-bot/group-chats.md
+- https://cursor.com/help/grok-bot/voice-chat.md
 - https://cursor.com/help/grok-bot/computer-recovery.md
 - https://cursor.com/help/grok-bot/secrets.md
 - https://cursor.com/help/grok-bot/get-help.md
