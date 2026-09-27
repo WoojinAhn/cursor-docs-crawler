@@ -38,6 +38,7 @@
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/approval-agents",
+      "https://cursor.com/docs/rollouts",
       "https://cursor.com/docs/cloud-agent/mobile",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
@@ -80,7 +81,7 @@
       "https://cursor.com/docs/integrations/github",
       "https://cursor.com/docs/models-and-pricing",
       "https://cursor.com/docs/models/claude-fable-5-1",
-      "https://cursor.com/docs/models/claude-opus-5",
+      "https://cursor.com/docs/models/claude-opus-5-5",
       "https://cursor.com/docs/models/claude-sonnet-5",
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
@@ -90,10 +91,11 @@
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/grok-4-5",
       "https://cursor.com/docs/models/grok-4-6",
+      "https://cursor.com/docs/models/grok-4-7",
       "https://cursor.com/docs/models/muse-spark-1-3"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-09-20T08:22:59.743908"
+    "saved_at": "2026-09-27T09:01:08.157684"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -108,7 +110,7 @@
       "https://cursor.com/docs/models-and-pricing",
       "https://cursor.com/docs/cursor-router",
       "https://cursor.com/docs/models/claude-sonnet-5",
-      "https://cursor.com/docs/models/claude-opus-5",
+      "https://cursor.com/docs/models/claude-opus-5-5",
       "https://cursor.com/docs/models/claude-fable-5-1",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gemini-3-8-flash",
@@ -116,6 +118,7 @@
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/gpt-5-6-luna",
+      "https://cursor.com/docs/models/grok-4-7",
       "https://cursor.com/docs/models/grok-4-6",
       "https://cursor.com/docs/models/grok-4-5",
       "https://cursor.com/docs/models/cursor-composer-2-5",
@@ -148,6 +151,7 @@
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/approval-agents",
+      "https://cursor.com/docs/rollouts",
       "https://cursor.com/docs/cloud-agent/mobile",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
@@ -185,6 +189,10 @@
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
       "https://cursor.com/docs/cursor-router",
+      "https://cursor.com/docs/models/grok-4-7",
+      "https://cursor.com/docs/models/grok-4-7",
+      "https://cursor.com/docs/models/grok-4-7",
+      "https://cursor.com/docs/models/grok-4-7",
       "https://cursor.com/docs/models/grok-4-6",
       "https://cursor.com/docs/models/grok-4-6",
       "https://cursor.com/docs/models/grok-4-5",
@@ -192,7 +200,7 @@
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/claude-fable-5-1",
-      "https://cursor.com/docs/models/claude-opus-5",
+      "https://cursor.com/docs/models/claude-opus-5-5",
       "https://cursor.com/docs/models/claude-sonnet-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gemini-3-8-flash",
@@ -207,7 +215,7 @@
       "https://cursor.com/docs/cursor-router"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-09-20T08:23:05.190901"
+    "saved_at": "2026-09-27T09:01:13.709175"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -248,6 +256,7 @@
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/approval-agents",
+      "https://cursor.com/docs/rollouts",
       "https://cursor.com/docs/cloud-agent/mobile",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
@@ -297,7 +306,7 @@
       "https://cursor.com/docs/models-and-pricing#auto-modes",
       "https://cursor.com/docs/enterprise",
       "https://cursor.com/docs/models/claude-fable-5-1",
-      "https://cursor.com/docs/models/claude-opus-5",
+      "https://cursor.com/docs/models/claude-opus-5-5",
       "https://cursor.com/docs/models/claude-sonnet-5",
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
@@ -307,10 +316,11 @@
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/grok-4-5",
       "https://cursor.com/docs/models/grok-4-6",
+      "https://cursor.com/docs/models/grok-4-7",
       "https://cursor.com/docs/models/muse-spark-1-3"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-09-20T08:23:10.964656"
+    "saved_at": "2026-09-27T09:01:18.971822"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -351,6 +361,7 @@
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/approval-agents",
+      "https://cursor.com/docs/rollouts",
       "https://cursor.com/docs/cloud-agent/mobile",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
@@ -393,12 +404,13 @@
       "https://cursor.com/docs/agent/tools/browser",
       "https://cursor.com/docs/agent/agents-window",
       "https://cursor.com/docs/cli/overview",
+      "https://cursor.com/docs/agent/agents-window",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/agent/prompting#custom-modes",
       "https://cursor.com/docs/skills#built-in-cursor-skills"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-09-20T08:23:15.499574"
+    "saved_at": "2026-09-27T09:01:23.548568"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -410,7 +422,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-09-20T08:23:20.007824"
+    "saved_at": "2026-09-27T09:01:28.083819"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -451,6 +463,7 @@
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/approval-agents",
+      "https://cursor.com/docs/rollouts",
       "https://cursor.com/docs/cloud-agent/mobile",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
@@ -490,7 +503,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-09-20T08:23:24.598291"
+    "saved_at": "2026-09-27T09:01:32.605195"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -528,6 +541,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-pending-pool-requests",
       "https://cursor.com/docs/cloud-agent/api/endpoints#watch-pending-pool-requests",
       "https://cursor.com/docs/cloud-agent/api/endpoints#claim-a-pending-request",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#create-a-session-token",
       "https://cursor.com/docs/cloud-agent/api/endpoints#release-a-claim",
       "https://cursor.com/docs/cloud-agent/api/endpoints#api-key-info",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-models",
@@ -604,6 +618,7 @@
       "https://cursor.com/docs/api/origin",
       "https://cursor.com/docs/api/origin#base-url",
       "https://cursor.com/docs/api/origin#protocol-conventions",
+      "https://cursor.com/docs/api/origin#preview",
       "https://cursor.com/docs/api/origin/changelog",
       "https://cursor.com/docs/api/origin#getting-started",
       "https://cursor.com/docs/api/origin#origin-access",
@@ -617,6 +632,7 @@
       "https://cursor.com/docs/api/origin#git-https-authentication",
       "https://cursor.com/docs/api/origin#user-authenticated-cli-requests",
       "https://cursor.com/docs/api/origin#discovery-and-signing-keys",
+      "https://cursor.com/docs/api/origin/acting-as-users",
       "https://cursor.com/docs/api/origin#scopes",
       "https://cursor.com/docs/api/origin#mirrored-repositories",
       "https://cursor.com/docs/api/origin#rate-limits",
@@ -626,8 +642,13 @@
       "https://cursor.com/docs/api/origin#common-conventions",
       "https://cursor.com/docs/api/origin#pagination",
       "https://cursor.com/docs/api/origin#errors",
+      "https://cursor.com/docs/api/origin#ids",
       "https://cursor.com/docs/api/origin#repository-paths",
       "https://cursor.com/docs/api/origin#resource-references",
+      "https://cursor.com/docs/api/origin#check-runs",
+      "https://cursor.com/docs/api/origin#attempts-and-the-current-attempt",
+      "https://cursor.com/docs/api/origin#ordering-writes",
+      "https://cursor.com/docs/api/origin#timestamps-and-deadlines",
       "https://cursor.com/docs/api/origin#current-limitations",
       "https://cursor.com/docs/api/origin#implementation-checklist",
       "https://cursor.com/docs/api/origin#endpoint-reference",
@@ -638,6 +659,7 @@
       "https://cursor.com/docs/api/origin#get-app-installation",
       "https://cursor.com/docs/api/origin#delete-app-installation",
       "https://cursor.com/docs/api/origin#create-installation-access-token",
+      "https://cursor.com/docs/api/origin#create-installation-user-token",
       "https://cursor.com/docs/api/origin#list-app-installation-repositories",
       "https://cursor.com/docs/api/origin#list-webhook-deliveries",
       "https://cursor.com/docs/api/origin#batch-redeliver-webhook-deliveries",
@@ -650,6 +672,7 @@
       "https://cursor.com/docs/api/origin#create-app",
       "https://cursor.com/docs/api/origin#add-app-installation-repositories",
       "https://cursor.com/docs/api/origin#repositories",
+      "https://cursor.com/docs/api/origin#list-namespaces",
       "https://cursor.com/docs/api/origin#list-repos",
       "https://cursor.com/docs/api/origin#get-repo",
       "https://cursor.com/docs/api/origin#update-repo",
@@ -709,6 +732,7 @@
       "https://cursor.com/docs/api/origin#update-pull-request",
       "https://cursor.com/docs/api/origin#list-pull-request-comments",
       "https://cursor.com/docs/api/origin#get-pull-request-comment",
+      "https://cursor.com/docs/api/origin#delete-pull-request-comment",
       "https://cursor.com/docs/api/origin#create-pull-request-comment",
       "https://cursor.com/docs/api/origin#update-pull-request-comment",
       "https://cursor.com/docs/api/origin#update-pull-request-thread",
@@ -734,10 +758,17 @@
       "https://cursor.com/docs/api/origin#get-ruleset",
       "https://cursor.com/docs/api/origin#update-ruleset",
       "https://cursor.com/docs/api/origin#delete-ruleset",
+      "https://cursor.com/docs/api/origin#ssh-certificate-authorities",
+      "https://cursor.com/docs/api/origin#list-ssh-certificate-authorities",
+      "https://cursor.com/docs/api/origin#add-ssh-certificate-authority",
+      "https://cursor.com/docs/api/origin#delete-ssh-certificate-authority",
+      "https://cursor.com/docs/api/origin#set-ssh-certificate-requirement",
       "https://cursor.com/docs/api/origin#webhooks",
       "https://cursor.com/docs/api/origin#headers",
       "https://cursor.com/docs/api/origin#signature-verification",
       "https://cursor.com/docs/api/origin#delivery-envelope",
+      "https://cursor.com/docs/api/origin#retries",
+      "https://cursor.com/docs/api/origin#automatic-disable",
       "https://cursor.com/docs/api/origin#recovery",
       "https://cursor.com/docs/api/origin#webhooks-reference",
       "https://cursor.com/docs/api/origin#events",
@@ -749,6 +780,7 @@
       "https://cursor.com/docs/api/origin#pull-request-events",
       "https://cursor.com/docs/api/origin#pull-request-label-events",
       "https://cursor.com/docs/api/origin#pull-request-comment",
+      "https://cursor.com/docs/api/origin#pull-request-comment-reaction-events",
       "https://cursor.com/docs/api/origin#pull-request-review-events",
       "https://cursor.com/docs/api/origin#pull-request-reviewer-events",
       "https://cursor.com/docs/api/origin#check-run-events",
@@ -758,6 +790,7 @@
       "https://cursor.com/docs/api/origin#installation-suspended",
       "https://cursor.com/docs/api/origin#installation-unsuspended",
       "https://cursor.com/docs/api/origin#installation-deleted",
+      "https://cursor.com/docs/api/origin#check-run-annotations",
       "https://cursor.com/docs/account/teams/admin-api",
       "https://cursor.com/docs/account/teams/analytics-api",
       "https://cursor.com/docs/account/teams/ai-code-tracking-api",
@@ -775,7 +808,7 @@
       "https://cursor.com/docs/api/origin#authentication"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-09-20T08:23:29.278695"
+    "saved_at": "2026-09-27T09:01:37.207264"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -818,6 +851,7 @@
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/approval-agents",
+      "https://cursor.com/docs/rollouts",
       "https://cursor.com/docs/cloud-agent/mobile",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
@@ -860,7 +894,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-09-20T08:23:33.842691"
+    "saved_at": "2026-09-27T09:01:41.729217"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -901,6 +935,7 @@
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/approval-agents",
+      "https://cursor.com/docs/rollouts",
       "https://cursor.com/docs/cloud-agent/mobile",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
@@ -944,7 +979,7 @@
       "https://cursor.com/docs/plugins#installing-plugins"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-09-20T08:23:38.671395"
+    "saved_at": "2026-09-27T09:01:46.379775"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -985,6 +1020,7 @@
       "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/security-agents",
       "https://cursor.com/docs/approval-agents",
+      "https://cursor.com/docs/rollouts",
       "https://cursor.com/docs/cloud-agent/mobile",
       "https://cursor.com/docs/cloud-agent/settings",
       "https://cursor.com/docs/cloud-agent/api/endpoints",
@@ -1056,6 +1092,7 @@
       "https://cursor.com/docs/enterprise/opentelemetry-export",
       "https://cursor.com/docs/enterprise/baa",
       "https://cursor.com/docs/enterprise/deployment-patterns",
+      "https://cursor.com/docs/grok-bot/deployment",
       "https://cursor.com/docs/account/teams/sso",
       "https://cursor.com/docs/account/teams/scim",
       "https://cursor.com/docs/enterprise/identity-and-access-management#mdm-policies",
@@ -1107,6 +1144,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-09-20T08:23:43.213367"
+    "saved_at": "2026-09-27T09:01:51.007548"
   }
 ]
