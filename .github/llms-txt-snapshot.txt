@@ -228,6 +228,9 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#archive-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#unarchive-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-agent-permanently
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-environment
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#worker-tokens
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-workers
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-summary
