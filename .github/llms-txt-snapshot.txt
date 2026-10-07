@@ -20,6 +20,7 @@
   - https://cursor.com/docs/models/grok-4-5.md
   - https://cursor.com/docs/models/cursor-composer-2-5.md
 - https://cursor.comhttps://cursor.com/changelog.md
+- https://cursor.com/docs/release-notes.md
 
 ## Agent
 
@@ -108,6 +109,7 @@
 - https://cursor.com/docs/origin/settings.md
 - https://cursor.com/docs/origin/codebase-settings.md
 - https://cursor.com/docs/origin/integrations.md
+- https://cursor.com/docs/origin/apps/publish.md
 
 ## Integrations
 
@@ -129,7 +131,7 @@
 - https://cursor.com/docs/sdk/typescript.md
 - https://cursor.com/docs/sdk/python.md
 - https://cursor.com/docs/sdk/bridge.md
-- https://cursor.com/docs/sdk/changelog.md
+- https://cursor.com/docs/release-notes/sdk.md
 
 ## cli
 
@@ -231,6 +233,9 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#create-an-environment
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-environment
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environment-builds
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-environment-build
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-the-active-build
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#worker-tokens
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-workers
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-summary
