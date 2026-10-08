@@ -9,6 +9,7 @@
   - https://cursor.com/docs/models/claude-sonnet-5-5.md
   - https://cursor.com/docs/models/claude-opus-5-5.md
   - https://cursor.com/docs/models/claude-fable-5-1.md
+  - https://cursor.com/docs/models/claude-haiku-5-5.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
   - https://cursor.com/docs/models/gemini-3-8-flash.md
   - https://cursor.com/docs/models/muse-spark-1-3.md
@@ -101,15 +102,15 @@
   - https://cursor.com/docs/origin/cli/reference/commands.md
   - https://cursor.com/docs/origin/cli/reference/pull-requests.md
 - https://cursor.com/docs/origin/create-repository.md
+- https://cursor.com/docs/origin/mirror-github.md
 - https://cursor.com/docs/origin/git.md
 - https://cursor.com/docs/origin/clonekit-ci.md
-- https://cursor.com/docs/origin/mirror-github.md
 - https://cursor.com/docs/origin/pull-requests.md
 - https://cursor.com/docs/origin/browse.md
+- https://cursor.com/docs/origin/agents.md
+- https://cursor.com/docs/origin/apps.md
+  - https://cursor.com/docs/origin/apps/build-app.md
 - https://cursor.com/docs/origin/settings.md
-- https://cursor.com/docs/origin/codebase-settings.md
-- https://cursor.com/docs/origin/integrations.md
-- https://cursor.com/docs/origin/apps/publish.md
 
 ## Integrations
 
@@ -231,12 +232,16 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#unarchive-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-agent-permanently
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#create-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environments
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#update-an-environment
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environment-history
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environment-builds
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-environment-build
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-the-active-build
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#worker-tokens
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#secrets
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-workers
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-summary
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-by-id
@@ -248,6 +253,7 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#claim-a-pending-request
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-session-token
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#release-a-claim
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#fail-a-claim
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#api-key-info
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-models
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-github-repositories
@@ -444,6 +450,7 @@
 - https://cursor.com/help/grok-bot/sign-in.md
 - https://cursor.com/help/grok-bot/mobile.md
 - https://cursor.com/help/grok-bot/plans.md
+- https://cursor.com/help/grok-bot/models.md
 - https://cursor.com/help/grok-bot/supergrok.md
 - https://cursor.com/help/grok-bot/mobile-purchase.md
 - https://cursor.com/help/grok-bot/delete-account.md
