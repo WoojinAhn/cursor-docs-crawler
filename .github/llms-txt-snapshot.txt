@@ -240,8 +240,14 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environment-builds
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-environment-build
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-the-active-build
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-secrets
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environment-secrets
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#set-an-environment-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-environment-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-team-secrets
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#set-a-team-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-a-team-secret
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#worker-tokens
-- https://cursor.com/docs/cloud-agent/api/endpoints.md#secrets
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-workers
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-summary
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-by-id
