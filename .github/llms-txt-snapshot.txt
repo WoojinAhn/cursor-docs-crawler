@@ -461,6 +461,7 @@
 - https://cursor.com/help/grok-bot/mobile-purchase.md
 - https://cursor.com/help/grok-bot/delete-account.md
 - https://cursor.com/help/grok-bot/connect-plugins.md
+- https://cursor.com/help/grok-bot/agent-email.md
 - https://cursor.com/help/grok-bot/routines.md
 - https://cursor.com/help/grok-bot/edit-bot.md
 - https://cursor.com/help/grok-bot/group-chats.md
