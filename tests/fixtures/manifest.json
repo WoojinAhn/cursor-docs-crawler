@@ -87,16 +87,17 @@
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gemini-3-8-flash",
+      "https://cursor.com/docs/models/gemini-4-argon",
       "https://cursor.com/docs/models/gpt-5-6-luna",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/grok-4-5",
       "https://cursor.com/docs/models/grok-4-6",
       "https://cursor.com/docs/models/grok-4-7",
-      "https://cursor.com/docs/models/muse-spark-1-3"
+      "https://cursor.com/docs/models/muse-wonder"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-10-11T09:45:56.883975"
+    "saved_at": "2026-10-18T07:51:22.046887"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -109,14 +110,16 @@
       "https://cursor.com/docs",
       "https://cursor.com/docs/get-started/quickstart",
       "https://cursor.com/docs/models-and-pricing",
+      "https://cursor.com/docs/account/pricing/legacy-cursor-plans",
       "https://cursor.com/docs/cursor-router",
       "https://cursor.com/docs/models/claude-sonnet-5-5",
       "https://cursor.com/docs/models/claude-opus-5-5",
       "https://cursor.com/docs/models/claude-fable-5-1",
       "https://cursor.com/docs/models/claude-haiku-5-5",
+      "https://cursor.com/docs/models/gemini-4-argon",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gemini-3-8-flash",
-      "https://cursor.com/docs/models/muse-spark-1-3",
+      "https://cursor.com/docs/models/muse-wonder",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/gpt-5-6-luna",
@@ -190,6 +193,9 @@
       "https://cursor.com/docs/cli/shell-mode",
       "https://cursor.com/docs/cli/acp",
       "https://cursor.com/docs/cli/headless",
+      "https://cursor.com/docs/account/pricing/legacy-cursor-plans",
+      "https://cursor.com/docs/origin",
+      "https://cursor.com/docs/bugbot",
       "https://cursor.com/docs/cursor-router",
       "https://cursor.com/docs/models/grok-4-7",
       "https://cursor.com/docs/models/grok-4-7",
@@ -207,18 +213,18 @@
       "https://cursor.com/docs/models/claude-sonnet-5-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gemini-3-8-flash",
+      "https://cursor.com/docs/models/gemini-4-argon",
       "https://cursor.com/docs/models/gpt-5-6-luna",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
-      "https://cursor.com/docs/models/muse-spark-1-3",
+      "https://cursor.com/docs/models/muse-wonder",
       "https://cursor.com/docs/enterprise/privacy-and-data-governance",
-      "https://cursor.com/docs/cloud-agent",
-      "https://cursor.com/docs/cloud-agent/mobile",
       "https://cursor.com/docs/account/teams/pricing",
-      "https://cursor.com/docs/cursor-router"
+      "https://cursor.com/docs/cursor-router",
+      "https://cursor.com/docs/account/pricing/legacy-cursor-plans"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-10-11T09:46:02.637907"
+    "saved_at": "2026-10-18T07:51:27.641864"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -302,12 +308,14 @@
       "https://cursor.com/docs/account/teams/sso",
       "https://cursor.com/docs/account/teams/dashboard",
       "https://cursor.com/docs/account/teams/analytics",
+      "https://cursor.com/docs/models-and-pricing",
       "https://cursor.com/docs/account/teams/admin-api",
       "https://cursor.com/docs/enterprise",
+      "https://cursor.com/docs/account/teams/admin-api",
       "https://cursor.com/docs/enterprise",
       "https://cursor.com/docs/account/teams/admin-api#get-spending-data",
       "https://cursor.com/docs/models-and-pricing#auto-modes",
-      "https://cursor.com/docs/enterprise",
+      "https://cursor.com/docs/account/pricing/legacy-cursor-plans",
       "https://cursor.com/docs/models/claude-fable-5-1",
       "https://cursor.com/docs/models/claude-haiku-5-5",
       "https://cursor.com/docs/models/claude-opus-5-5",
@@ -315,16 +323,17 @@
       "https://cursor.com/docs/models/cursor-composer-2-5",
       "https://cursor.com/docs/models/gemini-3-1-pro",
       "https://cursor.com/docs/models/gemini-3-8-flash",
+      "https://cursor.com/docs/models/gemini-4-argon",
       "https://cursor.com/docs/models/gpt-5-6-luna",
       "https://cursor.com/docs/models/gpt-5-6-sol",
       "https://cursor.com/docs/models/gpt-5-6-terra",
       "https://cursor.com/docs/models/grok-4-5",
       "https://cursor.com/docs/models/grok-4-6",
       "https://cursor.com/docs/models/grok-4-7",
-      "https://cursor.com/docs/models/muse-spark-1-3"
+      "https://cursor.com/docs/models/muse-wonder"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-10-11T09:46:07.994032"
+    "saved_at": "2026-10-18T07:51:33.144912"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -414,7 +423,7 @@
       "https://cursor.com/docs/skills#built-in-cursor-skills"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-10-11T09:46:12.562976"
+    "saved_at": "2026-10-18T07:51:37.710599"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -426,7 +435,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-10-11T09:46:17.096307"
+    "saved_at": "2026-10-18T07:51:42.240369"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -507,7 +516,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-10-11T09:46:21.688776"
+    "saved_at": "2026-10-18T07:51:46.821875"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -760,6 +769,8 @@
       "https://cursor.com/docs/api/origin#get-pull-request",
       "https://cursor.com/docs/api/origin#create-pull-request",
       "https://cursor.com/docs/api/origin#update-pull-request",
+      "https://cursor.com/docs/api/origin#enable-pull-request-auto-merge",
+      "https://cursor.com/docs/api/origin#disable-pull-request-auto-merge",
       "https://cursor.com/docs/api/origin#list-pull-request-comments",
       "https://cursor.com/docs/api/origin#get-pull-request-comment",
       "https://cursor.com/docs/api/origin#delete-pull-request-comment",
@@ -812,6 +823,8 @@
       "https://cursor.com/docs/api/origin#repository-push",
       "https://cursor.com/docs/api/origin#repository-metadata-updated",
       "https://cursor.com/docs/api/origin#pull-request-events",
+      "https://cursor.com/docs/api/origin#pull-request-auto-merge-enabled",
+      "https://cursor.com/docs/api/origin#pull-request-auto-merge-disabled",
       "https://cursor.com/docs/api/origin#pull-request-label-events",
       "https://cursor.com/docs/api/origin#pull-request-comment",
       "https://cursor.com/docs/api/origin#pull-request-comment-reaction-events",
@@ -849,7 +862,7 @@
       "https://cursor.com/docs/api/origin#authentication"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-10-11T09:46:26.325758"
+    "saved_at": "2026-10-18T07:51:51.460887"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -935,7 +948,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-10-11T09:46:30.861128"
+    "saved_at": "2026-10-18T07:51:56.047829"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -1020,7 +1033,7 @@
       "https://cursor.com/docs/plugins#installing-plugins"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-10-11T09:46:35.652070"
+    "saved_at": "2026-10-18T07:52:00.886858"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -1185,6 +1198,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-10-11T09:46:40.213147"
+    "saved_at": "2026-10-18T07:52:05.440239"
   }
 ]
