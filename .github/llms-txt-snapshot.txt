@@ -464,6 +464,7 @@
 - https://cursor.com/help/grok-bot/faqs.md
 - https://cursor.com/help/grok-bot/sign-in.md
 - https://cursor.com/help/grok-bot/mobile.md
+- https://cursor.com/help/grok-bot/x-chat.md
 - https://cursor.com/help/grok-bot/plans.md
 - https://cursor.com/help/grok-bot/models.md
 - https://cursor.com/help/grok-bot/supergrok.md
