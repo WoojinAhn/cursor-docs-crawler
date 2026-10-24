@@ -380,7 +380,6 @@
 - https://cursor.com/help/ai-features/ask-mode.md
 - https://cursor.com/help/ai-features/debug-mode.md
 - https://cursor.com/help/ai-features/tab.md
-- https://cursor.com/help/ai-features/inline-edit.md
 - https://cursor.com/help/ai-features/max-mode.md
 - https://cursor.com/help/ai-features/terminal.md
 - https://cursor.com/help/ai-features/browser.md
