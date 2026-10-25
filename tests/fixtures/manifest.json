@@ -49,6 +49,7 @@
       "https://cursor.com/docs/origin/git",
       "https://cursor.com/docs/origin/clonekit-ci",
       "https://cursor.com/docs/origin/pull-requests",
+      "https://cursor.com/docs/origin/code-tours",
       "https://cursor.com/docs/origin/browse",
       "https://cursor.com/docs/origin/agents",
       "https://cursor.com/docs/origin/settings",
@@ -68,6 +69,7 @@
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
+      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -97,7 +99,7 @@
       "https://cursor.com/docs/models/muse-wonder"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-10-18T07:51:22.046887"
+    "saved_at": "2026-10-25T08:11:30.156983"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -167,6 +169,7 @@
       "https://cursor.com/docs/origin/git",
       "https://cursor.com/docs/origin/clonekit-ci",
       "https://cursor.com/docs/origin/pull-requests",
+      "https://cursor.com/docs/origin/code-tours",
       "https://cursor.com/docs/origin/browse",
       "https://cursor.com/docs/origin/agents",
       "https://cursor.com/docs/origin/settings",
@@ -186,6 +189,7 @@
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
+      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -224,7 +228,7 @@
       "https://cursor.com/docs/account/pricing/legacy-cursor-plans"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-10-18T07:51:27.641864"
+    "saved_at": "2026-10-25T08:11:35.228303"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -276,6 +280,7 @@
       "https://cursor.com/docs/origin/git",
       "https://cursor.com/docs/origin/clonekit-ci",
       "https://cursor.com/docs/origin/pull-requests",
+      "https://cursor.com/docs/origin/code-tours",
       "https://cursor.com/docs/origin/browse",
       "https://cursor.com/docs/origin/agents",
       "https://cursor.com/docs/origin/settings",
@@ -295,6 +300,7 @@
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
+      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -311,11 +317,15 @@
       "https://cursor.com/docs/models-and-pricing",
       "https://cursor.com/docs/account/teams/admin-api",
       "https://cursor.com/docs/enterprise",
+      "https://cursor.com/docs/models-and-pricing#cursor-token-rate",
       "https://cursor.com/docs/account/teams/admin-api",
       "https://cursor.com/docs/enterprise",
+      "https://cursor.com/docs/models-and-pricing#cursor-token-rate",
       "https://cursor.com/docs/account/teams/admin-api#get-spending-data",
+      "https://cursor.com/docs/models-and-pricing#cursor-token-rate",
       "https://cursor.com/docs/models-and-pricing#auto-modes",
       "https://cursor.com/docs/account/pricing/legacy-cursor-plans",
+      "https://cursor.com/docs/models-and-pricing#cursor-token-rate",
       "https://cursor.com/docs/models/claude-fable-5-1",
       "https://cursor.com/docs/models/claude-haiku-5-5",
       "https://cursor.com/docs/models/claude-opus-5-5",
@@ -333,7 +343,7 @@
       "https://cursor.com/docs/models/muse-wonder"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-10-18T07:51:33.144912"
+    "saved_at": "2026-10-25T08:11:40.186252"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -385,6 +395,7 @@
       "https://cursor.com/docs/origin/git",
       "https://cursor.com/docs/origin/clonekit-ci",
       "https://cursor.com/docs/origin/pull-requests",
+      "https://cursor.com/docs/origin/code-tours",
       "https://cursor.com/docs/origin/browse",
       "https://cursor.com/docs/origin/agents",
       "https://cursor.com/docs/origin/settings",
@@ -404,6 +415,7 @@
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
+      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -423,7 +435,7 @@
       "https://cursor.com/docs/skills#built-in-cursor-skills"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-10-18T07:51:37.710599"
+    "saved_at": "2026-10-25T08:11:44.770637"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -435,7 +447,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-10-18T07:51:42.240369"
+    "saved_at": "2026-10-25T08:11:49.319254"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -487,6 +499,7 @@
       "https://cursor.com/docs/origin/git",
       "https://cursor.com/docs/origin/clonekit-ci",
       "https://cursor.com/docs/origin/pull-requests",
+      "https://cursor.com/docs/origin/code-tours",
       "https://cursor.com/docs/origin/browse",
       "https://cursor.com/docs/origin/agents",
       "https://cursor.com/docs/origin/settings",
@@ -506,6 +519,7 @@
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
+      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -516,7 +530,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-10-18T07:51:46.821875"
+    "saved_at": "2026-10-25T08:11:53.939470"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -534,7 +548,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints#create-an-agent",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-agents",
       "https://cursor.com/docs/cloud-agent/api/endpoints#get-an-agent",
-      "https://cursor.com/docs/cloud-agent/api/endpoints#create-a-run",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#send-a-follow-up-or-steer",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-runs",
       "https://cursor.com/docs/cloud-agent/api/endpoints#get-a-run",
       "https://cursor.com/docs/cloud-agent/api/endpoints#stream-a-run",
@@ -551,6 +565,7 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints#delete-an-environment",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-environment-history",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-environment-builds",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#start-an-environment-build",
       "https://cursor.com/docs/cloud-agent/api/endpoints#get-an-environment-build",
       "https://cursor.com/docs/cloud-agent/api/endpoints#get-the-active-build",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-secrets",
@@ -560,6 +575,8 @@
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-team-secrets",
       "https://cursor.com/docs/cloud-agent/api/endpoints#set-a-team-secret",
       "https://cursor.com/docs/cloud-agent/api/endpoints#delete-a-team-secret",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#set-a-personal-secret",
+      "https://cursor.com/docs/cloud-agent/api/endpoints#delete-a-personal-secret",
       "https://cursor.com/docs/cloud-agent/api/endpoints#worker-tokens",
       "https://cursor.com/docs/cloud-agent/api/endpoints#list-workers",
       "https://cursor.com/docs/cloud-agent/api/endpoints#get-worker-summary",
@@ -705,6 +722,7 @@
       "https://cursor.com/docs/api/origin#list-namespaces",
       "https://cursor.com/docs/api/origin#list-repos",
       "https://cursor.com/docs/api/origin#get-repo",
+      "https://cursor.com/docs/api/origin#delete-repo",
       "https://cursor.com/docs/api/origin#update-repo",
       "https://cursor.com/docs/api/origin#create-repo",
       "https://cursor.com/docs/api/origin#list-branches",
@@ -822,6 +840,8 @@
       "https://cursor.com/docs/api/origin#repository-deleted",
       "https://cursor.com/docs/api/origin#repository-push",
       "https://cursor.com/docs/api/origin#repository-metadata-updated",
+      "https://cursor.com/docs/api/origin#repository-label-events",
+      "https://cursor.com/docs/api/origin#repository-label-updated",
       "https://cursor.com/docs/api/origin#pull-request-events",
       "https://cursor.com/docs/api/origin#pull-request-auto-merge-enabled",
       "https://cursor.com/docs/api/origin#pull-request-auto-merge-disabled",
@@ -838,12 +858,16 @@
       "https://cursor.com/docs/api/origin#installation-suspended",
       "https://cursor.com/docs/api/origin#installation-unsuspended",
       "https://cursor.com/docs/api/origin#installation-deleted",
+      "https://cursor.com/docs/api/origin#pull-request-commandeered",
+      "https://cursor.com/docs/api/origin#repository-ruleset-events",
       "https://cursor.com/docs/api/origin/mcp",
       "https://cursor.com/docs/api/origin/mcp#endpoints",
       "https://cursor.com/docs/api/origin/mcp#transport",
       "https://cursor.com/docs/api/origin/mcp#permissions",
       "https://cursor.com/docs/api/origin/mcp#confirmation",
       "https://cursor.com/docs/api/origin/mcp#errors",
+      "https://cursor.com/docs/api/origin/mcp#results",
+      "https://cursor.com/docs/api/origin/mcp#pull-request-attachments",
       "https://cursor.com/docs/api/origin/mcp#pagination",
       "https://cursor.com/docs/account/teams/admin-api",
       "https://cursor.com/docs/account/teams/analytics-api",
@@ -862,7 +886,7 @@
       "https://cursor.com/docs/api/origin#authentication"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-10-18T07:51:51.460887"
+    "saved_at": "2026-10-25T08:11:58.618245"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -916,6 +940,7 @@
       "https://cursor.com/docs/origin/git",
       "https://cursor.com/docs/origin/clonekit-ci",
       "https://cursor.com/docs/origin/pull-requests",
+      "https://cursor.com/docs/origin/code-tours",
       "https://cursor.com/docs/origin/browse",
       "https://cursor.com/docs/origin/agents",
       "https://cursor.com/docs/origin/settings",
@@ -935,6 +960,7 @@
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
+      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -948,7 +974,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-10-18T07:51:56.047829"
+    "saved_at": "2026-10-25T08:12:03.178989"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -1000,6 +1026,7 @@
       "https://cursor.com/docs/origin/git",
       "https://cursor.com/docs/origin/clonekit-ci",
       "https://cursor.com/docs/origin/pull-requests",
+      "https://cursor.com/docs/origin/code-tours",
       "https://cursor.com/docs/origin/browse",
       "https://cursor.com/docs/origin/agents",
       "https://cursor.com/docs/origin/settings",
@@ -1019,6 +1046,7 @@
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
+      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -1033,7 +1061,7 @@
       "https://cursor.com/docs/plugins#installing-plugins"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-10-18T07:52:00.886858"
+    "saved_at": "2026-10-25T08:12:07.887313"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -1085,6 +1113,7 @@
       "https://cursor.com/docs/origin/git",
       "https://cursor.com/docs/origin/clonekit-ci",
       "https://cursor.com/docs/origin/pull-requests",
+      "https://cursor.com/docs/origin/code-tours",
       "https://cursor.com/docs/origin/browse",
       "https://cursor.com/docs/origin/agents",
       "https://cursor.com/docs/origin/settings",
@@ -1104,6 +1133,7 @@
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
+      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -1117,6 +1147,7 @@
       "https://cursor.com/docs/enterprise/organization-groups",
       "https://cursor.com/docs/enterprise/privacy-and-data-governance",
       "https://cursor.com/docs/enterprise/network-configuration",
+      "https://cursor.com/docs/enterprise/tenancy-restriction",
       "https://cursor.com/docs/cloud-agent/private-connectivity",
       "https://cursor.com/docs/enterprise/endpoint-security",
       "https://cursor.com/docs/enterprise/llm-safety-and-controls",
@@ -1137,6 +1168,7 @@
       "https://cursor.com/docs/enterprise/identity-and-access-management",
       "https://cursor.com/docs/enterprise/privacy-and-data-governance",
       "https://cursor.com/docs/enterprise/network-configuration",
+      "https://cursor.com/docs/enterprise/tenancy-restriction",
       "https://cursor.com/docs/cloud-agent/private-connectivity",
       "https://cursor.com/docs/enterprise/endpoint-security",
       "https://cursor.com/docs/enterprise/llm-safety-and-controls",
@@ -1198,6 +1230,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-10-18T07:52:05.440239"
+    "saved_at": "2026-10-25T08:12:12.471269"
   }
 ]
