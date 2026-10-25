@@ -227,7 +227,7 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#create-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-agents
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-agent
-- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#send-a-follow-up-or-steer
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-runs
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-a-run
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#stream-a-run
@@ -472,8 +472,11 @@
 - https://cursor.com/help/grok-bot/connect-apps.md
 - https://cursor.com/help/grok-bot/agent-email.md
 - https://cursor.com/help/grok-bot/routines.md
+- https://cursor.com/help/grok-bot/approvals.md
 - https://cursor.com/help/grok-bot/pages.md
+- https://cursor.com/help/grok-bot/create-media.md
 - https://cursor.com/help/grok-bot/edit-bot.md
+- https://cursor.com/help/grok-bot/memory.md
 - https://cursor.com/help/grok-bot/group-chats.md
 - https://cursor.com/help/grok-bot/team-bots.md
 - https://cursor.com/help/grok-bot/voice-chat.md
