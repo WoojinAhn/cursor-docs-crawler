@@ -139,6 +139,53 @@
 - https://cursor.com/docs/sdk/bridge.md
 - https://cursor.com/docs/release-notes/sdk.md
 
+## agent-sdk
+
+- https://cursor.com/docs/agent-sdk.md
+  - https://cursor.com/docs/agent-sdk/changelog.md
+  - https://cursor.com/docs/agent-sdk/quickstart.md
+- https://cursor.com/docs/agent-sdk/guides/github.md
+  - https://cursor.com/docs/agent-sdk/guides/slack.md
+  - https://cursor.com/docs/agent-sdk/guides/webhooks.md
+  - https://cursor.com/docs/agent-sdk/guides/convert-automation.md
+  - https://cursor.com/docs/agent-sdk/guides/opentelemetry.md
+  - https://cursor.com/docs/agent-sdk/guides/gitlab.md
+  - https://cursor.com/docs/agent-sdk/guides/bitbucket.md
+  - https://cursor.com/docs/agent-sdk/guides/pagerduty.md
+- https://cursor.com/docs/agent-sdk/reference/extensions.md
+  - https://cursor.com/docs/agent-sdk/guides/cloud-agents.md
+  - https://cursor.com/docs/agent-sdk/guides/improve.md
+  - https://cursor.com/docs/agent-sdk/guides/jev.md
+- https://cursor.com/docs/agent-sdk/guides/mcp-oauth.md
+  - https://cursor.com/docs/agent-sdk/guides/agent-to-agent.md
+  - https://cursor.com/docs/agent-sdk/deployment.md
+  - https://cursor.com/docs/agent-sdk/guides/migrate.md
+  - https://cursor.com/docs/agent-sdk/evals.md
+  - https://cursor.com/docs/agent-sdk/hillclimbing.md
+  - https://cursor.com/docs/agent-sdk/building-with-agents.md
+  - https://cursor.com/docs/agent-sdk/troubleshooting.md
+- https://cursor.com/docs/agent-sdk/templates/reviews.md
+  - https://cursor.com/docs/agent-sdk/templates/agentic-owners.md
+- https://cursor.com/docs/agent-sdk/reference/project-layout.md
+  - https://cursor.com/docs/agent-sdk/reference/agent-config.md
+  - https://cursor.com/docs/agent-sdk/reference/instructions.md
+  - https://cursor.com/docs/agent-sdk/reference/tools.md
+  - https://cursor.com/docs/agent-sdk/reference/skills.md
+  - https://cursor.com/docs/agent-sdk/reference/connections.md
+  - https://cursor.com/docs/agent-sdk/reference/subagents.md
+  - https://cursor.com/docs/agent-sdk/reference/channels.md
+  - https://cursor.com/docs/agent-sdk/reference/schedules.md
+  - https://cursor.com/docs/agent-sdk/reference/hooks.md
+  - https://cursor.com/docs/agent-sdk/reference/memory.md
+  - https://cursor.com/docs/agent-sdk/reference/evals.md
+  - https://cursor.com/docs/agent-sdk/reference/artifacts.md
+  - https://cursor.com/docs/agent-sdk/reference/sessions.md
+  - https://cursor.com/docs/agent-sdk/reference/playground.md
+  - https://cursor.com/docs/agent-sdk/reference/cli.md
+  - https://cursor.com/docs/agent-sdk/reference/http-api.md
+  - https://cursor.com/docs/agent-sdk/reference/access.md
+  - https://cursor.com/docs/agent-sdk/reference/limits.md
+
 ## cli
 
 - https://cursor.com/docs/cli/overview.md
@@ -493,6 +540,7 @@
 - https://cursor.com/help/troubleshooting/agent-issues.md
 - https://cursor.com/help/troubleshooting/tab-issues.md
 - https://cursor.com/help/troubleshooting/install-issues.md
+- https://cursor.com/help/troubleshooting/minimum-version.md
 - https://cursor.com/help/troubleshooting/network.md
 - https://cursor.com/help/troubleshooting/sign-in-domains.md
 - https://cursor.com/help/troubleshooting/extensions.md
