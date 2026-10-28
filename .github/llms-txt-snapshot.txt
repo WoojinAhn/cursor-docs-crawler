@@ -104,6 +104,7 @@
 - https://cursor.com/docs/origin/cli.md
   - https://cursor.com/docs/origin/cli/reference/commands.md
   - https://cursor.com/docs/origin/cli/reference/pull-requests.md
+  - https://cursor.com/docs/origin/cli/reference/stacks.md
 - https://cursor.com/docs/origin/create-repository.md
 - https://cursor.com/docs/origin/mirror-github.md
 - https://cursor.com/docs/origin/git.md
@@ -130,6 +131,7 @@
 - https://cursor.com/docs/integrations/bitbucket.md
 - https://cursor.com/docs/integrations/jetbrains.md
 - https://cursor.com/docs/integrations/xcode.md
+- https://cursor.com/docs/integrations/tailscale.md
 - https://cursor.com/docs/reference/deeplinks.md
 
 ## SDK
@@ -525,7 +527,7 @@
 - https://cursor.com/help/grok-bot/edit-bot.md
 - https://cursor.com/help/grok-bot/memory.md
 - https://cursor.com/help/grok-bot/group-chats.md
-- https://cursor.com/help/grok-bot/team-bots.md
+- https://cursor.com/help/grok-bot/shared-bots.md
 - https://cursor.com/help/grok-bot/voice-chat.md
 - https://cursor.com/help/grok-bot/computer-recovery.md
 - https://cursor.com/help/grok-bot/secrets.md
