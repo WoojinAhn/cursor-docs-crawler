@@ -64,12 +64,12 @@
       "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
+      "https://cursor.com/docs/integrations/tailscale",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
-      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -99,7 +99,7 @@
       "https://cursor.com/docs/models/muse-wonder"
     ],
     "final_url": "https://cursor.com/docs",
-    "saved_at": "2026-10-25T08:11:30.156983"
+    "saved_at": "2026-11-01T10:11:48.286200"
   },
   {
     "url": "https://cursor.com/docs/models-and-pricing",
@@ -184,12 +184,12 @@
       "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
+      "https://cursor.com/docs/integrations/tailscale",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
-      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -228,7 +228,7 @@
       "https://cursor.com/docs/account/pricing/legacy-cursor-plans"
     ],
     "final_url": "https://cursor.com/docs/models-and-pricing",
-    "saved_at": "2026-10-25T08:11:35.228303"
+    "saved_at": "2026-11-01T10:11:53.938590"
   },
   {
     "url": "https://cursor.com/docs/account/teams/pricing",
@@ -295,12 +295,12 @@
       "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
+      "https://cursor.com/docs/integrations/tailscale",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
-      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -343,7 +343,7 @@
       "https://cursor.com/docs/models/muse-wonder"
     ],
     "final_url": "https://cursor.com/docs/account/teams/pricing",
-    "saved_at": "2026-10-25T08:11:40.186252"
+    "saved_at": "2026-11-01T10:11:59.249545"
   },
   {
     "url": "https://cursor.com/docs/agent/overview",
@@ -410,12 +410,12 @@
       "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
+      "https://cursor.com/docs/integrations/tailscale",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
-      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -435,7 +435,7 @@
       "https://cursor.com/docs/skills#built-in-cursor-skills"
     ],
     "final_url": "https://cursor.com/docs/agent/overview",
-    "saved_at": "2026-10-25T08:11:44.770637"
+    "saved_at": "2026-11-01T10:12:03.832907"
   },
   {
     "url": "https://cursor.com/docs/tab/overview",
@@ -447,7 +447,7 @@
       "https://cursor.com/docs/api"
     ],
     "final_url": "https://cursor.com/help/ai-features/tab",
-    "saved_at": "2026-10-25T08:11:49.319254"
+    "saved_at": "2026-11-01T10:12:08.372611"
   },
   {
     "url": "https://cursor.com/docs/cli/overview",
@@ -514,12 +514,12 @@
       "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
+      "https://cursor.com/docs/integrations/tailscale",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
-      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -530,7 +530,7 @@
       "https://cursor.com/docs/cloud-agent"
     ],
     "final_url": "https://cursor.com/docs/cli/overview",
-    "saved_at": "2026-10-25T08:11:53.939470"
+    "saved_at": "2026-11-01T10:12:12.946529"
   },
   {
     "url": "https://cursor.com/docs/api",
@@ -859,7 +859,6 @@
       "https://cursor.com/docs/api/origin#installation-unsuspended",
       "https://cursor.com/docs/api/origin#installation-deleted",
       "https://cursor.com/docs/api/origin#pull-request-commandeered",
-      "https://cursor.com/docs/api/origin#repository-ruleset-events",
       "https://cursor.com/docs/api/origin/mcp",
       "https://cursor.com/docs/api/origin/mcp#endpoints",
       "https://cursor.com/docs/api/origin/mcp#transport",
@@ -886,7 +885,7 @@
       "https://cursor.com/docs/api/origin#authentication"
     ],
     "final_url": "https://cursor.com/docs/api",
-    "saved_at": "2026-10-25T08:11:58.618245"
+    "saved_at": "2026-11-01T10:12:17.619429"
   },
   {
     "url": "https://cursor.com/docs/agent/security",
@@ -955,12 +954,12 @@
       "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
+      "https://cursor.com/docs/integrations/tailscale",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
-      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -974,7 +973,7 @@
       "https://cursor.com/docs/reference/permissions#mcp-allowlist-format"
     ],
     "final_url": "https://cursor.com/docs/agent/security",
-    "saved_at": "2026-10-25T08:12:03.178989"
+    "saved_at": "2026-11-01T10:12:22.171934"
   },
   {
     "url": "https://cursor.com/docs/rules",
@@ -1041,12 +1040,12 @@
       "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
+      "https://cursor.com/docs/integrations/tailscale",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
-      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -1061,7 +1060,7 @@
       "https://cursor.com/docs/plugins#installing-plugins"
     ],
     "final_url": "https://cursor.com/docs/rules",
-    "saved_at": "2026-10-25T08:12:07.887313"
+    "saved_at": "2026-11-01T10:12:26.852741"
   },
   {
     "url": "https://cursor.com/docs/enterprise",
@@ -1128,12 +1127,12 @@
       "https://cursor.com/docs/integrations/bitbucket",
       "https://cursor.com/docs/integrations/jetbrains",
       "https://cursor.com/docs/integrations/xcode",
+      "https://cursor.com/docs/integrations/tailscale",
       "https://cursor.com/docs/reference/deeplinks",
       "https://cursor.com/docs/sdk/typescript",
       "https://cursor.com/docs/sdk/python",
       "https://cursor.com/docs/sdk/bridge",
       "https://cursor.com/docs/release-notes/sdk",
-      "https://cursor.com/docs/agent-sdk/reference/limits",
       "https://cursor.com/docs/cli/overview",
       "https://cursor.com/docs/cli/installation",
       "https://cursor.com/docs/cli/using",
@@ -1230,6 +1229,6 @@
       "https://cursor.com/docs/agent/security#responsible-disclosure"
     ],
     "final_url": "https://cursor.com/docs/enterprise",
-    "saved_at": "2026-10-25T08:12:12.471269"
+    "saved_at": "2026-11-01T10:12:31.436505"
   }
 ]
