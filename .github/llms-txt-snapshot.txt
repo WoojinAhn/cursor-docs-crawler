@@ -282,6 +282,7 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-a-run
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#stream-a-run
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#cancel-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-agent-usage
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-artifacts
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#download-an-artifact
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#archive-an-agent
@@ -306,7 +307,7 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-a-team-secret
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#set-a-personal-secret
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-a-personal-secret
-- https://cursor.com/docs/cloud-agent/api/endpoints.md#worker-tokens
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-user-scoped-worker-token
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-workers
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-summary
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-by-id
