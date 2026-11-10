@@ -9,7 +9,7 @@
   - https://cursor.com/docs/cursor-router.md
   - https://cursor.com/docs/models/claude-sonnet-5-5.md
   - https://cursor.com/docs/models/claude-opus-5-5.md
-  - https://cursor.com/docs/models/claude-fable-5-1.md
+  - https://cursor.com/docs/models/claude-fable-5-2.md
   - https://cursor.com/docs/models/claude-haiku-5-5.md
   - https://cursor.com/docs/models/gemini-4-argon.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
