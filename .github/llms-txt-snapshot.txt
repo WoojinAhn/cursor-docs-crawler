@@ -11,6 +11,7 @@
   - https://cursor.com/docs/models/claude-opus-5-5.md
   - https://cursor.com/docs/models/claude-fable-5-2.md
   - https://cursor.com/docs/models/claude-haiku-5-5.md
+  - https://cursor.com/docs/models/gemini-4-carbon.md
   - https://cursor.com/docs/models/gemini-4-argon.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
   - https://cursor.com/docs/models/gemini-3-8-flash.md
@@ -54,6 +55,7 @@
 - https://cursor.com/docs/grok-bot/teams.md
   - https://cursor.com/docs/grok-bot/deployment.md
   - https://cursor.com/docs/grok-bot/identity.md
+    - https://cursor.com/docs/grok-bot/okta-fastpass.md
   - https://cursor.com/docs/grok-bot/private-networks.md
   - https://cursor.com/docs/grok-bot/proxies.md
   - https://cursor.com/docs/grok-bot/computers.md
@@ -425,6 +427,7 @@
 - https://cursor.com/help/ai-features/agentic-coding.md
 - https://cursor.com/help/ai-features/ai-pair-programming.md
 - https://cursor.com/help/ai-features/multi-agent.md
+- https://cursor.com/help/ai-features/projects.md
 - https://cursor.com/help/ai-features/side-chats.md
 - https://cursor.com/help/ai-features/conversation-search.md
 - https://cursor.com/help/ai-features/vibe-coding.md
@@ -530,7 +533,7 @@
 - https://cursor.com/help/grok-bot/edit-bot.md
 - https://cursor.com/help/grok-bot/memory.md
 - https://cursor.com/help/grok-bot/group-chats.md
-- https://cursor.com/help/grok-bot/shared-bots.md
+- https://cursor.com/help/grok-bot/team-bots.md
 - https://cursor.com/help/grok-bot/voice-chat.md
 - https://cursor.com/help/grok-bot/computer-recovery.md
 - https://cursor.com/help/grok-bot/secrets.md
