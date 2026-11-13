@@ -141,18 +141,27 @@ def _run_release(repo: Path, bin_dir: Path, sha: str, tag: str) -> str:
 
 
 def test_same_day_rerun_drops_local_tag_and_pins_target(tmp_path):
-    """Recreate today's release after the changelog fetch left the tag locally."""
-    repo, sha = _init_repo(tmp_path)
+    """Pin --target to the afternoon commit, not the morning tag's commit."""
+    repo, first_sha = _init_repo(tmp_path)
     tag = "docs-2026-09-27"
     _git(repo, "tag", tag)
     _git(repo, "push", "origin", tag)
+    (repo / "README").write_text("afternoon\n")
+    _git(repo, "add", "README")
+    _git(repo, "commit", "-m", "afternoon crawl")
+    _git(repo, "push", "origin", "HEAD")
+    second_sha = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=repo, text=True
+    ).strip()
+    assert first_sha != second_sha
+    assert _git(repo, "rev-parse", tag).stdout.strip() == first_sha
 
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
     log_path = repo / "gh.log"
     _fake_gh(bin_dir, log_path)
 
-    log = _run_release(repo, bin_dir, sha, tag)
+    log = _run_release(repo, bin_dir, second_sha, tag)
 
     assert _git(repo, "tag", "-l", tag).stdout.strip() == ""
     remote = subprocess.run(
@@ -165,7 +174,8 @@ def test_same_day_rerun_drops_local_tag_and_pins_target(tmp_path):
     assert remote.stdout.strip() == ""
     delete_line, create_line = log.strip().splitlines()
     assert delete_line == f"release delete {tag} --yes --cleanup-tag"
-    assert f"release create {tag} --target {sha} " in create_line
+    assert f"release create {tag} --target {second_sha} " in create_line
+    assert first_sha not in create_line
     assert "--notes-file" in create_line
     assert "cursor_docs_en.pdf" in create_line
 
@@ -199,3 +209,193 @@ def test_recreate_release_requires_github_sha(tmp_path):
     )
     assert result.returncode == 2
     assert "GITHUB_SHA is required" in result.stderr
+
+
+PREV_TAG_SCRIPT = ROOT / "scripts" / "previous_release_tag.sh"
+WORKFLOW = ROOT / ".github" / "workflows" / "release-pdf.yml"
+
+
+def _gh_release_list(bin_dir: Path, tags: list[str], fail: bool = False) -> None:
+    body = "\n".join(tags)
+    status = "1" if fail else "0"
+    _write_executable(
+        bin_dir / "gh",
+        f"""#!/usr/bin/env bash
+if [ "$1" = "release" ] && [ "$2" = "list" ]; then
+  printf '%s\\n' "{body}"
+  exit {status}
+fi
+echo "unexpected gh invocation: $*" >&2
+exit 1
+""",
+    )
+
+
+def _previous_tag(
+    tmp_path: Path, today: str, tags: list[str], fail: bool = False
+) -> str:
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    _gh_release_list(bin_dir, tags, fail=fail)
+    env = os.environ.copy()
+    env["PATH"] = f"{bin_dir}:{env['PATH']}"
+    result = subprocess.run(
+        ["bash", str(PREV_TAG_SCRIPT), today],
+        check=True,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+    return result.stdout.strip()
+
+
+def test_previous_release_tag_skips_today(tmp_path):
+    """A same-day rerun compares against the prior release, not itself."""
+    tags = [f"docs-2026-09-{day:02d}" for day in range(27, 16, -1)]
+    chosen = _previous_tag(tmp_path, "docs-2026-09-27", tags)
+    assert chosen == "docs-2026-09-26"
+
+
+def test_previous_release_tag_is_empty_when_only_today_exists(tmp_path):
+    assert _previous_tag(tmp_path, "docs-2026-09-27", ["docs-2026-09-27"]) == ""
+
+
+def test_previous_release_tag_uses_newest_when_today_is_absent(tmp_path):
+    chosen = _previous_tag(
+        tmp_path,
+        "docs-2026-09-27",
+        ["docs-2026-09-26", "docs-2026-09-25"],
+    )
+    assert chosen == "docs-2026-09-26"
+
+
+def test_previous_release_tag_is_empty_when_gh_fails(tmp_path):
+    assert _previous_tag(tmp_path, "docs-2026-09-27", [], fail=True) == ""
+
+
+def test_zero_change_count_is_a_single_zero():
+    """`grep -c` already prints 0; `|| echo 0` used to append a second 0."""
+    broken = r"""
+set -eo pipefail
+ADDED=""
+ADDED_COUNT=$(echo "$ADDED" | grep -c . || echo "0")
+printf '%s' "$ADDED_COUNT"
+"""
+    fixed = r"""
+set -eo pipefail
+ADDED=""
+REMOVED="https://cursor.com/docs/agent/overview"
+ADDED_COUNT=$(echo "$ADDED" | grep -c . || true)
+REMOVED_COUNT=$(echo "$REMOVED" | grep -c . || true)
+printf 'added=%s\nremoved=%s\n' "$ADDED_COUNT" "$REMOVED_COUNT"
+"""
+    broken_out = subprocess.run(
+        ["bash", "-c", broken], check=True, capture_output=True, text=True
+    )
+    fixed_out = subprocess.run(
+        ["bash", "-c", fixed], check=True, capture_output=True, text=True
+    )
+    assert broken_out.stdout == "0\n0"
+    assert fixed_out.stdout == "added=0\nremoved=1\n"
+    workflow = WORKFLOW.read_text()
+    assert 'grep -c . || echo "0"' not in workflow
+    assert "grep -c . || true" in workflow
+    assert "group: release-pdf" in workflow
+    assert "cancel-in-progress: false" in workflow
+
+
+def _run_release_with_gh(repo, bin_dir, sha, tag, gh_body):
+    _write_executable(bin_dir / "gh", gh_body)
+    notes = repo / "notes.md"
+    notes.write_text("release notes\n")
+    env = os.environ.copy()
+    env["PATH"] = f"{bin_dir}:{env['PATH']}"
+    env["GITHUB_SHA"] = sha
+    env["RELEASE_CREATE_RETRY_DELAY"] = "0"
+    return subprocess.run(
+        [
+            "bash",
+            str(RELEASE_SCRIPT),
+            tag,
+            "Cursor Docs PDF - 2026-09-27",
+            str(notes),
+        ],
+        cwd=repo,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+
+
+def test_release_create_retries_422_then_succeeds(tmp_path):
+    repo, sha = _init_repo(tmp_path)
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    log_path = repo / "gh.log"
+    state = tmp_path / "creates"
+    tag = "docs-2026-09-27"
+    result = _run_release_with_gh(
+        repo,
+        bin_dir,
+        sha,
+        tag,
+        f"""#!/usr/bin/env bash
+printf '%s\\n' "$*" >> "{log_path}"
+if [ "$1" = "release" ] && [ "$2" = "delete" ]; then
+  exit 1
+fi
+if [ "$1" = "release" ] && [ "$2" = "create" ]; then
+  count=0
+  if [ -f "{state}" ]; then count=$(cat "{state}"); fi
+  count=$((count + 1))
+  printf '%s' "$count" > "{state}"
+  if [ "$count" -eq 1 ]; then
+    echo "HTTP 422: Validation Failed" >&2
+    exit 1
+  fi
+  exit 0
+fi
+echo "unexpected gh invocation: $*" >&2
+exit 1
+""",
+    )
+    assert result.returncode == 0, result.stderr
+    creates = [
+        line
+        for line in log_path.read_text().splitlines()
+        if line.startswith("release create")
+    ]
+    assert len(creates) == 2
+    assert all(f"--target {sha} " in line for line in creates)
+
+
+def test_release_create_does_not_retry_other_errors(tmp_path):
+    repo, sha = _init_repo(tmp_path)
+    bin_dir = tmp_path / "bin"
+    bin_dir.mkdir()
+    log_path = repo / "gh.log"
+    result = _run_release_with_gh(
+        repo,
+        bin_dir,
+        sha,
+        "docs-2026-09-27",
+        f"""#!/usr/bin/env bash
+printf '%s\\n' "$*" >> "{log_path}"
+if [ "$1" = "release" ] && [ "$2" = "delete" ]; then
+  exit 1
+fi
+if [ "$1" = "release" ] && [ "$2" = "create" ]; then
+  echo "authentication required" >&2
+  exit 1
+fi
+exit 1
+""",
+    )
+    assert result.returncode != 0
+    creates = [
+        line
+        for line in log_path.read_text().splitlines()
+        if line.startswith("release create")
+    ]
+    assert creates == [line for line in creates if f"--target {sha} " in line]
+    assert len(creates) == 1

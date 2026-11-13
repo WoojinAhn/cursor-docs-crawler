@@ -6,6 +6,11 @@ on:
     # Weekly: Sunday 06:00 UTC (after fixture refresh at 03:00)
     - cron: '0 6 * * 0'
 
+# A second dispatch must not cancel a crawl that is already hours in.
+concurrency:
+  group: release-pdf
+  cancel-in-progress: false
+
 jobs:
   generate-and-release:
     runs-on: ubuntu-latest
@@ -74,8 +79,10 @@ jobs:
       - name: Generate change summary
         id: changes
         run: |
-          # Find previous release tag
-          PREV_TAG=$(gh release list --exclude-drafts --limit 1 --json tagName --jq '.[0].tagName' 2>/dev/null || echo "")
+          # Skip today's tag. A same-day rerun would otherwise diff the
+          # release we are about to delete against itself.
+          TODAY_TAG="docs-$(date -u +%Y-%m-%d)"
+          PREV_TAG="$(bash scripts/previous_release_tag.sh "$TODAY_TAG")"
           SNAPSHOT=".github/llms-txt-snapshot.txt"
 
           # Fetch the tag's commit so git show can access its tree
@@ -130,8 +137,10 @@ jobs:
 
           {
             echo 'summary<<EOFSUM'
-            ADDED_COUNT=$(echo "$ADDED" | grep -c . || echo "0")
-            REMOVED_COUNT=$(echo "$REMOVED" | grep -c . || echo "0")
+            # `grep -c` already prints 0 and exits 1 when nothing matches.
+            # `|| echo 0` would append a second 0 (`0\n0`) to the notes header.
+            ADDED_COUNT=$(echo "$ADDED" | grep -c . || true)
+            REMOVED_COUNT=$(echo "$REMOVED" | grep -c . || true)
             echo "**${ADDED_COUNT} added, ${REMOVED_COUNT} removed** (compared to ${PREV_TAG})"
             group_by_section "$ADDED" "Added"
             group_by_section "$REMOVED" "Removed"
@@ -176,9 +185,8 @@ jobs:
 
           NOTES_FILE="$(mktemp)"
           printf '%s\n' "$BODY" > "$NOTES_FILE"
-          # Same-day reruns fetch today's tag for the changelog, then delete
-          # the remote tag. gh refuses to recreate that local tag unless
-          # --target is set. scripts/recreate_release.sh does both.
+          # Drop any leftover local tag and pin the new one to this commit.
+          # scripts/recreate_release.sh also retries a 422 from tag deletion.
           bash scripts/recreate_release.sh "$TAG" "$TITLE" "$NOTES_FILE" \
             cursor_docs_ko.pdf \
             cursor_docs_en.pdf \
