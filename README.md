@@ -51,8 +51,10 @@ brew install pango libffi
 
 **Ubuntu/Debian:**
 ```bash
-sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
+sudo apt-get install build-essential python3-dev python3-pip python3-setuptools python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info
 ```
+
+Ubuntu 26.04 publishes the image library as `libgdk-pixbuf-2.0-0`. The older name `libgdk-pixbuf2.0-0` has no installation candidate there.
 
 **Windows:**
 Refer to the official WeasyPrint documentation: https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#windows
