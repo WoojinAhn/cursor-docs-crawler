@@ -12,6 +12,7 @@
   - https://cursor.com/docs/models/claude-fable-5-2.md
   - https://cursor.com/docs/models/claude-haiku-5-5.md
   - https://cursor.com/docs/models/gemini-4-carbon.md
+  - https://cursor.com/docs/models/gemini-4-hydrogen.md
   - https://cursor.com/docs/models/gemini-4-argon.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
   - https://cursor.com/docs/models/gemini-3-8-flash.md
@@ -45,24 +46,6 @@
 - https://cursor.com/docs/agent/security.md
   - https://cursor.com/docs/agent/security/run-modes.md
 
-## grok-bot
-
-- https://cursor.com/docs/grok-bot.md
-- https://cursor.com/docs/grok-bot/get-started.md
-- https://cursor.com/docs/grok-bot/use-cases.md
-- https://cursor.com/docs/grok-bot/work.md
-- https://cursor.com/docs/grok-bot/settings.md
-- https://cursor.com/docs/grok-bot/teams.md
-  - https://cursor.com/docs/grok-bot/deployment.md
-  - https://cursor.com/docs/grok-bot/identity.md
-    - https://cursor.com/docs/grok-bot/okta-fastpass.md
-  - https://cursor.com/docs/grok-bot/private-networks.md
-  - https://cursor.com/docs/grok-bot/proxies.md
-  - https://cursor.com/docs/grok-bot/computers.md
-  - https://cursor.com/docs/grok-bot/security.md
-    - https://cursor.com/docs/grok-bot/security-faq.md
-  - https://cursor.com/docs/grok-bot/inference-hooks.md
-
 ## customizing
 
 - https://cursor.com/docs/customize-cursor.md
@@ -85,7 +68,8 @@
 - https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime.md
 - https://cursor.com/docs/cloud-agent/automations.md
 - https://cursor.com/docs/bugbot.md
-- https://cursor.com/docs/security-agents.md
+- https://cursor.com/docs/security-review.md
+- https://cursor.com/docs/vulnerability-remediation.md
 - https://cursor.com/docs/approval-agents.md
 - https://cursor.com/docs/rollouts.md
 - https://cursor.com/docs/cloud-agent/mobile.md
@@ -310,6 +294,9 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-a-team-secret
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#set-a-personal-secret
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-a-personal-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-automations
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-automation
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#change-an-automations-model
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-user-scoped-worker-token
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-workers
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-summary
@@ -345,6 +332,7 @@
 - https://cursor.com/docs/account/teams/admin-api.md#get-daily-usage-data
 - https://cursor.com/docs/account/teams/admin-api.md#get-spending-data
 - https://cursor.com/docs/account/teams/admin-api.md#get-usage-events-data
+- https://cursor.com/docs/account/teams/admin-api.md#get-billing-items
 - https://cursor.com/docs/account/teams/admin-api.md#set-user-spend-limit
 - https://cursor.com/docs/account/teams/admin-api.md#set-user-spend-limits-in-bulk-preview
 - https://cursor.com/docs/account/teams/admin-api.md#remove-team-member
@@ -510,34 +498,6 @@
 - https://cursor.com/help/integrations/github-gitlab.md
 - https://cursor.com/help/integrations/cli.md
 - https://cursor.com/help/integrations/third-party.md
-
-## Grok Bot
-
-- https://cursor.com/help/grok-bot/onboarding.md
-- https://cursor.com/help/grok-bot/how-to.md
-- https://cursor.com/help/grok-bot/faqs.md
-- https://cursor.com/help/grok-bot/sign-in.md
-- https://cursor.com/help/grok-bot/mobile.md
-- https://cursor.com/help/grok-bot/x-chat.md
-- https://cursor.com/help/grok-bot/plans.md
-- https://cursor.com/help/grok-bot/models.md
-- https://cursor.com/help/grok-bot/supergrok.md
-- https://cursor.com/help/grok-bot/mobile-purchase.md
-- https://cursor.com/help/grok-bot/delete-account.md
-- https://cursor.com/help/grok-bot/connect-apps.md
-- https://cursor.com/help/grok-bot/agent-email.md
-- https://cursor.com/help/grok-bot/routines.md
-- https://cursor.com/help/grok-bot/approvals.md
-- https://cursor.com/help/grok-bot/pages.md
-- https://cursor.com/help/grok-bot/create-media.md
-- https://cursor.com/help/grok-bot/edit-bot.md
-- https://cursor.com/help/grok-bot/memory.md
-- https://cursor.com/help/grok-bot/group-chats.md
-- https://cursor.com/help/grok-bot/team-bots.md
-- https://cursor.com/help/grok-bot/voice-chat.md
-- https://cursor.com/help/grok-bot/computer-recovery.md
-- https://cursor.com/help/grok-bot/secrets.md
-- https://cursor.com/help/grok-bot/get-help.md
 
 ## The X Subscription
 
