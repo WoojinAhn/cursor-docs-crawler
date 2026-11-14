@@ -268,6 +268,7 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-runs
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-a-run
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#stream-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#stream-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#cancel-a-run
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-agent-usage
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-artifacts
@@ -275,6 +276,13 @@
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#archive-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#unarchive-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-agent-permanently
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-project
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-projects
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-a-project
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-project-agents
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#update-a-project
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#archive-a-project
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#unarchive-a-project
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#create-an-environment
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environments
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-environment
