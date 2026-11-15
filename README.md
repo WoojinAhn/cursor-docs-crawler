@@ -93,7 +93,7 @@ python main.py --test --fixture
 # Specify output file
 python main.py --output my_cursor_docs.pdf
 
-# Generate PDF in English
+# English is the only supported language (default)
 python main.py --lang en
 
 # Limit maximum pages
@@ -120,24 +120,17 @@ python main.py --lang en --output cursor_docs_en.pdf --verbose --log-file test.l
 | `--fixture` | Use saved HTML fixtures (offline, no Selenium) | False |
 | `--scope`, `-s` | Crawl scope: `docs`, `help`, or `all` | docs |
 | `--output`, `-o` | Output PDF file path | Per scope |
-| `--lang`, `-l` | Language for crawling and PDF output | ko |
+| `--lang`, `-l` | Document language. Only `en` is supported; other values fall back to English | en |
 | `--max-pages`, `-m` | Maximum pages to crawl | Unlimited |
 | `--delay`, `-d` | Delay between requests (seconds) | 1.0 |
 | `--verbose`, `-v` | Enable verbose logging | False |
 | `--log-file` | Log file path | None |
 
-### Supported Languages
+### Language
 
-The `--lang` option controls which language cursor.com serves. Only languages provided by cursor.com/docs are available — translation quality and coverage depend entirely on Cursor's site.
+Releases are English only. Cursor removed localized documentation in August 2026, and locale-prefixed URLs such as `/ko/docs` redirect to the English pages. `--lang` accepts `en` (the default). Any other code prints a warning and falls back to English.
 
-| Code | Language | Code | Language |
-|------|----------|------|----------|
-| `en` | English | `fr` | Fran&ccedil;ais |
-| `ko` | 한국어 | `pt` | Portugu&ecirc;s |
-| `ja` | 日本語 | `ru` | Русский |
-| `zh` | 简体中文 | `tr` | T&uuml;rk&ccedil;e |
-| `zh-TW` | 繁體中文 | `id` | Bahasa Indonesia |
-| `es` | Espa&ntilde;ol | `de` | Deutsch |
+The last Korean edition is the [`docs-2026-08-09`](https://github.com/WoojinAhn/cursor-docs-crawler/releases/tag/docs-2026-08-09) release.
 
 ## Project Structure
 
@@ -282,12 +275,13 @@ python -m pytest tests/test_e2e_offline.py -v
 | **E2E Test** | Pull request | Offline tests (from committed fixtures) | No |
 | **E2E Test** | Weekly cron (Sun 03:00 UTC) | Refresh fixtures from live site + commit | Yes |
 | **Detect Docs Change** | Daily cron (00:00 UTC) | Fetch llms.txt, compare with snapshot, trigger release if changed | Yes |
-| **Release PDF** | Weekly cron (Sun 06:00 UTC) or auto-triggered by change detection | Generate 4 PDFs (docs+help × ko+en), create GitHub Release | Yes |
+| **Release PDF** | Weekly cron (Sun 06:00 UTC) or auto-triggered by change detection | Generate 2 English PDFs (docs + help), create GitHub Release | Yes |
 
 **CI Monitoring:**
 
 - **Failure alerts**: All workflows auto-create a GitHub Issue (labeled `ci-failure`) on failure, with a link to the failed run. Duplicate open issues receive a comment instead of a new issue.
 - **Release change summary**: Each release includes a "Changes since last release" section showing added/removed documentation pages grouped by section, based on llms.txt diff.
+- **Locale watch**: If the `Available languages` line in llms.txt changes, the daily check opens a GitHub issue so the change is not missed.
 
 ## Error Handling
 
@@ -398,7 +392,12 @@ This project is distributed under the MIT License.
 
 Pre-built PDFs are available on the [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) page — updated automatically when documentation changes are detected.
 
-Each release includes 4 PDFs (docs + help, in Korean & English).
+Each release includes two English PDFs:
+
+- `cursor_docs_en.pdf` — technical reference
+- `cursor_help_en.pdf` — user guide and troubleshooting
+
+The last Korean edition is the [`docs-2026-08-09`](https://github.com/WoojinAhn/cursor-docs-crawler/releases/tag/docs-2026-08-09) release.
 
 **Usage ideas**: Upload to NotebookLM or similar AI knowledge tools as a source, use for offline reference, or compare releases to track documentation changes over time.
 

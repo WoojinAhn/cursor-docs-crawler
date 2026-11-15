@@ -39,11 +39,9 @@ class Config:
     # Seed URL source: llms.txt lists all official doc pages
     LLMS_TXT_URL: str = "https://cursor.com/llms.txt"
 
-    # Language for crawling and PDF output (e.g., "ko", "en", "ja")
-    SUPPORTED_LANGUAGES: tuple = (
-        "en", "ko", "ja", "zh", "zh-TW", "es", "fr", "pt", "ru", "tr", "id", "de",
-    )
-    LANGUAGE: str = "ko"
+    # Browser locale and <html lang>. Cursor docs are English-only.
+    SUPPORTED_LANGUAGES: tuple = ("en",)
+    LANGUAGE: str = "en"
 
     # Crawling settings
     MAX_PAGES: Optional[int] = None  # None for unlimited, number for test mode
@@ -232,3 +230,14 @@ class TestConfig(Config):
         # Ensure MAX_PAGES matches or exceeds test URL count
         if len(self.TEST_URLS) > self.MAX_PAGES:
             raise ValueError(f"MAX_PAGES ({self.MAX_PAGES}) should be >= number of TEST_URLS ({len(self.TEST_URLS)})")
+
+
+def resolve_language(requested: str) -> str:
+    """Return a supported language code.
+
+    Cursor documentation is English-only. Any other request falls back to
+    English so the PDF is not labeled with a language the site no longer serves.
+    """
+    if requested in Config.SUPPORTED_LANGUAGES:
+        return requested
+    return "en"

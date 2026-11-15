@@ -23,7 +23,7 @@ body:
     attributes:
       label: Steps to reproduce
       placeholder: |
-        1. Run `python main.py --lang ko`
+        1. Run `python main.py --scope docs`
         2. ...
     validations:
       required: true

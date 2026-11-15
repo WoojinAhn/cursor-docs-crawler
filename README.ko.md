@@ -93,7 +93,7 @@ python main.py --test --fixture
 # 출력 파일 지정
 python main.py --output my_cursor_docs.pdf
 
-# 영어 PDF 생성
+# 지원 언어는 영어뿐이며 기본값이다
 python main.py --lang en
 
 # 최대 페이지 수 제한
@@ -120,24 +120,17 @@ python main.py --lang en --output cursor_docs_en.pdf --verbose --log-file test.l
 | `--fixture` | 저장된 HTML fixture 사용 (오프라인, Selenium 불필요) | False |
 | `--scope`, `-s` | 크롤 범위: `docs`, `help`, 또는 `all` | docs |
 | `--output`, `-o` | 출력 PDF 파일 경로 | 스코프별 자동 |
-| `--lang`, `-l` | 크롤링 및 PDF 출력 언어 | ko |
+| `--lang`, `-l` | 문서 언어. `en`만 지원하며, 다른 값은 영어로 대체 | en |
 | `--max-pages`, `-m` | 최대 크롤링 페이지 수 | 무제한 |
 | `--delay`, `-d` | 요청 간 지연 시간 (초) | 1.0 |
 | `--verbose`, `-v` | 상세 로깅 활성화 | False |
 | `--log-file` | 로그 파일 경로 | None |
 
-### 지원 언어
+### 언어
 
-`--lang` 옵션은 cursor.com이 제공하는 언어를 선택합니다. cursor.com/docs에서 제공하는 언어만 사용 가능하며, 번역 품질과 커버리지는 전적으로 Cursor 측에 의존합니다.
+릴리즈는 영어 PDF만 생성합니다. Cursor는 2026년 8월에 다국어 문서를 제거했고, `/ko/docs` 같은 로케일 경로는 영어 문서로 리다이렉트됩니다. `--lang`은 `en`만 지원하며 기본값입니다. 다른 값은 경고 후 영어로 대체됩니다.
 
-| 코드 | 언어 | 코드 | 언어 |
-|------|------|------|------|
-| `en` | English | `fr` | Fran&ccedil;ais |
-| `ko` | 한국어 | `pt` | Portugu&ecirc;s |
-| `ja` | 日本語 | `ru` | Русский |
-| `zh` | 简体中文 | `tr` | T&uuml;rk&ccedil;e |
-| `zh-TW` | 繁體中文 | `id` | Bahasa Indonesia |
-| `es` | Espa&ntilde;ol | `de` | Deutsch |
+마지막 한국어판은 [`docs-2026-08-09`](https://github.com/WoojinAhn/cursor-docs-crawler/releases/tag/docs-2026-08-09) 릴리즈입니다.
 
 ## 프로젝트 구조
 
@@ -282,12 +275,13 @@ python -m pytest tests/test_e2e_offline.py -v
 | **E2E Test** | Pull Request | 오프라인 테스트 (커밋된 fixture 사용) | 아니오 |
 | **E2E Test** | 주간 cron (일요일 03:00 UTC) | 라이브 사이트에서 fixture 갱신 + 커밋 | 예 |
 | **Detect Docs Change** | 매일 cron (00:00 UTC) | llms.txt 변경 감지, 변경 시 릴리즈 자동 트리거 | 예 |
-| **Release PDF** | 주간 cron (일요일 06:00 UTC) 또는 변경 감지 시 자동 | 4개 PDF 생성 (docs+help × ko+en), GitHub Release 생성 | 예 |
+| **Release PDF** | 주간 cron (일요일 06:00 UTC) 또는 변경 감지 시 자동 | 영어 PDF 2개 생성 (docs + help), GitHub Release 생성 | 예 |
 
 **CI 모니터링:**
 
 - **실패 알림**: 모든 워크플로우 실패 시 `ci-failure` 라벨로 GitHub Issue가 자동 생성되며, 실패한 run 링크가 포함됩니다. 동일 워크플로우의 기존 open 이슈가 있으면 중복 생성 없이 코멘트가 추가됩니다.
 - **릴리즈 변경 요약**: 릴리즈 노트에 이전 릴리즈 대비 추가/삭제된 문서 페이지를 섹션별로 그룹핑하여 표시합니다 (llms.txt diff 기반).
+- **로케일 감시**: llms.txt의 `Available languages` 줄이 바뀌면 일간 검사가 GitHub Issue를 열어 변경이 묻히지 않게 합니다.
 
 ## 에러 처리
 
@@ -398,7 +392,12 @@ pytest tests/ --cov=src
 
 PDF는 [Releases](https://github.com/WoojinAhn/cursor-docs-crawler/releases/latest) 페이지에서 다운로드할 수 있습니다 — 문서 변경 감지 시 자동 갱신.
 
-각 릴리즈에는 4개의 PDF가 포함됩니다 (docs + help, 한국어 & 영어).
+각 릴리즈에는 영어 PDF 2개가 포함됩니다.
+
+- `cursor_docs_en.pdf` — 기술 레퍼런스
+- `cursor_help_en.pdf` — 유저 가이드 및 트러블슈팅
+
+마지막 한국어판은 [`docs-2026-08-09`](https://github.com/WoojinAhn/cursor-docs-crawler/releases/tag/docs-2026-08-09) 릴리즈입니다.
 
 **활용 예시**: NotebookLM 등 AI 지식 도구에 소스로 업로드, 오프라인 레퍼런스, 릴리즈 간 비교로 문서 변경 추적.
 

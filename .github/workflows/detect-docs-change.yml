@@ -57,6 +57,29 @@ jobs:
             echo "initial=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Check available languages
+        if: steps.fetch.outputs.valid == 'true' && steps.diff.outputs.changed == 'true' && steps.diff.outputs.initial != 'true'
+        id: languages
+        run: |
+          RESULT="$(bash scripts/check_available_languages.sh .github/llms-txt-snapshot.txt /tmp/llms-txt-current.txt)"
+          STATUS="${RESULT%%$'\n'*}"
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+          if [ "$STATUS" != "changed" ]; then
+            echo "Available languages line unchanged"
+            exit 0
+          fi
+          OLD="$(printf '%s\n' "$RESULT" | sed -n 's/^old=//p')"
+          NEW="$(printf '%s\n' "$RESULT" | sed -n 's/^new=//p')"
+          echo "::warning title=Available languages::${OLD:-<missing>} -> ${NEW:-<missing>}"
+          {
+            echo 'old<<EOF'
+            printf '%s\n' "$OLD"
+            echo EOF
+            echo 'new<<EOF'
+            printf '%s\n' "$NEW"
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
       - name: Update snapshot
         if: steps.fetch.outputs.valid == 'true' && steps.diff.outputs.changed == 'true'
         run: |
@@ -74,6 +97,38 @@ jobs:
         run: |
           echo "Triggering Release PDF workflow..."
           gh workflow run "Release PDF"
+
+      - name: Flag available-languages change
+        if: steps.languages.outputs.status == 'changed'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OLD_LINE: ${{ steps.languages.outputs.old }}
+          NEW_LINE: ${{ steps.languages.outputs.new }}
+        run: |
+          TITLE="[llms.txt] Available languages changed ($(date -u +%Y-%m-%d))"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          BODY="$(printf '%s\n' \
+            "## Available languages changed" \
+            "" \
+            "The \`Available languages\` line in [cursor.com/llms.txt](https://cursor.com/llms.txt) changed." \
+            "Releases stay English-only (\`cursor_docs_en.pdf\`, \`cursor_help_en.pdf\`). This issue flags the locale change so it is not missed." \
+            "" \
+            "**Before:** \`${OLD_LINE:-<missing>}\`" \
+            "**After:** \`${NEW_LINE:-<missing>}\`" \
+            "" \
+            "**Run:** ${RUN_URL}")"
+
+          EXISTING=$(gh issue list --label docs-locale --state open --search "Available languages changed" --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body "$BODY" \
+              || echo "::warning::Failed to comment on issue #$EXISTING"
+            echo "Added comment to existing issue #$EXISTING"
+          else
+            gh label create docs-locale --color "fbca04" --description "llms.txt available-languages change" 2>/dev/null || true
+            gh issue create --title "$TITLE" --body "$BODY" --label docs-locale \
+              || echo "::warning::Failed to open available-languages issue"
+          fi
 
       - name: Create failure issue
         if: failure()

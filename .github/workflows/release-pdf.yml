@@ -31,26 +31,12 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Generate Korean docs PDF
-        run: |
-          OUTPUT=$(python main.py --scope docs --output cursor_docs_ko.pdf --lang ko --verbose)
-          echo "$OUTPUT"
-          PAGES=$(echo "$OUTPUT" | grep -oP 'Total pages: \K\d+' || echo "0")
-          echo "docs_ko_pages=$PAGES" >> "$GITHUB_ENV"
-
       - name: Generate English docs PDF
         run: |
           OUTPUT=$(python main.py --scope docs --output cursor_docs_en.pdf --lang en --verbose)
           echo "$OUTPUT"
           PAGES=$(echo "$OUTPUT" | grep -oP 'Total pages: \K\d+' || echo "0")
           echo "docs_en_pages=$PAGES" >> "$GITHUB_ENV"
-
-      - name: Generate Korean help PDF
-        run: |
-          OUTPUT=$(python main.py --scope help --output cursor_help_ko.pdf --lang ko --verbose)
-          echo "$OUTPUT"
-          PAGES=$(echo "$OUTPUT" | grep -oP 'Total pages: \K\d+' || echo "0")
-          echo "help_ko_pages=$PAGES" >> "$GITHUB_ENV"
 
       - name: Generate English help PDF
         run: |
@@ -63,12 +49,10 @@ jobs:
         run: |
           MIN_DOCS=5
           MIN_HELP=3
-          echo "Page counts — docs_ko: $docs_ko_pages, docs_en: $docs_en_pages, help_ko: $help_ko_pages, help_en: $help_en_pages"
+          echo "Page counts — docs_en: $docs_en_pages, help_en: $help_en_pages"
 
           FAILED=false
-          [ "$docs_ko_pages" -lt "$MIN_DOCS" ] && echo "::error::docs_ko has only $docs_ko_pages pages (min: $MIN_DOCS)" && FAILED=true
           [ "$docs_en_pages" -lt "$MIN_DOCS" ] && echo "::error::docs_en has only $docs_en_pages pages (min: $MIN_DOCS)" && FAILED=true
-          [ "$help_ko_pages" -lt "$MIN_HELP" ] && echo "::error::help_ko has only $help_ko_pages pages (min: $MIN_HELP)" && FAILED=true
           [ "$help_en_pages" -lt "$MIN_HELP" ] && echo "::error::help_en has only $help_en_pages pages (min: $MIN_HELP)" && FAILED=true
 
           if [ "$FAILED" = true ]; then
@@ -158,9 +142,7 @@ jobs:
 
           get_size() { python -c "import os; print(f'{os.path.getsize(\"$1\") / (1024*1024):.1f} MB')"; }
 
-          DOCS_KO=$(get_size cursor_docs_ko.pdf)
           DOCS_EN=$(get_size cursor_docs_en.pdf)
-          HELP_KO=$(get_size cursor_help_ko.pdf)
           HELP_EN=$(get_size cursor_help_en.pdf)
 
           CHANGES='${{ steps.changes.outputs.summary }}'
@@ -169,13 +151,11 @@ jobs:
           ### Docs (Technical Reference)
           | File | Language | Size |
           |------|----------|------|
-          | cursor_docs_ko.pdf | 한국어 | ${DOCS_KO} |
           | cursor_docs_en.pdf | English | ${DOCS_EN} |
 
           ### Help (User Guide & Troubleshooting)
           | File | Language | Size |
           |------|----------|------|
-          | cursor_help_ko.pdf | 한국어 | ${HELP_KO} |
           | cursor_help_en.pdf | English | ${HELP_EN} |
 
           ### Changes since last release
@@ -188,9 +168,7 @@ jobs:
           # Drop any leftover local tag and pin the new one to this commit.
           # scripts/recreate_release.sh also retries a 422 from tag deletion.
           bash scripts/recreate_release.sh "$TAG" "$TITLE" "$NOTES_FILE" \
-            cursor_docs_ko.pdf \
             cursor_docs_en.pdf \
-            cursor_help_ko.pdf \
             cursor_help_en.pdf
 
       - name: Trigger post-release ops

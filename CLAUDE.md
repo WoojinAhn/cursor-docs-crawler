@@ -23,7 +23,7 @@ python main.py --test
 python scripts/save_fixtures.py  # One-time: save HTML snapshots
 python main.py --test --fixture  # Fast: offline E2E (~6 seconds)
 
-# Generate PDF in a specific language (default: ko)
+# Language is English only (default). Other --lang values fall back to en.
 python main.py --lang en
 
 # Generate docs PDF only (default)
@@ -86,14 +86,14 @@ The pipeline runs in three sequential phases orchestrated by `main.py`:
 - **SeleniumBase UC Mode over requests**: cursor.com/docs uses client-side JS rendering and Vercel bot protection, so SeleniumBase UC Mode (undetected Chrome) is required to get rendered HTML.
 - **URL deduplication at two levels**: `URLManager` deduplicates during crawl queue management; `PDFGenerator._deduplicate_pages` deduplicates again before PDF generation (handles redirects where original URL != final URL).
 - **Redirect tracking**: `SeleniumCrawler` captures `driver.current_url` after page load and stores it as `PageData.final_url`. Both original and final URLs are marked as visited.
-- **Locale stripping**: cursor.com auto-redirects to locale-prefixed URLs (e.g. `/ko/docs/...`). `SeleniumCrawler.strip_locale` normalizes these back to canonical `/docs/...` form so deduplication works correctly.
+- **Locale stripping**: `SeleniumCrawler.strip_locale` drops a leftover two-letter locale prefix (`/ko/docs/...` → `/docs/...`) so URLs stay canonical for the `/docs/` and `/help/` filters.
 - **Image inlining**: `SeleniumCrawler._inline_images_as_base64()` converts all `<img src="http...">` to base64 data URIs via browser `fetch()` before extracting `page_source`. This uses the browser's authenticated session to bypass Vercel's image blocking. `ContentParser.process_images` skips `data:` URIs in URL normalization.
 - **Crawler interface**: Both `SeleniumCrawler` and `FixtureCrawler` implement the same `crawl_all() -> List[PageData]` / `close()` interface, making them interchangeable in `main.py`.
 - **Content extraction priority**: `ContentParser.extract_main_content` tries selectors in order: `.prose.prose-lg` (current) > `.mdx-content` (legacy) > `main` > `.content` > `article` > various fallbacks > `body`.
 - **CSS class stripping order**: Tailwind classes are stripped *after* content extraction — stripping before would remove the `.prose.prose-lg` selector needed for extraction.
 - **Protected elements**: Frame elements (`data-name="frame"`) and codebase-indexing images are explicitly protected from removal during HTML cleaning.
 - **Fallback PDF**: If WeasyPrint fails on styled HTML, `PDFGenerator` attempts a simplified fallback HTML without custom CSS.
-- **Language support**: `--lang` sets Chrome's `Accept-Language` header and `intl.accept_languages` pref, causing cursor.com to serve translated content. Unsupported values silently fall back to `en`. Supported: en, ko, ja, zh, zh-TW, es, fr, pt, ru, tr, id, de.
+- **Language**: English only. `SUPPORTED_LANGUAGES` is `en`. `--lang` accepts `en` and sets the browser locale plus the PDF `<html lang>`; any other value warns and falls back to English. Cursor removed localized docs in August 2026 (last Korean release: `docs-2026-08-09`).
 - **Scope separation**: `/docs/` (technical reference) and `/help/` (user guide/troubleshooting) are crawled independently via `--scope`. `all` runs two separate crawl cycles producing two PDFs — they are not merged because the content purposes differ and separate sources work better for NotebookLM ingestion.
 
 ### Data Flow Models (`src/models.py`)
@@ -109,6 +109,6 @@ Pages are sorted by URL path hierarchy with priority overrides for common doc pa
 ## CI (GitHub Actions)
 
 - **e2e-test.yml**: Offline E2E tests on every PR (committed fixtures). Weekly cron (Sun 03:00 UTC) refreshes fixtures from live site.
-- **detect-docs-change.yml**: Daily cron (00:00 UTC) fetches `cursor.com/llms.txt`, compares with `.github/llms-txt-snapshot.txt`. If changed, commits new snapshot and triggers release workflow. Validates response is actual llms.txt (not bot protection HTML) before updating.
-- **release-pdf.yml**: Weekly cron (Sun 06:00 UTC) or auto-triggered by change detection. Generates 4 PDFs (docs+help × ko+en), validates page counts (min 5 for docs, 3 for help), includes section-level change summary in release notes, and creates a GitHub Release.
+- **detect-docs-change.yml**: Daily cron (00:00 UTC) fetches `cursor.com/llms.txt`, compares with `.github/llms-txt-snapshot.txt`. If changed, commits new snapshot and triggers release workflow. A change to the `Available languages` line also opens an issue. Validates response is actual llms.txt (not bot protection HTML) before updating.
+- **release-pdf.yml**: Weekly cron (Sun 06:00 UTC) or auto-triggered by change detection. Generates 2 English PDFs (`cursor_docs_en.pdf`, `cursor_help_en.pdf`), validates page counts (min 5 for docs, 3 for help), includes section-level change summary in release notes, and creates a GitHub Release.
 - **Failure monitoring**: All workflows auto-create a `ci-failure` labeled GitHub Issue on failure with run link. Duplicate open issues get comments instead.
