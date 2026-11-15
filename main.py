@@ -9,7 +9,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-from src.config import Config, TestConfig
+from src.config import Config, TestConfig, resolve_language
 from src.url_manager import URLManager
 from src.content_parser import ContentParser
 from src.pdf_generator import PDFGenerator
@@ -57,11 +57,9 @@ def run_single_scope(args, scope: str, reporter: CrawlReporter,
         config.DELAY_BETWEEN_REQUESTS = args.delay
 
     if args.lang:
-        if args.lang in config.SUPPORTED_LANGUAGES:
-            config.LANGUAGE = args.lang
-        else:
+        if args.lang not in config.SUPPORTED_LANGUAGES:
             print(f"[Warning] Unsupported language '{args.lang}', falling back to 'en'")
-            config.LANGUAGE = "en"
+        config.LANGUAGE = resolve_language(args.lang)
 
     crawler = None
     try:
@@ -230,8 +228,8 @@ def main():
 
     parser.add_argument(
         "--lang", "-l",
-        default="ko",
-        help="Language for crawling and PDF output (default: ko)"
+        default="en",
+        help="Document language. Only 'en' is supported (default: en); other values fall back to English"
     )
 
     parser.add_argument(

@@ -23,10 +23,10 @@ class SeleniumCrawler:
 
     @staticmethod
     def strip_locale(url: str) -> str:
-        """Remove locale prefix from URL path (e.g. /ko/docs/... -> /docs/...).
+        """Drop a leading two-letter locale prefix (/ko/docs/... -> /docs/...).
 
-        cursor.com auto-redirects to a locale-prefixed URL based on browser
-        language. We strip it so all URLs are stored in a canonical form.
+        English /docs and /help paths are canonical. A leftover locale prefix
+        is removed so the URL still matches the scope filter and dedupes.
         """
         parsed = urlparse(url)
         new_path = _LOCALE_RE.sub('', parsed.path)

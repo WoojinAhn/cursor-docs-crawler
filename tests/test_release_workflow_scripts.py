@@ -213,6 +213,8 @@ def test_recreate_release_requires_github_sha(tmp_path):
 
 PREV_TAG_SCRIPT = ROOT / "scripts" / "previous_release_tag.sh"
 WORKFLOW = ROOT / ".github" / "workflows" / "release-pdf.yml"
+DETECT_WORKFLOW = ROOT / ".github" / "workflows" / "detect-docs-change.yml"
+LANGUAGE_SCRIPT = ROOT / "scripts" / "check_available_languages.sh"
 
 
 def _gh_release_list(bin_dir: Path, tags: list[str], fail: bool = False) -> None:
@@ -302,6 +304,84 @@ printf 'added=%s\nremoved=%s\n' "$ADDED_COUNT" "$REMOVED_COUNT"
     assert "grep -c . || true" in workflow
     assert "group: release-pdf" in workflow
     assert "cancel-in-progress: false" in workflow
+
+
+def test_release_workflow_publishes_english_pdfs_only():
+    """Korean release assets are no longer generated, validated, or uploaded."""
+    workflow = WORKFLOW.read_text()
+    assert "cursor_docs_ko.pdf" not in workflow
+    assert "cursor_help_ko.pdf" not in workflow
+    assert "docs_ko_pages" not in workflow
+    assert "help_ko_pages" not in workflow
+    assert "--lang ko" not in workflow
+    assert "cursor_docs_en.pdf" in workflow
+    assert "cursor_help_en.pdf" in workflow
+
+
+def _language_check(tmp_path: Path, old: str, new: str) -> str:
+    old_file = tmp_path / "old.txt"
+    new_file = tmp_path / "new.txt"
+    old_file.write_text(old, encoding="utf-8")
+    new_file.write_text(new, encoding="utf-8")
+    result = subprocess.run(
+        ["bash", str(LANGUAGE_SCRIPT), str(old_file), str(new_file)],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return result.stdout
+
+
+def test_available_languages_unchanged(tmp_path):
+    line = "Available languages: cn, ru, ja, pt-BR, es\n"
+    body = f"# Docs\n\n{line}\n- https://cursor.com/docs/bugbot.md\n"
+    assert _language_check(tmp_path, body, body) == "unchanged\n"
+
+
+def test_available_languages_change_is_reported(tmp_path):
+    old = "# Docs\nAvailable languages: cn, ru, ja, pt-BR, es\n"
+    new = "# Docs\nAvailable languages: cn, ja\n"
+    stdout = _language_check(tmp_path, old, new)
+    assert stdout.splitlines() == [
+        "changed",
+        "old=Available languages: cn, ru, ja, pt-BR, es",
+        "new=Available languages: cn, ja",
+    ]
+
+
+def test_available_languages_removed_line_is_a_change(tmp_path):
+    old = "Available languages: cn, ru, ja, pt-BR, es\n"
+    stdout = _language_check(tmp_path, old, "# Docs\n")
+    assert stdout.splitlines()[0] == "changed"
+    assert "old=Available languages: cn, ru, ja, pt-BR, es" in stdout.splitlines()
+    assert stdout.splitlines()[-1] == "new="
+
+
+def test_available_languages_missing_file_is_empty(tmp_path):
+    new = tmp_path / "new.txt"
+    new.write_text("Available languages: en\n", encoding="utf-8")
+    result = subprocess.run(
+        ["bash", str(LANGUAGE_SCRIPT), str(tmp_path / "missing.txt"), str(new)],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    assert result.stdout.splitlines() == [
+        "changed",
+        "old=",
+        "new=Available languages: en",
+    ]
+
+
+def test_detect_workflow_flags_available_languages_before_snapshot_update():
+    """The language line is compared against the snapshot that is about to be replaced."""
+    text = DETECT_WORKFLOW.read_text()
+    check = text.index("check_available_languages.sh")
+    update = text.index("cp /tmp/llms-txt-current.txt")
+    assert check < update
+    assert "Available languages changed" in text
+    assert "cursor_docs_ko.pdf" not in text
+    assert "cursor_help_ko.pdf" not in text
 
 
 def _run_release_with_gh(repo, bin_dir, sha, tag, gh_body):
