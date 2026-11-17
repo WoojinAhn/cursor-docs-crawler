@@ -13,13 +13,25 @@ from .models import PageData
 # Locale prefixes that Cursor auto-inserts (e.g. /ko/, /en/, /ja/)
 _LOCALE_RE = re.compile(r'^/[a-z]{2}(?=/)')
 
+# SeleniumBase 4.58.0 (2026-11-15) stopped passing this flag in UC Mode.
+# uc_open_with_reconnect() loads each URL via window.open() and then closes
+# the previous tab. With the popup blocker left on, the second open is
+# dropped, close() exits Chrome, and every later page fails on
+# /window/handles with connection refused. 4.57.1 still set the flag itself.
+_UC_CHROMIUM_ARGS = "disable-popup-blocking"
+
 
 class SeleniumCrawler:
     def __init__(self, config, url_manager):
         self.config = config
         self.url_manager = url_manager
         self.logger = logging.getLogger(__name__)
-        self.driver = Driver(uc=True, headless=True, locale_code=config.LANGUAGE)
+        self.driver = Driver(
+            uc=True,
+            headless=True,
+            locale_code=config.LANGUAGE,
+            chromium_arg=_UC_CHROMIUM_ARGS,
+        )
 
     @staticmethod
     def strip_locale(url: str) -> str:
