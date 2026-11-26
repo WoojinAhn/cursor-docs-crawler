@@ -197,6 +197,14 @@
   - https://cursor.com/docs/cli/reference/permissions.md
   - https://cursor.com/docs/cli/reference/configuration.md
 
+## security
+
+- https://cursor.com/docs/security.md
+- https://cursor.com/docs/security/api-keys.md
+- https://cursor.com/docs/security/sessions.md
+- https://cursor.com/docs/security/network-controls.md
+- https://cursor.com/docs/security/oauth-applications.md
+
 ## Account
 
 - https://cursor.com/docs/account/teams/setup.md
@@ -335,6 +343,7 @@
 - https://cursor.com/docs/account/teams/admin-api.md
 - https://cursor.com/docs/account/organizations/organization-admin-api.md
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#list-organization-members
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#member-sessions
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#organization-groups
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#get-pooled-usage
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#get-usage-events
@@ -354,6 +363,9 @@
 - https://cursor.com/docs/account/teams/admin-api.md#get-team-repo-blocklists
 - https://cursor.com/docs/account/teams/admin-api.md#upsert-repo-blocklists
 - https://cursor.com/docs/account/teams/admin-api.md#delete-repo-blocklist
+- https://cursor.com/docs/account/teams/admin-api.md#member-sessions
+- https://cursor.com/docs/account/teams/admin-api.md#list-member-sessions
+- https://cursor.com/docs/account/teams/admin-api.md#revoke-member-sessions
 - https://cursor.com/docs/account/teams/admin-api.md#team-directory-groups
 - https://cursor.com/docs/account/teams/admin-api.md#list-team-directory-groups
 - https://cursor.com/docs/account/teams/admin-api.md#get-team-directory-group
